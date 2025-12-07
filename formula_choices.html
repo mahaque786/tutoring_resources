@@ -1,0 +1,1280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Equation Chooser Trainer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --eqz-bg: #0f172a;
+      --eqz-card-bg: #020617;
+      --eqz-accent: #38bdf8;
+      --eqz-accent-soft: rgba(56, 189, 248, 0.1);
+      --eqz-correct: #22c55e;
+      --eqz-wrong: #f97373;
+      --eqz-text-main: #e5e7eb;
+      --eqz-text-sub: #9ca3af;
+      --eqz-border-subtle: rgba(148, 163, 184, 0.4);
+      --eqz-radius: 16px;
+      --eqz-transition: 0.18s ease-out;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #1e293b 0, #020617 55%);
+      color: var(--eqz-text-main);
+    }
+
+    #equation-quiz-app {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px 16px;
+    }
+
+    .eqz-shell {
+      width: 100%;
+      max-width: 880px;
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(15, 23, 42, 0.92));
+      border-radius: 24px;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      box-shadow:
+        0 24px 80px rgba(15, 23, 42, 0.8),
+        0 0 0 1px rgba(15, 23, 42, 0.8);
+      padding: 20px 20px 18px;
+      backdrop-filter: blur(18px);
+    }
+
+    @media (min-width: 768px) {
+      .eqz-shell {
+        padding: 24px 26px 22px;
+      }
+    }
+
+    .eqz-header {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+
+    .eqz-title-block {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .eqz-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 0%, #38bdf8, #0f172a);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      color: white;
+      box-shadow: 0 0 0 1px rgba(148, 163, 184, 0.5);
+    }
+
+    .eqz-title-main {
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+    }
+
+    .eqz-title-sub {
+      font-size: 13px;
+      color: var(--eqz-text-sub);
+    }
+
+    .eqz-controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: flex-end;
+      align-items: center;
+      font-size: 12px;
+      color: var(--eqz-text-sub);
+    }
+
+    .eqz-select-wrapper {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid var(--eqz-border-subtle);
+      background: rgba(15, 23, 42, 0.9);
+    }
+
+    .eqz-select-wrapper label {
+      white-space: nowrap;
+    }
+
+    .eqz-select-wrapper select {
+      background: transparent;
+      border: none;
+      color: var(--eqz-text-main);
+      font-size: 12px;
+      outline: none;
+      padding: 2px 4px 2px 2px;
+      cursor: pointer;
+    }
+
+    .eqz-stats-chip {
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      background: rgba(15, 23, 42, 0.9);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+    }
+
+    .eqz-badge-pill {
+      padding: 2px 6px;
+      border-radius: 999px;
+      background: rgba(56, 189, 248, 0.12);
+      border: 1px solid rgba(56, 189, 248, 0.8);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #e0f2fe;
+    }
+
+    .eqz-card {
+      border-radius: 20px;
+      background: radial-gradient(circle at top left, rgba(56, 189, 248, 0.08), transparent 55%),
+                  radial-gradient(circle at bottom right, rgba(96, 165, 250, 0.08), transparent 55%),
+                  var(--eqz-card-bg);
+      padding: 16px 14px 14px;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+    }
+
+    @media (min-width: 768px) {
+      .eqz-card {
+        padding: 18px 18px 14px;
+      }
+    }
+
+    .eqz-progress-bar {
+      position: relative;
+      width: 100%;
+      height: 6px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      overflow: hidden;
+      margin-bottom: 10px;
+      border: 1px solid rgba(30, 64, 175, 0.6);
+    }
+
+    .eqz-progress-inner {
+      height: 100%;
+      width: 0%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, #38bdf8, #a855f7);
+      transition: width 0.25s var(--eqz-transition);
+    }
+
+    .eqz-meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 10px;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      font-size: 12px;
+      color: var(--eqz-text-sub);
+    }
+
+    .eqz-meta-main {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .eqz-dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 999px;
+      background: rgba(148, 163, 184, 0.8);
+    }
+
+    .eqz-difficulty {
+      padding: 3px 7px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      font-family: "SF Mono", ui-monospace, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    }
+
+    .eqz-question-block {
+      border-radius: 16px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      padding: 12px 12px 10px;
+      margin-bottom: 12px;
+    }
+
+    @media (min-width: 768px) {
+      .eqz-question-block {
+        padding: 14px 15px 10px;
+      }
+    }
+
+    .eqz-tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 6px;
+    }
+
+    .eqz-mini-tag {
+      font-size: 10px;
+      padding: 2px 6px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      background: rgba(15, 23, 42, 0.95);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #cbd5f5;
+    }
+
+    .eqz-question-text {
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .eqz-question-text p {
+      margin: 0 0 4px;
+    }
+
+    .eqz-question-text p:last-child {
+      margin-bottom: 0;
+    }
+
+    .eqz-given,
+    .eqz-find {
+      display: flex;
+      gap: 4px;
+    }
+
+    .eqz-given strong,
+    .eqz-find strong {
+      color: #e0f2fe;
+      min-width: 46px;
+    }
+
+    .eqz-main-prompt {
+      margin-top: 4px;
+      color: var(--eqz-text-sub);
+      font-size: 13px;
+    }
+
+    .eqz-options {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    @media (min-width: 768px) {
+      .eqz-options {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .eqz-option {
+      position: relative;
+      text-align: left;
+      width: 100%;
+      border-radius: 14px;
+      padding: 10px 11px 9px 36px;
+      border: 1px solid rgba(148, 163, 184, 0.55);
+      background: rgba(15, 23, 42, 0.9);
+      color: var(--eqz-text-main);
+      cursor: pointer;
+      font-size: 13px;
+      line-height: 1.4;
+      transition:
+        transform var(--eqz-transition),
+        box-shadow var(--eqz-transition),
+        background var(--eqz-transition),
+        border-color var(--eqz-transition),
+        color var(--eqz-transition);
+      overflow: hidden;
+    }
+
+    .eqz-option::before {
+      content: attr(data-letter);
+      position: absolute;
+      left: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 20px;
+      height: 20px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      color: var(--eqz-text-sub);
+      background: rgba(15, 23, 42, 0.95);
+    }
+
+    .eqz-option:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 12px 26px rgba(15, 23, 42, 0.8);
+      border-color: rgba(56, 189, 248, 0.8);
+      background: radial-gradient(circle at top left, rgba(56, 189, 248, 0.1), rgba(15, 23, 42, 0.96));
+    }
+
+    .eqz-option:active {
+      transform: translateY(0);
+      box-shadow: none;
+    }
+
+    .eqz-option.disabled {
+      cursor: default;
+      pointer-events: none;
+      opacity: 0.92;
+      transform: translateY(0);
+      box-shadow: none;
+    }
+
+    .eqz-option.correct {
+      border-color: rgba(34, 197, 94, 0.9);
+      background: linear-gradient(135deg, rgba(34, 197, 94, 0.25), rgba(15, 23, 42, 0.96));
+    }
+
+    .eqz-option.correct::before {
+      border-color: rgba(34, 197, 94, 0.9);
+      background: rgba(22, 163, 74, 0.5);
+      color: #ecfdf5;
+    }
+
+    .eqz-option.incorrect {
+      border-color: rgba(248, 113, 113, 0.9);
+      background: linear-gradient(135deg, rgba(239, 68, 68, 0.2), rgba(15, 23, 42, 0.96));
+    }
+
+    .eqz-option.incorrect::before {
+      border-color: rgba(248, 113, 113, 0.9);
+      background: rgba(248, 113, 113, 0.2);
+      color: #fee2e2;
+    }
+
+    .eqz-option small {
+      display: block;
+      font-size: 11px;
+      margin-top: 2px;
+      color: var(--eqz-text-sub);
+    }
+
+    .eqz-feedback {
+      margin-bottom: 10px;
+      padding: 8px 10px;
+      border-radius: 14px;
+      font-size: 12px;
+      line-height: 1.5;
+      border: 1px solid transparent;
+      background: rgba(15, 23, 42, 0.9);
+      display: none;
+    }
+
+    .eqz-feedback.visible {
+      display: block;
+    }
+
+    .eqz-feedback.correct {
+      border-color: rgba(34, 197, 94, 0.9);
+      background: rgba(22, 163, 74, 0.15);
+      color: #bbf7d0;
+    }
+
+    .eqz-feedback.incorrect {
+      border-color: rgba(248, 113, 113, 0.9);
+      background: rgba(127, 29, 29, 0.5);
+      color: #fee2e2;
+    }
+
+    .eqz-footer-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 4px;
+    }
+
+    .eqz-footer-left {
+      font-size: 11px;
+      color: var(--eqz-text-sub);
+    }
+
+    .eqz-button-row {
+      display: flex;
+      gap: 8px;
+    }
+
+    .eqz-btn {
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      background: rgba(15, 23, 42, 0.95);
+      color: var(--eqz-text-main);
+      font-size: 12px;
+      padding: 7px 12px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition:
+        background var(--eqz-transition),
+        border-color var(--eqz-transition),
+        transform var(--eqz-transition),
+        box-shadow var(--eqz-transition),
+        color var(--eqz-transition);
+    }
+
+    .eqz-btn span {
+      font-size: 14px;
+    }
+
+    .eqz-btn-primary {
+      background: linear-gradient(135deg, #38bdf8, #6366f1);
+      border-color: transparent;
+      color: #0b1220;
+      font-weight: 500;
+      padding-inline: 14px;
+    }
+
+    .eqz-btn-primary:disabled {
+      opacity: 0.5;
+      cursor: default;
+      box-shadow: none;
+      transform: none;
+    }
+
+    .eqz-btn-primary:not(:disabled):hover {
+      box-shadow:
+        0 0 0 1px rgba(191, 219, 254, 0.8),
+        0 12px 30px rgba(59, 130, 246, 0.5);
+      transform: translateY(-0.5px);
+    }
+
+    .eqz-btn-ghost {
+      background: rgba(15, 23, 42, 0.95);
+    }
+
+    .eqz-btn-ghost:hover {
+      background: rgba(15, 23, 42, 0.9);
+      border-color: rgba(148, 163, 184, 1);
+      transform: translateY(-0.5px);
+      box-shadow: 0 8px 18px rgba(15, 23, 42, 0.9);
+    }
+
+    .eqz-summary {
+      margin-top: 10px;
+      border-radius: 16px;
+      padding: 10px 13px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px dashed rgba(148, 163, 184, 0.7);
+      font-size: 12px;
+      display: none;
+    }
+
+    .eqz-summary.visible {
+      display: block;
+    }
+
+    .eqz-summary-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 16px;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .eqz-summary-main {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .eqz-summary-main strong {
+      font-size: 13px;
+    }
+
+    .eqz-pill-soft {
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.95);
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      font-size: 11px;
+      color: var(--eqz-text-sub);
+    }
+  </style>
+</head>
+<body>
+<div id="equation-quiz-app">
+  <div class="eqz-shell">
+    <div class="eqz-header">
+      <div class="eqz-title-block">
+        <div class="eqz-icon">ƒ</div>
+        <div>
+          <div class="eqz-title-main">Equation Chooser Trainer</div>
+          <div class="eqz-title-sub">Practice picking the right formula from what’s given and what to find.</div>
+        </div>
+      </div>
+      <div class="eqz-controls">
+        <div class="eqz-select-wrapper">
+          <label for="eqz-topic-select">Topic</label>
+          <select id="eqz-topic-select">
+            <option value="all">All topics</option>
+          </select>
+        </div>
+        <div class="eqz-stats-chip">
+          <div class="eqz-badge-pill">MC Quiz</div>
+          <span id="eqz-score-chip">Score: 0 / 0</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="eqz-card">
+      <div class="eqz-progress-bar">
+        <div class="eqz-progress-inner" id="eqz-progress-inner"></div>
+      </div>
+
+      <div class="eqz-meta-row">
+        <div class="eqz-meta-main">
+          <span id="eqz-question-counter">Question 1 of 1</span>
+          <span class="eqz-dot"></span>
+          <span id="eqz-topic-label">Topic: –</span>
+        </div>
+        <div class="eqz-difficulty" id="eqz-difficulty-label">Difficulty: ★☆☆</div>
+      </div>
+
+      <div class="eqz-question-block">
+        <div class="eqz-tag-row">
+          <div class="eqz-mini-tag">Given / Find</div>
+          <div class="eqz-mini-tag">Pick the equation</div>
+        </div>
+        <div class="eqz-question-text">
+          <p class="eqz-given"><strong>Given:</strong> <span id="eqz-given-text"></span></p>
+          <p class="eqz-find"><strong>Find:</strong> <span id="eqz-find-text"></span></p>
+          <p class="eqz-main-prompt" id="eqz-main-prompt"></p>
+        </div>
+      </div>
+
+      <div class="eqz-options" id="eqz-options"></div>
+
+      <div class="eqz-feedback" id="eqz-feedback"></div>
+
+      <div class="eqz-footer-row">
+        <div class="eqz-footer-left" id="eqz-footer-status">
+          Click an answer to check your choice.
+        </div>
+        <div class="eqz-button-row">
+          <button class="eqz-btn eqz-btn-ghost" id="eqz-skip-btn" type="button">
+            <span>↻</span> Skip / New
+          </button>
+          <button class="eqz-btn eqz-btn-primary" id="eqz-next-btn" type="button" disabled>
+            Next question →
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="eqz-summary" id="eqz-summary">
+      <div class="eqz-summary-row">
+        <div class="eqz-summary-main">
+          <strong>Session summary</strong>
+          <span class="eqz-pill-soft" id="eqz-summary-score"></span>
+        </div>
+        <div class="eqz-summary-main">
+          <span class="eqz-pill-soft" id="eqz-summary-accuracy"></span>
+          <span class="eqz-pill-soft" id="eqz-summary-topic"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  // --------- QUESTION BANK ----------
+  // Each question is focused on matching GIVEN/FIND to the correct equation.
+  const EQZ_QUESTIONS = [
+    // CIRCLES
+    {
+      id: 1,
+      topic: "Circles",
+      difficulty: 1,
+      given: "radius r of a circle",
+      find: "circumference C of the circle",
+      prompt: "Which equation directly relates the circumference C to the radius r?",
+      choices: [
+        { text: "C = 2πr", correct: true, why: "Circumference equals 2π times the radius." },
+        { text: "C = πr²", correct: false, why: "πr² is the area formula, not the circumference." },
+        { text: "C = r²", correct: false, why: "Missing π and the factor 2, and has wrong units." },
+        { text: "C = πd²", correct: false, why: "This mixes ideas; the diameter is not squared in the formula." }
+      ]
+    },
+    {
+      id: 2,
+      topic: "Circles",
+      difficulty: 1,
+      given: "diameter d of a circle",
+      find: "circumference C of the circle",
+      prompt: "Pick the formula that uses the diameter d to get the circumference C.",
+      choices: [
+        { text: "C = πd", correct: true, why: "Circumference in terms of diameter is C = πd." },
+        { text: "C = 2πd", correct: false, why: "2πr = πd, adding another 2 is incorrect." },
+        { text: "C = d²", correct: false, why: "No π and wrong structure; not a circumference formula." },
+        { text: "C = πr²", correct: false, why: "That’s the area in terms of radius, not circumference." }
+      ]
+    },
+    {
+      id: 3,
+      topic: "Circles",
+      difficulty: 1,
+      given: "radius r of a circle",
+      find: "area A of the circle",
+      prompt: "Which equation connects area A with radius r?",
+      choices: [
+        { text: "A = πr²", correct: true, why: "The area of a circle is π times radius squared." },
+        { text: "A = 2πr", correct: false, why: "2πr is the circumference, not the area." },
+        { text: "A = 4πr", correct: false, why: "Incorrect factor and missing square on the radius." },
+        { text: "A = r/π", correct: false, why: "This doesn’t match any standard circle formula." }
+      ]
+    },
+    {
+      id: 4,
+      topic: "Circles",
+      difficulty: 2,
+      given: "circumference C of a circle",
+      find: "radius r of the circle",
+      prompt: "You know the circumference C and want the radius r. Which equation isolates r?",
+      choices: [
+        { text: "r = C / (2π)", correct: true, why: "Solve C = 2πr for r to get r = C / (2π)." },
+        { text: "r = C / π", correct: false, why: "That would give diameter, not radius." },
+        { text: "r = 2πC", correct: false, why: "You inverted the relationship incorrectly." },
+        { text: "r = C² / π", correct: false, why: "No squaring is needed to isolate r." }
+      ]
+    },
+
+    // PERIMETER & AREA
+    {
+      id: 5,
+      topic: "Perimeter & Area",
+      difficulty: 1,
+      given: "length L and width W of a rectangle",
+      find: "perimeter P of the rectangle",
+      prompt: "Which equation gives the perimeter P from length L and width W?",
+      choices: [
+        { text: "P = 2L + 2W", correct: true, why: "Perimeter adds all four sides: L+L+W+W." },
+        { text: "P = LW", correct: false, why: "LW is the area, not the perimeter." },
+        { text: "P = L + W", correct: false, why: "Only adds one length and one width." },
+        { text: "P = 4LW", correct: false, why: "Multiplying length and width is incorrect for perimeter." }
+      ]
+    },
+    {
+      id: 6,
+      topic: "Perimeter & Area",
+      difficulty: 1,
+      given: "base b and height h of a triangle",
+      find: "area A of the triangle",
+      prompt: "Choose the formula that uses base b and height h to find the area A.",
+      choices: [
+        { text: "A = 1/2 bh", correct: true, why: "Triangle area is half of base times height." },
+        { text: "A = bh", correct: false, why: "You must divide by 2 for a triangle." },
+        { text: "A = 2bh", correct: false, why: "This is double the correct area." },
+        { text: "A = b + h", correct: false, why: "Adding gives only a length, not an area." }
+      ]
+    },
+    {
+      id: 7,
+      topic: "Perimeter & Area",
+      difficulty: 2,
+      given: "area A of a rectangle and width W",
+      find: "length L of the rectangle",
+      prompt: "You know A and W, and want to solve for L. Which equation is correct?",
+      choices: [
+        { text: "L = A / W", correct: true, why: "From A = LW, divide both sides by W." },
+        { text: "L = A · W", correct: false, why: "Multiplication makes the value too large." },
+        { text: "L = A - W", correct: false, why: "Subtraction doesn’t match A = LW." },
+        { text: "L = W / A", correct: false, why: "This is the reciprocal of the correct relationship." }
+      ]
+    },
+
+    // LINEAR EQUATIONS & SLOPE
+    {
+      id: 8,
+      topic: "Linear Equations",
+      difficulty: 1,
+      given: "slope m and y-intercept b of a line",
+      find: "equation of the line",
+      prompt: "Which equation form directly uses slope m and y-intercept b?",
+      choices: [
+        { text: "y = mx + b", correct: true, why: "Slope-intercept form uses m and b directly." },
+        { text: "y - y₁ = m(x - x₁)", correct: false, why: "This uses a point (x₁, y₁), not the y-intercept explicitly." },
+        { text: "Ax + By = C", correct: false, why: "Standard form doesn’t show m and b directly." },
+        { text: "x = my + b", correct: false, why: "Variables are flipped; not the usual slope-intercept equation." }
+      ]
+    },
+    {
+      id: 9,
+      topic: "Linear Equations",
+      difficulty: 2,
+      given: "two points (x₁, y₁) and (x₂, y₂)",
+      find: "slope m of the line through them",
+      prompt: "Select the equation that correctly finds the slope m from two points.",
+      choices: [
+        { text: "m = (y₂ - y₁) / (x₂ - x₁)", correct: true, why: "Slope is change in y over change in x." },
+        { text: "m = (x₂ - x₁) / (y₂ - y₁)", correct: false, why: "This inverts the slope formula." },
+        { text: "m = x₂ - x₁", correct: false, why: "Missing the change in y; not a ratio." },
+        { text: "m = y₂ + y₁", correct: false, why: "Adding y-values doesn’t give the slope." }
+      ]
+    },
+    {
+      id: 10,
+      topic: "Linear Equations",
+      difficulty: 2,
+      given: "slope m and a point (x₁, y₁)",
+      find: "equation of the line",
+      prompt: "Which equation form uses the slope m and a point (x₁, y₁) directly?",
+      choices: [
+        { text: "y - y₁ = m(x - x₁)", correct: true, why: "This is the point-slope form." },
+        { text: "y = mx + b", correct: false, why: "This form uses m and b, not the point (x₁, y₁) directly." },
+        { text: "Ax + By = C", correct: false, why: "Standard form doesn’t show the point explicitly." },
+        { text: "y + y₁ = m(x + x₁)", correct: false, why: "Signs are reversed relative to the correct form." }
+      ]
+    },
+
+    // PROPORTIONS & PERCENT
+    {
+      id: 11,
+      topic: "Proportions & Percent",
+      difficulty: 1,
+      given: "part value and whole value",
+      find: "percent p (as a number from 0 to 100)",
+      prompt: "You know the part and the whole. Which equation gives the percent p?",
+      choices: [
+        { text: "p = (part / whole) × 100", correct: true, why: "Percent is the fraction times 100." },
+        { text: "p = (whole / part) × 100", correct: false, why: "This inverts part and whole." },
+        { text: "p = part × whole", correct: false, why: "Multiplying doesn’t form a ratio." },
+        { text: "p = part - whole", correct: false, why: "Subtraction doesn’t measure a percentage." }
+      ]
+    },
+    {
+      id: 12,
+      topic: "Proportions & Percent",
+      difficulty: 1,
+      given: "original value and new value",
+      find: "percent increase",
+      prompt: "Which equation correctly finds the percent increase from original to new?",
+      choices: [
+        { text: "percent change = (new - original) / original × 100", correct: true, why: "Change divided by original gives the relative increase." },
+        { text: "percent change = (original - new) / original × 100", correct: false, why: "This gives a negative percent when there is an increase." },
+        { text: "percent change = new / original × 100", correct: false, why: "This gives the “new as a percent of original”, not the change." },
+        { text: "percent change = (new - original) × 100", correct: false, why: "You must divide by original before multiplying by 100." }
+      ]
+    },
+    {
+      id: 13,
+      topic: "Proportions & Percent",
+      difficulty: 2,
+      given: "scale factor k and original length L",
+      find: "new length L′ after dilation",
+      prompt: "You dilate a figure by scale factor k. Which equation gives the new length L′?",
+      choices: [
+        { text: "L′ = kL", correct: true, why: "A dilation multiplies each length by the scale factor." },
+        { text: "L′ = L / k", correct: false, why: "This would shrink by the reciprocal of k." },
+        { text: "L′ = k + L", correct: false, why: "You scale by multiplying, not adding." },
+        { text: "L′ = k - L", correct: false, why: "Subtracting doesn’t correspond to scaling." }
+      ]
+    },
+
+    // RIGHT TRIANGLES & PYTHAGOREAN
+    {
+      id: 14,
+      topic: "Right Triangles",
+      difficulty: 1,
+      given: "legs a and b of a right triangle",
+      find: "hypotenuse c",
+      prompt: "Which equation directly gives the hypotenuse c from legs a and b?",
+      choices: [
+        { text: "c² = a² + b²", correct: true, why: "This is the Pythagorean Theorem for hypotenuse c." },
+        { text: "c = a² + b²", correct: false, why: "You must take the square root to get c." },
+        { text: "c² = a + b", correct: false, why: "The legs must be squared and then added." },
+        { text: "c = a + b", correct: false, why: "Simply adding legs doesn’t give the hypotenuse." }
+      ]
+    },
+    {
+      id: 15,
+      topic: "Right Triangles",
+      difficulty: 2,
+      given: "hypotenuse c and one leg a",
+      find: "the other leg b",
+      prompt: "Select the equation that solves for leg b when you know c and a.",
+      choices: [
+        { text: "b = √(c² - a²)", correct: true, why: "Rearrange c² = a² + b² to isolate b." },
+        { text: "b = √(a² - c²)", correct: false, why: "This would make the expression inside the root negative." },
+        { text: "b = c² + a²", correct: false, why: "You must subtract, not add, to isolate b²." },
+        { text: "b = c - a", correct: false, why: "The relationship is not linear; it involves squares." }
+      ]
+    },
+
+    // DISTANCE & RATE
+    {
+      id: 16,
+      topic: "Distance & Rate",
+      difficulty: 1,
+      given: "rate r and time t",
+      find: "distance d",
+      prompt: "Which equation uses rate r and time t to find distance d?",
+      choices: [
+        { text: "d = rt", correct: true, why: "Distance equals rate times time." },
+        { text: "d = r + t", correct: false, why: "Adding the values doesn’t use units correctly." },
+        { text: "d = r / t", correct: false, why: "r/t would have units of rate per time, not distance." },
+        { text: "d = t / r", correct: false, why: "This is the reciprocal of r; still not a distance." }
+      ]
+    },
+    {
+      id: 17,
+      topic: "Distance & Rate",
+      difficulty: 2,
+      given: "distance d and rate r",
+      find: "time t",
+      prompt: "You know d and r. Which equation gives time t?",
+      choices: [
+        { text: "t = d / r", correct: true, why: "Solve d = rt for t by dividing both sides by r." },
+        { text: "t = r / d", correct: false, why: "This is the reciprocal of the correct ratio." },
+        { text: "t = d · r", correct: false, why: "Multiplication does not isolate time correctly." },
+        { text: "t = d - r", correct: false, why: "Subtraction doesn’t match d = rt." }
+      ]
+    },
+
+    // SIMPLE INTEREST
+    {
+      id: 18,
+      topic: "Simple Interest",
+      difficulty: 2,
+      given: "principal P, rate r (as a decimal), and time t in years",
+      find: "simple interest I",
+      prompt: "Identify the formula that gives simple interest I from P, r, and t.",
+      choices: [
+        { text: "I = Prt", correct: true, why: "Simple interest equals principal × rate × time." },
+        { text: "I = P + rt", correct: false, why: "You must multiply all three, not add them." },
+        { text: "I = P / rt", correct: false, why: "Dividing makes units incorrect." },
+        { text: "I = Pt / r", correct: false, why: "Rate belongs in the numerator, not the denominator." }
+      ]
+    },
+    {
+      id: 19,
+      topic: "Simple Interest",
+      difficulty: 2,
+      given: "principal P, rate r, time t, and total amount A (principal + interest)",
+      find: "relationship between A and P",
+      prompt: "You want a formula for the total amount A. Which equation is correct?",
+      choices: [
+        { text: "A = P(1 + rt)", correct: true, why: "Total is principal plus interest: A = P + Prt = P(1 + rt)." },
+        { text: "A = Prt", correct: false, why: "That’s just the interest, not the total amount." },
+        { text: "A = P - Prt", correct: false, why: "This would subtract the interest, reducing the amount." },
+        { text: "A = P / (1 + rt)", correct: false, why: "This would shrink the principal instead of increasing it." }
+      ]
+    },
+
+    // VOLUME
+    {
+      id: 20,
+      topic: "Volume",
+      difficulty: 1,
+      given: "length L, width W, and height H of a rectangular prism",
+      find: "volume V",
+      prompt: "Choose the equation that gives volume V from L, W, and H.",
+      choices: [
+        { text: "V = LWH", correct: true, why: "Volume is the product of length, width, and height." },
+        { text: "V = 2L + 2W + 2H", correct: false, why: "That looks like a perimeter-style expression." },
+        { text: "V = L + W + H", correct: false, why: "Adding gives only a length, not a volume." },
+        { text: "V = LW / H", correct: false, why: "Dividing by H doesn’t match volume." }
+      ]
+    },
+    {
+      id: 21,
+      topic: "Volume",
+      difficulty: 2,
+      given: "radius r and height h of a cylinder",
+      find: "volume V of the cylinder",
+      prompt: "Which equation connects V, r, and h for a cylinder?",
+      choices: [
+        { text: "V = πr²h", correct: true, why: "Volume = area of base (πr²) × height." },
+        { text: "V = 2πrh", correct: false, why: "That’s the lateral surface area, not the volume." },
+        { text: "V = πrh", correct: false, why: "The base area must include r²." },
+        { text: "V = 1/2 πr²h", correct: false, why: "Half would represent something like a half-cylinder, not a full one." }
+      ]
+    },
+
+    // SYSTEMS & ALGEBRA
+    {
+      id: 22,
+      topic: "Systems of Equations",
+      difficulty: 3,
+      given: "two numbers x and y whose sum is S and difference is D (x - y)",
+      find: "equations that model the situation",
+      prompt: "You know their sum S and difference D. Which system matches this description?",
+      choices: [
+        { text: "x + y = S and x - y = D", correct: true, why: "One equation for the sum and one for the difference." },
+        { text: "x - y = S and x + y = D", correct: false, why: "Sum and difference have been swapped." },
+        { text: "xy = S and x - y = D", correct: false, why: "Product xy is not given in the description." },
+        { text: "x + y = D and x - y = S", correct: false, why: "Again, labels for S and D are reversed." }
+      ]
+    },
+    {
+      id: 23,
+      topic: "Algebraic Formulas",
+      difficulty: 2,
+      given: "rectangle with perimeter P and width W",
+      find: "length L in terms of P and W",
+      prompt: "Use the perimeter formula P = 2L + 2W and solve for L.",
+      choices: [
+        { text: "L = (P - 2W) / 2", correct: true, why: "Subtract 2W, then divide by 2 to isolate L." },
+        { text: "L = P - 2W", correct: false, why: "You still need to divide by 2." },
+        { text: "L = (P + 2W) / 2", correct: false, why: "Adding instead of subtracting doesn’t match P = 2L + 2W." },
+        { text: "L = 2P - W", correct: false, why: "This change doesn’t come from correctly rearranging the equation." }
+      ]
+    },
+
+    // FUNCTION NOTATION
+    {
+      id: 24,
+      topic: "Functions",
+      difficulty: 1,
+      given: "a function f with input x and slope m, y-intercept b",
+      find: "formula for f(x)",
+      prompt: "Which equation correctly uses function notation with slope m and intercept b?",
+      choices: [
+        { text: "f(x) = mx + b", correct: true, why: "This is slope-intercept form written with f(x)." },
+        { text: "f(x) = x/m + b", correct: false, why: "Slope is m, not 1/m." },
+        { text: "f(x) = x + mb", correct: false, why: "This does not match mx + b." },
+        { text: "f(x) = m + bx", correct: false, why: "Coefficients have been swapped." }
+      ]
+    },
+    {
+      id: 25,
+      topic: "Functions",
+      difficulty: 2,
+      given: "linear function f passes through points (0, b) and (1, b + m)",
+      find: "function rule for f(x)",
+      prompt: "Use the pattern in y-values to pick the correct equation.",
+      choices: [
+        { text: "f(x) = mx + b", correct: true, why: "When x = 0, y = b; when x = 1, y = m + b." },
+        { text: "f(x) = b - mx", correct: false, why: "This would give f(1) = b - m, not b + m." },
+        { text: "f(x) = m - bx", correct: false, why: "Intercept would be m, not b." },
+        { text: "f(x) = x + b", correct: false, why: "Slope would be 1, not m." }
+      ]
+    }
+  ];
+
+  // --------- STATE ----------
+  const state = {
+    filteredQuestions: [],
+    currentIndex: 0,
+    answered: false,
+    totalAnswered: 0,
+    totalCorrect: 0,
+    currentTopic: "all"
+  };
+
+  // --------- UTILITIES ----------
+  function shuffle(array) {
+    const arr = array.slice();
+    for (let i = arr.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+  }
+
+  function difficultyToStars(level) {
+    const max = 3;
+    let stars = "";
+    for (let i = 1; i <= max; i++) {
+      stars += i <= level ? "★" : "☆";
+    }
+    return stars;
+  }
+
+  function difficultyLabel(level) {
+    if (level === 1) return "Difficulty: " + difficultyToStars(level) + "  (Warm-up)";
+    if (level === 2) return "Difficulty: " + difficultyToStars(level) + "  (Core practice)";
+    return "Difficulty: " + difficultyToStars(level) + "  (Challenge)";
+  }
+
+  function buildTopicList(questions) {
+    const set = new Set();
+    questions.forEach(q => set.add(q.topic));
+    return Array.from(set).sort();
+  }
+
+  // --------- DOM CACHE ----------
+  let $topicSelect,
+      $scoreChip,
+      $progressInner,
+      $questionCounter,
+      $topicLabel,
+      $difficultyLabel,
+      $givenText,
+      $findText,
+      $mainPrompt,
+      $options,
+      $feedback,
+      $footerStatus,
+      $nextBtn,
+      $skipBtn,
+      $summary,
+      $summaryScore,
+      $summaryAccuracy,
+      $summaryTopic;
+
+  function cacheDom() {
+    $topicSelect = document.getElementById("eqz-topic-select");
+    $scoreChip = document.getElementById("eqz-score-chip");
+    $progressInner = document.getElementById("eqz-progress-inner");
+    $questionCounter = document.getElementById("eqz-question-counter");
+    $topicLabel = document.getElementById("eqz-topic-label");
+    $difficultyLabel = document.getElementById("eqz-difficulty-label");
+    $givenText = document.getElementById("eqz-given-text");
+    $findText = document.getElementById("eqz-find-text");
+    $mainPrompt = document.getElementById("eqz-main-prompt");
+    $options = document.getElementById("eqz-options");
+    $feedback = document.getElementById("eqz-feedback");
+    $footerStatus = document.getElementById("eqz-footer-status");
+    $nextBtn = document.getElementById("eqz-next-btn");
+    $skipBtn = document.getElementById("eqz-skip-btn");
+    $summary = document.getElementById("eqz-summary");
+    $summaryScore = document.getElementById("eqz-summary-score");
+    $summaryAccuracy = document.getElementById("eqz-summary-accuracy");
+    $summaryTopic = document.getElementById("eqz-summary-topic");
+  }
+
+  // --------- RENDERING ----------
+  function applyTopicFilter(topic) {
+    state.currentTopic = topic || "all";
+    const base = state.currentTopic === "all"
+      ? EQZ_QUESTIONS
+      : EQZ_QUESTIONS.filter(q => q.topic === state.currentTopic);
+
+    state.filteredQuestions = shuffle(base);
+    state.currentIndex = 0;
+  }
+
+  function updateScoreChip() {
+    const total = state.totalAnswered;
+    const score = state.totalCorrect;
+    $scoreChip.textContent = "Score: " + score + " / " + total;
+  }
+
+  function updateProgress() {
+    const total = state.filteredQuestions.length || 1;
+    const current = state.currentIndex + 1;
+    const pct = Math.max(4, Math.min(100, (current / total) * 100));
+    $progressInner.style.width = pct.toFixed(1) + "%";
+    $questionCounter.textContent = "Question " + current + " of " + total;
+  }
+
+  function renderQuestion() {
+    if (!state.filteredQuestions.length) {
+      applyTopicFilter("all");
+    }
+
+    const q = state.filteredQuestions[state.currentIndex];
+
+    $topicLabel.textContent = "Topic: " + q.topic;
+    $difficultyLabel.textContent = difficultyLabel(q.difficulty);
+    $givenText.textContent = q.given;
+    $findText.textContent = q.find;
+    $mainPrompt.textContent = q.prompt || "Which equation best matches this situation?";
+
+    $options.innerHTML = "";
+    const letters = ["A", "B", "C", "D"];
+
+    q.choices.forEach((choice, idx) => {
+      const btn = document.createElement("button");
+      btn.className = "eqz-option";
+      btn.type = "button";
+      btn.dataset.index = String(idx);
+      btn.dataset.letter = letters[idx] || "?";
+      btn.textContent = choice.text;
+
+      if (choice.why) {
+        const expl = document.createElement("small");
+        expl.textContent = "Tap to check your understanding.";
+        btn.appendChild(expl);
+      }
+
+      $options.appendChild(btn);
+    });
+
+    state.answered = false;
+    $feedback.className = "eqz-feedback";
+    $feedback.textContent = "";
+    $footerStatus.textContent = "Click an answer to check your choice.";
+    $nextBtn.disabled = true;
+    updateProgress();
+  }
+
+  function showFeedback(isCorrect, explanation) {
+    $feedback.className = "eqz-feedback visible " + (isCorrect ? "correct" : "incorrect");
+    $feedback.textContent = (isCorrect ? "Correct: " : "Not quite: ") + explanation;
+    $footerStatus.textContent = isCorrect
+      ? "Nice! Review the explanation, then move on."
+      : "Study the explanation, then try the next one.";
+  }
+
+  function lockOptions(correctIndex, chosenIndex) {
+    const btns = $options.querySelectorAll(".eqz-option");
+    btns.forEach((btn, idx) => {
+      btn.classList.add("disabled");
+      if (idx === correctIndex) {
+        btn.classList.add("correct");
+      } else if (idx === chosenIndex) {
+        btn.classList.add("incorrect");
+      }
+    });
+  }
+
+  function showSummary() {
+    const total = state.totalAnswered || 1;
+    const score = state.totalCorrect;
+    const pct = Math.round((score / total) * 100);
+
+    $summaryScore.textContent = "Correct: " + score + " out of " + state.totalAnswered;
+    $summaryAccuracy.textContent = "Accuracy this session: " + pct + "%";
+    $summaryTopic.textContent = "Topic filter: " +
+      (state.currentTopic === "all" ? "All topics" : state.currentTopic);
+    $summary.classList.add("visible");
+  }
+
+  function hideSummary() {
+    $summary.classList.remove("visible");
+  }
+
+  // --------- EVENT HANDLERS ----------
+  function handleOptionClick(e) {
+    const btn = e.target.closest(".eqz-option");
+    if (!btn || state.answered) return;
+
+    const index = parseInt(btn.dataset.index || "-1", 10);
+    const q = state.filteredQuestions[state.currentIndex];
+    const choice = q.choices[index];
+
+    let correctIndex = q.choices.findIndex(c => c.correct);
+
+    const wasCorrect = !!choice && !!choice.correct;
+    state.answered = true;
+    state.totalAnswered += 1;
+    if (wasCorrect) {
+      state.totalCorrect += 1;
+    }
+
+    updateScoreChip();
+    lockOptions(correctIndex, index);
+
+    const explanation = choice && choice.why
+      ? choice.why
+      : (wasCorrect ? "This equation directly matches the description." :
+        "Compare this with the definition and the given values.");
+
+    showFeedback(wasCorrect, explanation);
+
+    $nextBtn.disabled = false;
+
+    // If at the end of the filtered set, show a short summary.
+    if (state.currentIndex === state.filteredQuestions.length - 1) {
+      showSummary();
+    } else {
+      hideSummary();
+    }
+  }
+
+  function handleNextClick() {
+    if (state.currentIndex < state.filteredQuestions.length - 1) {
+      state.currentIndex += 1;
+    } else {
+      // Re-shuffle for another round in the same topic.
+      applyTopicFilter(state.currentTopic);
+    }
+    hideSummary();
+    renderQuestion();
+  }
+
+  function handleSkipClick() {
+    // Move to a random question in the current filtered set.
+    const len = state.filteredQuestions.length;
+    if (len <= 1) {
+      renderQuestion();
+      return;
+    }
+    let newIndex = state.currentIndex;
+    while (newIndex === state.currentIndex) {
+      newIndex = Math.floor(Math.random() * len);
+    }
+    state.currentIndex = newIndex;
+    hideSummary();
+    renderQuestion();
+  }
+
+  function handleTopicChange() {
+    const topic = $topicSelect.value || "all";
+    applyTopicFilter(topic);
+    hideSummary();
+    renderQuestion();
+  }
+
+  // --------- INIT ----------
+  function initEquationQuiz() {
+    cacheDom();
+
+    // Populate topics
+    const topics = buildTopicList(EQZ_QUESTIONS);
+    topics.forEach(topic => {
+      const opt = document.createElement("option");
+      opt.value = topic;
+      opt.textContent = topic;
+      $topicSelect.appendChild(opt);
+    });
+
+    applyTopicFilter("all");
+    updateScoreChip();
+    renderQuestion();
+
+    // Event listeners
+    $options.addEventListener("click", handleOptionClick);
+    $nextBtn.addEventListener("click", handleNextClick);
+    $skipBtn.addEventListener("click", handleSkipClick);
+    $topicSelect.addEventListener("change", handleTopicChange);
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initEquationQuiz);
+  } else {
+    initEquationQuiz();
+  }
+})();
+</script>
+</body>
+</html>
