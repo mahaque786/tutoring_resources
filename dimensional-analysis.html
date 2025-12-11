@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dimensional Analysis Practice</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 15px;
+        }
+        
+        h2 {
+            color: #2980b9;
+            margin-top: 40px;
+        }
+        
+        h3 {
+            color: #27ae60;
+            cursor: pointer;
+            user-select: none;
+            padding: 10px;
+            background: #e8f6e9;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+        
+        h3:hover {
+            background: #d4edda;
+        }
+        
+        h3::before {
+            content: '▶ ';
+            font-size: 12px;
+        }
+        
+        h3.open::before {
+            content: '▼ ';
+        }
+        
+        .reference-section {
+            display: none;
+            background: white;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        .reference-section.show {
+            display: block;
+        }
+        
+        .reference-section ul {
+            columns: 2;
+            column-gap: 30px;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .reference-section li {
+            padding: 3px 0;
+            break-inside: avoid;
+        }
+        
+        .problem {
+            background: white;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .problem-number {
+            font-weight: bold;
+            color: #3498db;
+            font-size: 1.1em;
+        }
+        
+        .problem-text {
+            margin: 10px 0;
+            font-size: 1.05em;
+        }
+        
+        .conversion-setup {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 8px;
+            margin: 15px 0;
+            font-size: 1.1em;
+        }
+        
+        .fraction {
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0 5px;
+        }
+        
+        .fraction-num, .fraction-den {
+            padding: 2px 5px;
+        }
+        
+        .fraction-line {
+            width: 100%;
+            height: 2px;
+            background: #333;
+        }
+        
+        .times {
+            font-size: 1.2em;
+            color: #666;
+        }
+        
+        .equals {
+            font-size: 1.2em;
+            color: #666;
+            margin-left: 10px;
+        }
+        
+        input[type="text"] {
+            width: 60px;
+            padding: 5px 8px;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            text-align: center;
+            font-size: 1em;
+        }
+        
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #3498db;
+        }
+        
+        input.correct {
+            border-color: #27ae60;
+            background: #e8f6e9;
+        }
+        
+        input.incorrect {
+            border-color: #e74c3c;
+            background: #fdeaea;
+        }
+        
+        .answer-input {
+            width: 100px;
+        }
+        
+        .unit-label {
+            color: #666;
+        }
+        
+        .buttons {
+            margin-top: 15px;
+            display: flex;
+            gap: 10px;
+        }
+        
+        button {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.95em;
+            transition: background 0.2s;
+        }
+        
+        .check-btn {
+            background: #3498db;
+            color: white;
+        }
+        
+        .check-btn:hover {
+            background: #2980b9;
+        }
+        
+        .show-btn {
+            background: #95a5a6;
+            color: white;
+        }
+        
+        .show-btn:hover {
+            background: #7f8c8d;
+        }
+        
+        .solution {
+            display: none;
+            margin-top: 15px;
+            padding: 15px;
+            background: #fef9e7;
+            border-left: 4px solid #f1c40f;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .solution.show {
+            display: block;
+        }
+        
+        .solution-label {
+            font-weight: bold;
+            color: #b7950b;
+        }
+        
+        .instructions {
+            background: #e8f4fc;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .instructions ul {
+            margin: 10px 0 0 0;
+            padding-left: 20px;
+        }
+        
+        .tab-container {
+            display: flex;
+            gap: 5px;
+            margin-bottom: 20px;
+        }
+        
+        .tab {
+            padding: 12px 24px;
+            background: #ddd;
+            border: none;
+            border-radius: 8px 8px 0 0;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: 500;
+        }
+        
+        .tab.active {
+            background: #3498db;
+            color: white;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        @media (max-width: 600px) {
+            .reference-section ul {
+                columns: 1;
+            }
+            
+            .conversion-setup {
+                font-size: 0.95em;
+            }
+            
+            input[type="text"] {
+                width: 50px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Dimensional Analysis Practice</h1>
+    
+    <div class="instructions">
+        <strong>Instructions:</strong>
+        <ul>
+            <li>Use dimensional analysis (factor-label method) to solve each problem</li>
+            <li>Units in numerator and denominator cancel when they match</li>
+            <li>Arrange conversion factors so unwanted units cancel</li>
+            <li>Click the reference sections below to see conversion factors</li>
+        </ul>
+    </div>
+    
+    <div class="tab-container">
+        <button class="tab active" onclick="showTab('reference')">Reference</button>
+        <button class="tab" onclick="showTab('part1')">Part I: Fill Numbers</button>
+        <button class="tab" onclick="showTab('part2')">Part II: Full Setup</button>
+    </div>
+    
+    <!-- REFERENCE TAB -->
+    <div id="reference" class="tab-content active">
+        <div id="reference-sections"></div>
+    </div>
+    
+    <!-- PART I TAB -->
+    <div id="part1" class="tab-content">
+        <h2>Part I: Fill in the Numbers</h2>
+        <p>The units are provided. Fill in the correct numbers to complete each conversion.</p>
+        <div id="part1-problems"></div>
+    </div>
+    
+    <!-- PART II TAB -->
+    <div id="part2" class="tab-content">
+        <h2>Part II: Set Up the Conversion</h2>
+        <p>Fill in both the numbers AND the units for each conversion factor.</p>
+        <div id="part2-problems"></div>
+    </div>
+
+<script>
+// ============================================================================
+// CONVERSION REFERENCE DATA
+// ============================================================================
+// To add a new category: Add a new object with "title" and "conversions" array
+// Each conversion is a string displayed in the list
+
+const referenceData = [
+    {
+        title: "Length",
+        conversions: [
+            "1 km = 1000 m",
+            "1 m = 100 cm",
+            "1 m = 1000 mm",
+            "1 cm = 10 mm",
+            "1 in = 2.54 cm",
+            "1 ft = 12 in",
+            "1 yd = 3 ft",
+            "1 mi = 5280 ft",
+            "1 mi = 1.609 km",
+            "1 m = 3.281 ft",
+            "1 ft = 0.305 m"
+        ]
+    },
+    {
+        title: "Mass",
+        conversions: [
+            "1 kg = 1000 g",
+            "1 g = 1000 mg",
+            "1 metric ton = 1000 kg",
+            "1 lb = 453.592 g",
+            "1 lb = 16 oz",
+            "1 kg = 2.205 lb",
+            "1 oz = 28.35 g",
+            "1 stone = 14 lb"
+        ]
+    },
+    {
+        title: "Time",
+        conversions: [
+            "1 min = 60 s",
+            "1 hr = 60 min",
+            "1 hr = 3600 s",
+            "1 day = 24 hr",
+            "1 week = 7 days",
+            "1 year = 365.25 days"
+        ]
+    },
+    {
+        title: "Volume",
+        conversions: [
+            "1 L = 1000 mL",
+            "1 mL = 1 cm³",
+            "1 m³ = 1000 L",
+            "1 gal = 3.785 L",
+            "1 gal = 4 qt",
+            "1 qt = 2 pt",
+            "1 pt = 2 cups",
+            "1 cup = 8 fl oz",
+            "1 fl oz = 29.57 mL"
+        ]
+    },
+    {
+        title: "Speed",
+        conversions: [
+            "1 m/s = 3.6 km/hr",
+            "1 mph = 1.609 km/hr",
+            "1 mph = 0.447 m/s",
+            "1 knot = 1.852 km/hr",
+            "1 ft/s = 0.305 m/s"
+        ]
+    },
+    {
+        title: "Energy",
+        conversions: [
+            "1 kJ = 1000 J",
+            "1 cal = 4.184 J",
+            "1 kcal = 1000 cal",
+            "1 BTU = 1055 J",
+            "1 kWh = 3,600,000 J"
+        ]
+    },
+    {
+        title: "Pressure",
+        conversions: [
+            "1 atm = 101,325 Pa",
+            "1 atm = 760 mmHg",
+            "1 atm = 14.7 psi",
+            "1 bar = 100,000 Pa"
+        ]
+    },
+    {
+        title: "Area",
+        conversions: [
+            "1 m² = 10,000 cm²",
+            "1 km² = 1,000,000 m²",
+            "1 acre = 4047 m²",
+            "1 m² = 10.76 ft²"
+        ]
+    },
+    {
+        title: "Power",
+        conversions: [
+            "1 kW = 1000 W",
+            "1 hp = 746 W"
+        ]
+    },
+    {
+        title: "Force",
+        conversions: [
+            "1 lbf = 4.448 N",
+            "1 kN = 1000 N"
+        ]
+    },
+    {
+        title: "Angles",
+        conversions: [
+            "1 revolution = 360°",
+            "1 revolution = 2π rad",
+            "180° = π rad"
+        ]
+    },
+    {
+        title: "Data",
+        conversions: [
+            "1 byte = 8 bits",
+            "1 KB = 1024 bytes",
+            "1 MB = 1024 KB",
+            "1 GB = 1024 MB",
+            "1 TB = 1024 GB"
+        ]
+    }
+];
+
+
+// ============================================================================
+// PART I PROBLEMS - Fill in the Numbers (Units Provided)
+// ============================================================================
+// 
+// ┌─────────────────────────────────────────────────────────────────────────┐
+// │  HOW TO ADD A NEW PART I PROBLEM:                                       │
+// │                                                                         │
+// │  Copy this template and add it to the array below:                      │
+// │                                                                         │
+// │    {                                                                    │
+// │        question: "Convert X [unit] to [target unit].",                  │
+// │        startValue: "X",                                                 │
+// │        startUnit: "unit",                                               │
+// │        factors: [                                                       │
+// │            { num: "A", numUnit: "unit2", den: "B", denUnit: "unit1" },  │
+// │            // Add more factors for multi-step conversions               │
+// │        ],                                                               │
+// │        finalUnit: "target unit",                                        │
+// │        answer: "result",                                                │
+// │        explanation: "X × A ÷ B = result"                                │
+// │    }                                                                    │
+// │                                                                         │
+// │  The "factors" array defines each conversion fraction:                  │
+// │    - num: number in numerator                                           │
+// │    - numUnit: unit in numerator                                         │
+// │    - den: number in denominator                                         │
+// │    - denUnit: unit in denominator                                       │
+// └─────────────────────────────────────────────────────────────────────────┘
+
+const part1Problems = [
+    // -------- EXAMPLE: One-step conversion --------
+    {
+        question: "Convert 5.2 kilometers to meters.",
+        startValue: "5.2",
+        startUnit: "km",
+        factors: [
+            { num: "1000", numUnit: "m", den: "1", denUnit: "km" }
+        ],
+        finalUnit: "m",
+        answer: "5200",
+        explanation: "5.2 × 1000 = 5200"
+    },
+    
+    // -------- EXAMPLE: Two-step conversion --------
+    {
+        question: "Convert 6 feet to centimeters.",
+        startValue: "6",
+        startUnit: "ft",
+        factors: [
+            { num: "12", numUnit: "in", den: "1", denUnit: "ft" },
+            { num: "2.54", numUnit: "cm", den: "1", denUnit: "in" }
+        ],
+        finalUnit: "cm",
+        answer: "182.88",
+        explanation: "6 × 12 × 2.54 = 182.88"
+    },
+    
+    // -------- MORE PROBLEMS --------
+    {
+        question: "Convert 3500 grams to kilograms.",
+        startValue: "3500",
+        startUnit: "g",
+        factors: [
+            { num: "1", numUnit: "kg", den: "1000", denUnit: "g" }
+        ],
+        finalUnit: "kg",
+        answer: "3.5",
+        explanation: "3500 ÷ 1000 = 3.5"
+    },
+    {
+        question: "Convert 2.5 hours to seconds.",
+        startValue: "2.5",
+        startUnit: "hr",
+        factors: [
+            { num: "60", numUnit: "min", den: "1", denUnit: "hr" },
+            { num: "60", numUnit: "s", den: "1", denUnit: "min" }
+        ],
+        finalUnit: "s",
+        answer: "9000",
+        explanation: "2.5 × 60 × 60 = 9000"
+    },
+    {
+        question: "Convert 15 miles to kilometers.",
+        startValue: "15",
+        startUnit: "mi",
+        factors: [
+            { num: "1.609", numUnit: "km", den: "1", denUnit: "mi" }
+        ],
+        finalUnit: "km",
+        answer: "24.135",
+        explanation: "15 × 1.609 = 24.135"
+    },
+    {
+        question: "Convert 250 milliliters to liters.",
+        startValue: "250",
+        startUnit: "mL",
+        factors: [
+            { num: "1", numUnit: "L", den: "1000", denUnit: "mL" }
+        ],
+        finalUnit: "L",
+        answer: "0.25",
+        explanation: "250 ÷ 1000 = 0.25"
+    },
+    {
+        question: "Convert 45 miles per hour to meters per second.",
+        startValue: "45",
+        startUnit: "mi/hr",
+        factors: [
+            { num: "1.609", numUnit: "km", den: "1", denUnit: "mi" },
+            { num: "1000", numUnit: "m", den: "1", denUnit: "km" },
+            { num: "1", numUnit: "hr", den: "60", denUnit: "min" },
+            { num: "1", numUnit: "min", den: "60", denUnit: "s" }
+        ],
+        finalUnit: "m/s",
+        answer: "20.1",
+        explanation: "45 × 1.609 × 1000 ÷ 60 ÷ 60 = 20.1"
+    },
+    {
+        question: "Convert 500 calories to joules.",
+        startValue: "500",
+        startUnit: "cal",
+        factors: [
+            { num: "4.184", numUnit: "J", den: "1", denUnit: "cal" }
+        ],
+        finalUnit: "J",
+        answer: "2092",
+        explanation: "500 × 4.184 = 2092"
+    },
+    {
+        question: "Convert 3 gallons to milliliters.",
+        startValue: "3",
+        startUnit: "gal",
+        factors: [
+            { num: "3.785", numUnit: "L", den: "1", denUnit: "gal" },
+            { num: "1000", numUnit: "mL", den: "1", denUnit: "L" }
+        ],
+        finalUnit: "mL",
+        answer: "11355",
+        explanation: "3 × 3.785 × 1000 = 11,355"
+    },
+    {
+        question: "Convert 180 degrees to radians.",
+        startValue: "180",
+        startUnit: "°",
+        factors: [
+            { num: "π", numUnit: "rad", den: "180", denUnit: "°" }
+        ],
+        finalUnit: "rad",
+        answer: "π",
+        explanation: "180 × π ÷ 180 = π ≈ 3.14"
+    },
+    {
+        question: "Convert 2.5 kilograms to ounces.",
+        startValue: "2.5",
+        startUnit: "kg",
+        factors: [
+            { num: "2.205", numUnit: "lb", den: "1", denUnit: "kg" },
+            { num: "16", numUnit: "oz", den: "1", denUnit: "lb" }
+        ],
+        finalUnit: "oz",
+        answer: "88.2",
+        explanation: "2.5 × 2.205 × 16 = 88.2"
+    },
+    {
+        question: "Convert 72 inches to meters.",
+        startValue: "72",
+        startUnit: "in",
+        factors: [
+            { num: "2.54", numUnit: "cm", den: "1", denUnit: "in" },
+            { num: "1", numUnit: "m", den: "100", denUnit: "cm" }
+        ],
+        finalUnit: "m",
+        answer: "1.83",
+        explanation: "72 × 2.54 ÷ 100 = 1.83"
+    },
+    {
+        question: "Convert 5 days to minutes.",
+        startValue: "5",
+        startUnit: "d",
+        factors: [
+            { num: "24", numUnit: "hr", den: "1", denUnit: "d" },
+            { num: "60", numUnit: "min", den: "1", denUnit: "hr" }
+        ],
+        finalUnit: "min",
+        answer: "7200",
+        explanation: "5 × 24 × 60 = 7200"
+    },
+    {
+        question: "Convert 2 atmospheres to pascals.",
+        startValue: "2",
+        startUnit: "atm",
+        factors: [
+            { num: "101325", numUnit: "Pa", den: "1", denUnit: "atm" }
+        ],
+        finalUnit: "Pa",
+        answer: "202650",
+        explanation: "2 × 101,325 = 202,650"
+    },
+    {
+        question: "Convert 150 watts to horsepower.",
+        startValue: "150",
+        startUnit: "W",
+        factors: [
+            { num: "1", numUnit: "hp", den: "746", denUnit: "W" }
+        ],
+        finalUnit: "hp",
+        answer: "0.201",
+        explanation: "150 ÷ 746 = 0.201"
+    }
+    
+    // ┌─────────────────────────────────────────────────────────────────────┐
+    // │  ADD MORE PART I PROBLEMS HERE                                      │
+    // │  Just add a comma after the last problem and paste a new one        │
+    // └─────────────────────────────────────────────────────────────────────┘
+];
+
+
+// ============================================================================
+// PART II PROBLEMS - Fill in Numbers AND Units
+// ============================================================================
+//
+// ┌─────────────────────────────────────────────────────────────────────────┐
+// │  HOW TO ADD A NEW PART II PROBLEM:                                      │
+// │                                                                         │
+// │  Copy this template and add it to the array below:                      │
+// │                                                                         │
+// │    {                                                                    │
+// │        question: "Convert X [unit] to [target unit].",                  │
+// │        startValue: "X",                                                 │
+// │        startUnit: "unit",                                               │
+// │        numFactors: 2,  // How many blank fractions to show              │
+// │        finalUnit: "target unit",                                        │
+// │        answer: "result",                                                │
+// │        solutionFactors: [                                               │
+// │            { num: "A", numUnit: "u2", den: "B", denUnit: "u1" },        │
+// │            { num: "C", numUnit: "u3", den: "D", denUnit: "u2" }         │
+// │        ],                                                               │
+// │        explanation: "X × A/B × C/D = result"                            │
+// │    }                                                                    │
+// │                                                                         │
+// │  The numFactors determines how many blank conversion fractions appear.  │
+// │  The solutionFactors show the correct answer when revealed.             │
+// └─────────────────────────────────────────────────────────────────────────┘
+
+const part2Problems = [
+    // -------- EXAMPLE: Two-step conversion --------
+    {
+        question: "Convert 8.5 miles to meters.",
+        startValue: "8.5",
+        startUnit: "mi",
+        numFactors: 2,
+        finalUnit: "m",
+        answer: "13677",
+        solutionFactors: [
+            { num: "1.609", numUnit: "km", den: "1", denUnit: "mi" },
+            { num: "1000", numUnit: "m", den: "1", denUnit: "km" }
+        ],
+        explanation: "8.5 × 1.609 × 1000 = 13,677"
+    },
+    
+    // -------- EXAMPLE: One-step conversion --------
+    {
+        question: "Convert 175 pounds to kilograms.",
+        startValue: "175",
+        startUnit: "lb",
+        numFactors: 1,
+        finalUnit: "kg",
+        answer: "79.4",
+        solutionFactors: [
+            { num: "1", numUnit: "kg", den: "2.205", denUnit: "lb" }
+        ],
+        explanation: "175 ÷ 2.205 = 79.4"
+    },
+    
+    // -------- MORE PROBLEMS --------
+    {
+        question: "Convert 3 weeks to hours.",
+        startValue: "3",
+        startUnit: "wk",
+        numFactors: 2,
+        finalUnit: "hr",
+        answer: "504",
+        solutionFactors: [
+            { num: "7", numUnit: "d", den: "1", denUnit: "wk" },
+            { num: "24", numUnit: "hr", den: "1", denUnit: "d" }
+        ],
+        explanation: "3 × 7 × 24 = 504"
+    },
+    {
+        question: "Convert 2.5 gallons to cups.",
+        startValue: "2.5",
+        startUnit: "gal",
+        numFactors: 3,
+        finalUnit: "cups",
+        answer: "40",
+        solutionFactors: [
+            { num: "4", numUnit: "qt", den: "1", denUnit: "gal" },
+            { num: "2", numUnit: "pt", den: "1", denUnit: "qt" },
+            { num: "2", numUnit: "cups", den: "1", denUnit: "pt" }
+        ],
+        explanation: "2.5 × 4 × 2 × 2 = 40"
+    },
+    {
+        question: "Convert 500 BTU to kilojoules.",
+        startValue: "500",
+        startUnit: "BTU",
+        numFactors: 2,
+        finalUnit: "kJ",
+        answer: "527.5",
+        solutionFactors: [
+            { num: "1055", numUnit: "J", den: "1", denUnit: "BTU" },
+            { num: "1", numUnit: "kJ", den: "1000", denUnit: "J" }
+        ],
+        explanation: "500 × 1055 ÷ 1000 = 527.5"
+    },
+    {
+        question: "Convert 45 centimeters to inches.",
+        startValue: "45",
+        startUnit: "cm",
+        numFactors: 1,
+        finalUnit: "in",
+        answer: "17.7",
+        solutionFactors: [
+            { num: "1", numUnit: "in", den: "2.54", denUnit: "cm" }
+        ],
+        explanation: "45 ÷ 2.54 = 17.7"
+    },
+    {
+        question: "Convert 250 horsepower to kilowatts.",
+        startValue: "250",
+        startUnit: "hp",
+        numFactors: 2,
+        finalUnit: "kW",
+        answer: "186.5",
+        solutionFactors: [
+            { num: "746", numUnit: "W", den: "1", denUnit: "hp" },
+            { num: "1", numUnit: "kW", den: "1000", denUnit: "W" }
+        ],
+        explanation: "250 × 746 ÷ 1000 = 186.5"
+    },
+    {
+        question: "Convert 4 acres to square meters.",
+        startValue: "4",
+        startUnit: "acres",
+        numFactors: 1,
+        finalUnit: "m²",
+        answer: "16188",
+        solutionFactors: [
+            { num: "4047", numUnit: "m²", den: "1", denUnit: "acre" }
+        ],
+        explanation: "4 × 4047 = 16,188"
+    },
+    {
+        question: "Convert 32 gigabytes to megabytes.",
+        startValue: "32",
+        startUnit: "GB",
+        numFactors: 1,
+        finalUnit: "MB",
+        answer: "32768",
+        solutionFactors: [
+            { num: "1024", numUnit: "MB", den: "1", denUnit: "GB" }
+        ],
+        explanation: "32 × 1024 = 32,768"
+    },
+    {
+        question: "Convert 720 degrees to revolutions.",
+        startValue: "720",
+        startUnit: "°",
+        numFactors: 1,
+        finalUnit: "rev",
+        answer: "2",
+        solutionFactors: [
+            { num: "1", numUnit: "rev", den: "360", denUnit: "°" }
+        ],
+        explanation: "720 ÷ 360 = 2"
+    },
+    {
+        question: "Convert 2.5 kilocalories to joules.",
+        startValue: "2.5",
+        startUnit: "kcal",
+        numFactors: 2,
+        finalUnit: "J",
+        answer: "10460",
+        solutionFactors: [
+            { num: "1000", numUnit: "cal", den: "1", denUnit: "kcal" },
+            { num: "4.184", numUnit: "J", den: "1", denUnit: "cal" }
+        ],
+        explanation: "2.5 × 1000 × 4.184 = 10,460"
+    },
+    {
+        question: "Convert 12 stone to kilograms.",
+        startValue: "12",
+        startUnit: "stone",
+        numFactors: 2,
+        finalUnit: "kg",
+        answer: "76.2",
+        solutionFactors: [
+            { num: "14", numUnit: "lb", den: "1", denUnit: "stone" },
+            { num: "1", numUnit: "kg", den: "2.205", denUnit: "lb" }
+        ],
+        explanation: "12 × 14 ÷ 2.205 = 76.2"
+    }
+    
+    // ┌─────────────────────────────────────────────────────────────────────┐
+    // │  ADD MORE PART II PROBLEMS HERE                                     │
+    // │  Just add a comma after the last problem and paste a new one        │
+    // └─────────────────────────────────────────────────────────────────────┘
+];
+
+
+// ============================================================================
+// RENDERING FUNCTIONS (You don't need to modify below this line)
+// ============================================================================
+
+function renderReference() {
+    const container = document.getElementById('reference-sections');
+    container.innerHTML = referenceData.map((section, idx) => `
+        <h3 onclick="toggleSection(${idx})">${section.title}</h3>
+        <div id="ref-section-${idx}" class="reference-section">
+            <ul>
+                ${section.conversions.map(c => `<li>${c}</li>`).join('')}
+            </ul>
+        </div>
+    `).join('');
+}
+
+function toggleSection(idx) {
+    const section = document.getElementById(`ref-section-${idx}`);
+    const header = section.previousElementSibling;
+    section.classList.toggle('show');
+    header.classList.toggle('open');
+}
+
+function renderPart1() {
+    const container = document.getElementById('part1-problems');
+    container.innerHTML = part1Problems.map((p, idx) => {
+        const factorsHTML = p.factors.map((f, fIdx) => `
+            <span class="times">×</span>
+            <div class="fraction">
+                <div class="fraction-num">
+                    <input type="text" id="p1-${idx}-f${fIdx}-num" data-answer="${f.num}"> ${f.numUnit}
+                </div>
+                <div class="fraction-line"></div>
+                <div class="fraction-den">
+                    <input type="text" id="p1-${idx}-f${fIdx}-den" data-answer="${f.den}"> ${f.denUnit}
+                </div>
+            </div>
+        `).join('');
+        
+        return `
+            <div class="problem">
+                <span class="problem-number">${idx + 1}.</span>
+                <span class="problem-text">${p.question}</span>
+                <div class="conversion-setup">
+                    <span>${p.startValue} ${p.startUnit}</span>
+                    ${factorsHTML}
+                    <span class="equals">=</span>
+                    <input type="text" class="answer-input" id="p1-${idx}-ans" data-answer="${p.answer}">
+                    <span class="unit-label">${p.finalUnit}</span>
+                </div>
+                <div class="buttons">
+                    <button class="check-btn" onclick="checkPart1(${idx})">Check</button>
+                    <button class="show-btn" onclick="showSolution('p1-sol-${idx}')">Show Solution</button>
+                </div>
+                <div id="p1-sol-${idx}" class="solution">
+                    <span class="solution-label">Solution:</span><br>
+                    ${p.startValue} ${p.startUnit} ${p.factors.map(f => `× (${f.num} ${f.numUnit} / ${f.den} ${f.denUnit})`).join(' ')} = <strong>${p.answer} ${p.finalUnit}</strong><br>
+                    <em>${p.explanation}</em>
+                </div>
+            </div>
+        `;
+    }).join('');
+}
+
+function renderPart2() {
+    const container = document.getElementById('part2-problems');
+    container.innerHTML = part2Problems.map((p, idx) => {
+        let factorsHTML = '';
+        for (let i = 0; i < p.numFactors; i++) {
+            factorsHTML += `
+                <span class="times">×</span>
+                <div class="fraction">
+                    <div class="fraction-num">
+                        <input type="text" id="p2-${idx}-f${i}-num" placeholder="#"> 
+                        <input type="text" id="p2-${idx}-f${i}-numU" placeholder="unit">
+                    </div>
+                    <div class="fraction-line"></div>
+                    <div class="fraction-den">
+                        <input type="text" id="p2-${idx}-f${i}-den" placeholder="#"> 
+                        <input type="text" id="p2-${idx}-f${i}-denU" placeholder="unit">
+                    </div>
+                </div>
+            `;
+        }
+        
+        const solutionSetup = p.solutionFactors.map(f => 
+            `× (${f.num} ${f.numUnit} / ${f.den} ${f.denUnit})`
+        ).join(' ');
+        
+        return `
+            <div class="problem">
+                <span class="problem-number">${idx + 1}.</span>
+                <span class="problem-text">${p.question}</span>
+                <div class="conversion-setup">
+                    <span>${p.startValue} ${p.startUnit}</span>
+                    ${factorsHTML}
+                    <span class="equals">=</span>
+                    <input type="text" class="answer-input" id="p2-${idx}-ans" data-answer="${p.answer}">
+                    <span class="unit-label">${p.finalUnit}</span>
+                </div>
+                <div class="buttons">
+                    <button class="check-btn" onclick="checkPart2Answer(${idx})">Check Answer</button>
+                    <button class="show-btn" onclick="showSolution('p2-sol-${idx}')">Show Solution</button>
+                </div>
+                <div id="p2-sol-${idx}" class="solution">
+                    <span class="solution-label">Solution:</span><br>
+                    ${p.startValue} ${p.startUnit} ${solutionSetup} = <strong>${p.answer} ${p.finalUnit}</strong><br>
+                    <em>${p.explanation}</em>
+                </div>
+            </div>
+        `;
+    }).join('');
+}
+
+function checkPart1(idx) {
+    const p = part1Problems[idx];
+    
+    // Check each factor
+    p.factors.forEach((f, fIdx) => {
+        checkInput(`p1-${idx}-f${fIdx}-num`, f.num);
+        checkInput(`p1-${idx}-f${fIdx}-den`, f.den);
+    });
+    
+    // Check final answer
+    checkInput(`p1-${idx}-ans`, p.answer);
+}
+
+function checkPart2Answer(idx) {
+    const p = part2Problems[idx];
+    checkInput(`p2-${idx}-ans`, p.answer);
+}
+
+function checkInput(id, correctAnswer) {
+    const input = document.getElementById(id);
+    const userValue = input.value.trim().toLowerCase();
+    const correct = String(correctAnswer).toLowerCase();
+    
+    // Allow for some flexibility (π vs pi, slight rounding differences)
+    let isCorrect = false;
+    
+    if (userValue === correct) {
+        isCorrect = true;
+    } else if (correct === 'π' && (userValue === 'pi' || userValue === '3.14' || userValue === '3.1416')) {
+        isCorrect = true;
+    } else {
+        // Check if numbers are close (within 1%)
+        const userNum = parseFloat(userValue.replace(/,/g, ''));
+        const correctNum = parseFloat(correct.replace(/,/g, ''));
+        if (!isNaN(userNum) && !isNaN(correctNum)) {
+            const diff = Math.abs(userNum - correctNum) / correctNum;
+            if (diff < 0.01) isCorrect = true;
+        }
+    }
+    
+    input.classList.remove('correct', 'incorrect');
+    input.classList.add(isCorrect ? 'correct' : 'incorrect');
+}
+
+function showSolution(id) {
+    const sol = document.getElementById(id);
+    sol.classList.toggle('show');
+}
+
+function showTab(tabId) {
+    // Hide all tabs
+    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    
+    // Show selected tab
+    document.getElementById(tabId).classList.add('active');
+    event.target.classList.add('active');
+}
+
+// Initialize
+renderReference();
+renderPart1();
+renderPart2();
+</script>
+
+</body>
+</html>
