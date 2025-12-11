@@ -1,0 +1,1127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sci-Notation Lab</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 50%, #0f0f1a 100%);
+      color: #e0e0e0;
+      font-family: 'DM Sans', sans-serif;
+      padding: 20px;
+    }
+    
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    
+    header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    
+    h1 {
+      font-family: 'DM Sans', sans-serif;
+      font-size: clamp(24px, 5vw, 42px);
+      font-weight: 700;
+      background: linear-gradient(135deg, #00ffc8 0%, #00b894 50%, #00d9a5 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 8px;
+      letter-spacing: 2px;
+    }
+    
+    .subtitle {
+      color: #6a6a8a;
+      font-size: 14px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+    
+    .card {
+      background: linear-gradient(145deg, rgba(30, 30, 50, 0.9), rgba(20, 20, 35, 0.95));
+      border: 1px solid rgba(0, 255, 200, 0.2);
+      border-radius: 16px;
+      padding: 24px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+      margin-bottom: 16px;
+    }
+    
+    .btn {
+      background: linear-gradient(135deg, #00ffc8 0%, #00b894 100%);
+      color: #0a0a0f;
+      border: none;
+      padding: 12px 28px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 15px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-family: 'DM Sans', sans-serif;
+    }
+    
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 255, 200, 0.4);
+    }
+    
+    .btn-secondary {
+      background: transparent;
+      border: 2px solid rgba(0, 255, 200, 0.5);
+      color: #00ffc8;
+    }
+    
+    .btn-secondary:hover {
+      background: rgba(0, 255, 200, 0.1);
+    }
+    
+    .nav {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    
+    .nav-btn {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #a0a0a0;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+    }
+    
+    .nav-btn:hover, .nav-btn.active {
+      background: rgba(0, 255, 200, 0.15);
+      border-color: rgba(0, 255, 200, 0.5);
+      color: #00ffc8;
+    }
+    
+    .nav-btn.mixed {
+      background: rgba(255, 200, 0, 0.2);
+      border-color: #ffc800;
+      color: #ffc800;
+    }
+    
+    .quiz-option {
+      background: rgba(255, 255, 255, 0.03);
+      border: 2px solid rgba(255, 255, 255, 0.1);
+      padding: 16px 20px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-align: left;
+      width: 100%;
+      color: #e0e0e0;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 16px;
+      margin-bottom: 12px;
+    }
+    
+    .quiz-option:hover:not(.answered) {
+      background: rgba(0, 255, 200, 0.1);
+      border-color: rgba(0, 255, 200, 0.4);
+    }
+    
+    .quiz-option.correct {
+      background: rgba(0, 255, 100, 0.2);
+      border-color: #00ff64;
+    }
+    
+    .quiz-option.incorrect {
+      background: rgba(255, 80, 80, 0.2);
+      border-color: #ff5050;
+    }
+    
+    .input-field {
+      background: rgba(0, 0, 0, 0.3);
+      border: 2px solid rgba(255, 255, 255, 0.15);
+      padding: 14px 18px;
+      border-radius: 10px;
+      color: #fff;
+      font-size: 18px;
+      width: 100%;
+      font-family: 'JetBrains Mono', monospace;
+      transition: all 0.3s ease;
+    }
+    
+    .input-field:focus {
+      outline: none;
+      border-color: #00ffc8;
+      box-shadow: 0 0 20px rgba(0, 255, 200, 0.2);
+    }
+    
+    .rule-box {
+      background: rgba(0, 255, 200, 0.05);
+      border-left: 4px solid #00ffc8;
+      padding: 16px 20px;
+      margin: 12px 0;
+      border-radius: 0 8px 8px 0;
+    }
+    
+    .rule-box strong {
+      color: #00ffc8;
+    }
+    
+    .example-box {
+      background: rgba(255, 200, 0, 0.08);
+      border: 1px solid rgba(255, 200, 0, 0.3);
+      padding: 14px 18px;
+      border-radius: 8px;
+      margin: 10px 0;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    
+    .example-label {
+      color: #ffc800;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+    
+    .streak-badge {
+      background: linear-gradient(135deg, #ff6b6b, #ffa502);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: #fff;
+    }
+    
+    .progress-bar {
+      height: 6px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 3px;
+      overflow: hidden;
+      margin-bottom: 24px;
+    }
+    
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #00ffc8, #00b894);
+      transition: width 0.5s ease;
+    }
+    
+    .fade-in {
+      animation: fadeIn 0.4s ease;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .feedback-box {
+      padding: 16px 20px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+    
+    .feedback-box.correct {
+      background: rgba(0, 255, 100, 0.1);
+      border: 1px solid #00ff64;
+    }
+    
+    .feedback-box.incorrect {
+      background: rgba(255, 80, 80, 0.1);
+      border: 1px solid #ff5050;
+    }
+    
+    .section-label {
+      color: #00ffc8;
+      font-weight: 600;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+    }
+    
+    .section-label.challenge {
+      color: #ffc800;
+    }
+    
+    .practice-buttons {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+    
+    .rules-tabs {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+    
+    .warning-box {
+      margin-top: 24px;
+      padding: 20px;
+      background: rgba(255, 100, 100, 0.1);
+      border-radius: 10px;
+      border: 1px solid rgba(255, 100, 100, 0.3);
+    }
+    
+    .warning-box strong {
+      color: #ff6b6b;
+    }
+    
+    footer {
+      text-align: center;
+      margin-top: 40px;
+      color: #4a4a6a;
+      font-size: 13px;
+    }
+    
+    .hidden { display: none !important; }
+    
+    .score-display {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    
+    .question-text {
+      color: #fff;
+      font-size: 22px;
+      margin-bottom: 24px;
+      line-height: 1.5;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    
+    .helper-text {
+      color: #6a6a8a;
+      font-size: 13px;
+      margin-top: 8px;
+    }
+    
+    .hint-text {
+      color: #a0a0b0;
+      margin-top: 8px;
+      font-size: 14px;
+    }
+    
+    h2 {
+      color: #00ffc8;
+      font-family: 'DM Sans', sans-serif;
+      margin-bottom: 20px;
+    }
+    
+    h3 {
+      color: #fff;
+      margin-top: 24px;
+      margin-bottom: 12px;
+    }
+    
+    ol, ul {
+      color: #c0c0d0;
+      line-height: 1.8;
+      padding-left: 20px;
+    }
+    
+    .center { text-align: center; }
+    .mb-20 { margin-bottom: 20px; }
+    .mt-24 { margin-top: 24px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>SCI-NOTATION LAB</h1>
+      <p class="subtitle">Scientific Notation & Significant Figures</p>
+    </header>
+    
+    <nav class="nav hidden" id="mainNav">
+      <button class="nav-btn" onclick="showView('rules')">📖 Learn Rules</button>
+      <button class="nav-btn" onclick="startQuiz()">🧪 Test Knowledge</button>
+      <button class="nav-btn" onclick="showView('practice')">⚡ Practice</button>
+    </nav>
+    
+    <!-- Welcome View -->
+    <div id="welcomeView" class="card fade-in center" style="padding: 40px;">
+      <div style="font-size: 60px; margin-bottom: 20px;">🔬</div>
+      <h2 style="font-size: 28px; color: #fff;">Master Scientific Notation</h2>
+      <p style="color: #a0a0b0; margin-bottom: 30px; line-height: 1.7; max-width: 500px; margin-left: auto; margin-right: auto;">
+        Learn the rules, test your understanding, and practice until you're confident. 
+        This interactive lab will guide you through everything you need to know.
+      </p>
+      <button class="btn" onclick="showView('rules')">Start Learning →</button>
+    </div>
+    
+    <!-- Rules View -->
+    <div id="rulesView" class="hidden fade-in">
+      <div class="rules-tabs">
+        <button class="nav-btn active" id="tabScientific" onclick="showRulesTab('scientific')">Scientific Notation</button>
+        <button class="nav-btn" id="tabSigfigs" onclick="showRulesTab('sigfigs')">Significant Figures</button>
+        <button class="nav-btn" id="tabOperations" onclick="showRulesTab('operations')">Operations</button>
+      </div>
+      
+      <div class="card" id="rulesScientific">
+        <h2>Scientific Notation</h2>
+        <div class="rule-box">
+          <strong>Format:</strong> a × 10ⁿ where 1 ≤ |a| < 10
+        </div>
+        <h3>Converting TO Scientific Notation</h3>
+        <ol>
+          <li>Move the decimal point until you have a number between 1 and 10</li>
+          <li>Count how many places you moved the decimal</li>
+          <li>If you moved LEFT → positive exponent (large numbers)</li>
+          <li>If you moved RIGHT → negative exponent (small numbers)</li>
+        </ol>
+        <div class="example-box">
+          <div class="example-label">Examples:</div>
+          <div>45,000 → 4.5 × 10⁴ (moved 4 places left)</div>
+          <div>0.0032 → 3.2 × 10⁻³ (moved 3 places right)</div>
+        </div>
+        <h3>Converting FROM Scientific Notation</h3>
+        <ol>
+          <li>Look at the exponent</li>
+          <li>Positive exponent → move decimal RIGHT</li>
+          <li>Negative exponent → move decimal LEFT</li>
+          <li>Fill in zeros as needed</li>
+        </ol>
+        <div class="example-box">
+          <div class="example-label">Examples:</div>
+          <div>2.7 × 10⁵ → 270,000</div>
+          <div>8.1 × 10⁻⁴ → 0.00081</div>
+        </div>
+      </div>
+      
+      <div class="card hidden" id="rulesSigfigs">
+        <h2>Significant Figures Rules</h2>
+        <div class="rule-box">
+          <strong>Rule 1:</strong> All non-zero digits are ALWAYS significant
+          <div class="example-box">123 → 3 sig figs &nbsp;|&nbsp; 7.89 → 3 sig figs</div>
+        </div>
+        <div class="rule-box">
+          <strong>Rule 2:</strong> Zeros BETWEEN non-zero digits are ALWAYS significant
+          <div class="example-box">101 → 3 sig figs &nbsp;|&nbsp; 5.007 → 4 sig figs</div>
+        </div>
+        <div class="rule-box">
+          <strong>Rule 3:</strong> Leading zeros are NEVER significant
+          <div class="example-box">0.0025 → 2 sig figs &nbsp;|&nbsp; 0.00100 → 3 sig figs</div>
+        </div>
+        <div class="rule-box">
+          <strong>Rule 4:</strong> Trailing zeros AFTER a decimal point ARE significant
+          <div class="example-box">2.50 → 3 sig figs &nbsp;|&nbsp; 1.000 → 4 sig figs</div>
+        </div>
+        <div class="rule-box">
+          <strong>Rule 5:</strong> Trailing zeros WITHOUT a decimal point are NOT significant (ambiguous)
+          <div class="example-box">1500 → 2 sig figs &nbsp;|&nbsp; 1500. → 4 sig figs (decimal makes it explicit)</div>
+        </div>
+      </div>
+      
+      <div class="card hidden" id="rulesOperations">
+        <h2>Operations with Sig Figs</h2>
+        <div class="rule-box">
+          <strong>Multiplication & Division:</strong>
+          <p style="margin-top: 8px; color: #c0c0d0;">
+            Answer has the same number of sig figs as the measurement with the <strong style="color: #fff;">FEWEST</strong> sig figs
+          </p>
+          <div class="example-box">
+            <div>2.5 × 3.42 = 8.55 → rounds to <strong>8.6</strong> (2 sig figs)</div>
+            <div style="margin-top: 4px; font-size: 13px; color: #888;">2.5 has 2 sig figs, 3.42 has 3 → answer gets 2</div>
+          </div>
+        </div>
+        <div class="rule-box">
+          <strong>Addition & Subtraction:</strong>
+          <p style="margin-top: 8px; color: #c0c0d0;">
+            Answer has the same number of <strong style="color: #fff;">DECIMAL PLACES</strong> as the measurement with the fewest decimal places
+          </p>
+          <div class="example-box">
+            <div>12.52 + 1.7 = 14.22 → rounds to <strong>14.2</strong></div>
+            <div style="margin-top: 4px; font-size: 13px; color: #888;">12.52 has 2 decimal places, 1.7 has 1 → answer gets 1</div>
+          </div>
+        </div>
+        <div class="warning-box">
+          <strong>⚠️ Common Mistake:</strong>
+          <p style="color: #c0c0d0; margin-top: 8px;">
+            Don't confuse the two rules! Multiplication/division uses sig figs count, 
+            while addition/subtraction uses decimal places.
+          </p>
+        </div>
+      </div>
+      
+      <div class="center mt-24">
+        <button class="btn" onclick="startQuiz()">Test Your Knowledge →</button>
+      </div>
+    </div>
+    
+    <!-- Quiz View -->
+    <div id="quizView" class="hidden fade-in">
+      <div class="card">
+        <div class="score-display">
+          <span style="color: #6a6a8a;">Question <span id="quizProgress">1</span> of 8</span>
+          <span style="color: #00ffc8;">Score: <span id="quizScore">0</span>/<span id="quizAnswered">0</span></span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" id="quizProgressBar" style="width: 0%;"></div>
+        </div>
+        <h3 class="question-text" id="quizQuestion"></h3>
+        <div id="quizOptions"></div>
+        <div id="quizFeedback" class="hidden"></div>
+        <button class="btn hidden" id="quizNextBtn" onclick="nextQuizQuestion()">Next Question →</button>
+      </div>
+    </div>
+    
+    <!-- Quiz Complete View -->
+    <div id="quizCompleteView" class="hidden fade-in">
+      <div class="card center">
+        <div style="font-size: 60px; margin-bottom: 16px;" id="quizEmoji">🏆</div>
+        <h2 style="color: #fff; margin-bottom: 16px;">Quiz Complete!</h2>
+        <div style="font-size: 48px; font-family: 'DM Sans', sans-serif; color: #00ffc8; margin-bottom: 16px;" id="finalScore">0/8</div>
+        <p style="color: #a0a0b0; margin-bottom: 30px;" id="quizMessage"></p>
+        <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+          <button class="btn btn-secondary" onclick="showView('rules')">Review Rules</button>
+          <button class="btn" onclick="showView('practice')">Start Practice →</button>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Practice View -->
+    <div id="practiceView" class="hidden fade-in">
+      <div class="card" style="padding: 16px;">
+        <div class="section-label">Scientific Notation</div>
+        <div class="practice-buttons">
+          <button class="nav-btn active" id="btn-toScientific" onclick="setPracticeType('toScientific')">To Scientific</button>
+          <button class="nav-btn" id="btn-fromScientific" onclick="setPracticeType('fromScientific')">From Scientific</button>
+          <button class="nav-btn" id="btn-multiplyScientific" onclick="setPracticeType('multiplyScientific')">Multiply</button>
+          <button class="nav-btn" id="btn-divideScientific" onclick="setPracticeType('divideScientific')">Divide</button>
+          <button class="nav-btn" id="btn-sciNotationAdd" onclick="setPracticeType('sciNotationAdd')">Add</button>
+          <button class="nav-btn" id="btn-compareScientific" onclick="setPracticeType('compareScientific')">Compare</button>
+        </div>
+        
+        <div class="section-label">Significant Figures</div>
+        <div class="practice-buttons">
+          <button class="nav-btn" id="btn-countSigFigs" onclick="setPracticeType('countSigFigs')">Count Sig Figs</button>
+          <button class="nav-btn" id="btn-roundSigFigs" onclick="setPracticeType('roundSigFigs')">Round to Sig Figs</button>
+          <button class="nav-btn" id="btn-multiplySigFigs" onclick="setPracticeType('multiplySigFigs')">Multiply w/ Sig Figs</button>
+          <button class="nav-btn" id="btn-addSigFigs" onclick="setPracticeType('addSigFigs')">Add w/ Sig Figs</button>
+        </div>
+        
+        <div class="section-label">Estimation</div>
+        <div class="practice-buttons">
+          <button class="nav-btn" id="btn-orderMagnitude" onclick="setPracticeType('orderMagnitude')">Order of Magnitude</button>
+        </div>
+        
+        <div class="section-label challenge">Challenge</div>
+        <div class="practice-buttons">
+          <button class="nav-btn" id="btn-mixed" onclick="setPracticeType('mixed')">🎲 Mixed Practice</button>
+        </div>
+      </div>
+      
+      <div class="card">
+        <div class="score-display">
+          <div style="color: #6a6a8a;">
+            Score: <span style="color: #00ffc8;" id="practiceCorrect">0</span> / <span id="practiceTotal">0</span>
+            <span id="practicePercent"></span>
+          </div>
+          <div id="streakBadge" class="streak-badge hidden">🔥 <span id="streakCount">0</span> streak!</div>
+        </div>
+        
+        <h3 class="question-text" id="practiceQuestion"></h3>
+        
+        <div class="mb-20">
+          <input type="text" class="input-field" id="practiceInput" placeholder="" onkeydown="handlePracticeKey(event)">
+          <div class="helper-text" id="practiceHelper"></div>
+        </div>
+        
+        <div id="practiceFeedback" class="hidden"></div>
+        <button class="btn" id="practiceBtn" onclick="checkPracticeAnswer()">Check Answer</button>
+      </div>
+    </div>
+    
+    <footer>
+      <p>Master scientific notation and significant figures with practice! 🧪</p>
+    </footer>
+  </div>
+
+  <script>
+    // State
+    let currentView = 'welcome';
+    let practiceType = 'toScientific';
+    let currentProblem = null;
+    let practiceScore = { correct: 0, total: 0 };
+    let streak = 0;
+    let quizIndex = 0;
+    let quizScore = 0;
+    let quizAnswered = false;
+    
+    const quizQuestions = [
+      {
+        question: "How many significant figures are in 0.00340?",
+        options: ["2", "3", "4", "5"],
+        correct: 1,
+        explanation: "Leading zeros are never significant. The trailing zero after the 4 IS significant because it's after a decimal point. So: 3, 4, 0 = 3 sig figs."
+      },
+      {
+        question: "What is the correct scientific notation for 45,600?",
+        options: ["4.56 × 10³", "4.56 × 10⁴", "45.6 × 10³", "4.560 × 10⁴"],
+        correct: 1,
+        explanation: "Move the decimal 4 places left to get 4.56. The exponent equals the number of places moved: 10⁴."
+      },
+      {
+        question: "How many significant figures are in 1000?",
+        options: ["1", "2", "3", "4"],
+        correct: 0,
+        explanation: "Trailing zeros WITHOUT a decimal point are ambiguous but typically considered NOT significant. So 1000 has 1 sig fig."
+      },
+      {
+        question: "When multiplying 2.5 × 3.42, how many sig figs should your answer have?",
+        options: ["2", "3", "4", "5"],
+        correct: 0,
+        explanation: "In multiplication/division, the answer has the same number of sig figs as the measurement with the FEWEST sig figs. 2.5 has 2, 3.42 has 3 → answer has 2."
+      },
+      {
+        question: "What is 3.2 × 10⁴ in standard notation?",
+        options: ["320", "3,200", "32,000", "320,000"],
+        correct: 2,
+        explanation: "Move the decimal 4 places to the right: 3.2 → 32 → 320 → 3200 → 32,000"
+      },
+      {
+        question: "How many significant figures are in 50.00?",
+        options: ["1", "2", "3", "4"],
+        correct: 3,
+        explanation: "All digits here are significant: the 5, the 0 between, and both trailing zeros after the decimal. Total: 4 sig figs."
+      },
+      {
+        question: "When adding 12.5 + 1.234, how should you round your answer?",
+        options: ["To 1 decimal place", "To 2 decimal places", "To 3 decimal places", "To 4 sig figs"],
+        correct: 0,
+        explanation: "In addition/subtraction, round to the LEAST number of decimal places. 12.5 has 1 decimal place, 1.234 has 3 → answer gets 1 decimal place."
+      },
+      {
+        question: "Which number has exactly 4 significant figures?",
+        options: ["0.0040", "4000", "4.000", "40.0"],
+        correct: 2,
+        explanation: "0.0040 has 2 (leading zeros don't count). 4000 has 1 (trailing zeros without decimal). 4.000 has 4 (all zeros after decimal count). 40.0 has 3."
+      }
+    ];
+    
+    // Utility functions
+    function rand(min, max, decimals = 0) {
+      const num = Math.random() * (max - min) + min;
+      return decimals > 0 ? parseFloat(num.toFixed(decimals)) : Math.floor(num);
+    }
+    
+    function countSigFigs(numStr) {
+      const str = numStr.toString().replace(/^-/, '');
+      if (str.includes('e') || str.includes('E')) {
+        const [coef] = str.split(/[eE]/);
+        return countSigFigs(coef);
+      }
+      const cleaned = str.replace(/^0+\.?/, '').replace('.', '');
+      if (str.includes('.')) {
+        return cleaned.length;
+      }
+      return cleaned.replace(/0+$/, '').length || 1;
+    }
+    
+    function toScientificNotation(num) {
+      if (num === 0) return { coefficient: 0, exponent: 0 };
+      const exp = Math.floor(Math.log10(Math.abs(num)));
+      const coef = num / Math.pow(10, exp);
+      return { coefficient: parseFloat(coef.toFixed(4)), exponent: exp };
+    }
+    
+    // View management
+    function showView(view) {
+      document.getElementById('welcomeView').classList.add('hidden');
+      document.getElementById('rulesView').classList.add('hidden');
+      document.getElementById('quizView').classList.add('hidden');
+      document.getElementById('quizCompleteView').classList.add('hidden');
+      document.getElementById('practiceView').classList.add('hidden');
+      document.getElementById('mainNav').classList.remove('hidden');
+      
+      currentView = view;
+      
+      if (view === 'welcome') {
+        document.getElementById('welcomeView').classList.remove('hidden');
+        document.getElementById('mainNav').classList.add('hidden');
+      } else if (view === 'rules') {
+        document.getElementById('rulesView').classList.remove('hidden');
+      } else if (view === 'quiz') {
+        document.getElementById('quizView').classList.remove('hidden');
+      } else if (view === 'quizComplete') {
+        document.getElementById('quizCompleteView').classList.remove('hidden');
+      } else if (view === 'practice') {
+        document.getElementById('practiceView').classList.remove('hidden');
+        generateProblem();
+      }
+    }
+    
+    function showRulesTab(tab) {
+      document.getElementById('rulesScientific').classList.add('hidden');
+      document.getElementById('rulesSigfigs').classList.add('hidden');
+      document.getElementById('rulesOperations').classList.add('hidden');
+      document.getElementById('tabScientific').classList.remove('active');
+      document.getElementById('tabSigfigs').classList.remove('active');
+      document.getElementById('tabOperations').classList.remove('active');
+      
+      if (tab === 'scientific') {
+        document.getElementById('rulesScientific').classList.remove('hidden');
+        document.getElementById('tabScientific').classList.add('active');
+      } else if (tab === 'sigfigs') {
+        document.getElementById('rulesSigfigs').classList.remove('hidden');
+        document.getElementById('tabSigfigs').classList.add('active');
+      } else if (tab === 'operations') {
+        document.getElementById('rulesOperations').classList.remove('hidden');
+        document.getElementById('tabOperations').classList.add('active');
+      }
+    }
+    
+    // Quiz functions
+    function startQuiz() {
+      quizIndex = 0;
+      quizScore = 0;
+      quizAnswered = false;
+      showView('quiz');
+      renderQuizQuestion();
+    }
+    
+    function renderQuizQuestion() {
+      const q = quizQuestions[quizIndex];
+      document.getElementById('quizProgress').textContent = quizIndex + 1;
+      document.getElementById('quizQuestion').textContent = q.question;
+      document.getElementById('quizProgressBar').style.width = `${(quizIndex / quizQuestions.length) * 100}%`;
+      document.getElementById('quizFeedback').classList.add('hidden');
+      document.getElementById('quizNextBtn').classList.add('hidden');
+      
+      const optionsHtml = q.options.map((opt, i) => 
+        `<button class="quiz-option" onclick="selectQuizAnswer(${i})">${opt}</button>`
+      ).join('');
+      document.getElementById('quizOptions').innerHTML = optionsHtml;
+    }
+    
+    function selectQuizAnswer(index) {
+      if (quizAnswered) return;
+      quizAnswered = true;
+      
+      const q = quizQuestions[quizIndex];
+      const options = document.querySelectorAll('.quiz-option');
+      
+      options.forEach((opt, i) => {
+        opt.classList.add('answered');
+        if (i === q.correct) opt.classList.add('correct');
+        if (i === index && i !== q.correct) opt.classList.add('incorrect');
+      });
+      
+      if (index === q.correct) quizScore++;
+      
+      document.getElementById('quizScore').textContent = quizScore;
+      document.getElementById('quizAnswered').textContent = quizIndex + 1;
+      document.getElementById('quizProgressBar').style.width = `${((quizIndex + 1) / quizQuestions.length) * 100}%`;
+      
+      const feedbackEl = document.getElementById('quizFeedback');
+      feedbackEl.classList.remove('hidden');
+      feedbackEl.innerHTML = `
+        <div class="feedback-box ${index === q.correct ? 'correct' : 'incorrect'}">
+          <div style="color: ${index === q.correct ? '#00ff64' : '#ff5050'}; font-weight: 600; margin-bottom: 8px;">
+            ${index === q.correct ? '✓ Correct!' : '✗ Not quite'}
+          </div>
+          <div style="color: #c0c0d0; line-height: 1.6;">${q.explanation}</div>
+        </div>
+      `;
+      
+      const nextBtn = document.getElementById('quizNextBtn');
+      nextBtn.classList.remove('hidden');
+      nextBtn.textContent = quizIndex < quizQuestions.length - 1 ? 'Next Question →' : 'See Results →';
+    }
+    
+    function nextQuizQuestion() {
+      if (quizIndex < quizQuestions.length - 1) {
+        quizIndex++;
+        quizAnswered = false;
+        renderQuizQuestion();
+      } else {
+        showQuizComplete();
+      }
+    }
+    
+    function showQuizComplete() {
+      document.getElementById('finalScore').textContent = `${quizScore}/${quizQuestions.length}`;
+      
+      let emoji, message;
+      if (quizScore >= 7) {
+        emoji = '🏆';
+        message = 'Excellent! You have a solid understanding!';
+      } else if (quizScore >= 5) {
+        emoji = '👍';
+        message = "Good work! A bit more practice and you'll master it.";
+      } else {
+        emoji = '📚';
+        message = 'Keep studying the rules and try again!';
+      }
+      
+      document.getElementById('quizEmoji').textContent = emoji;
+      document.getElementById('quizMessage').textContent = message;
+      showView('quizComplete');
+    }
+    
+    // Practice functions
+    function setPracticeType(type) {
+      document.querySelectorAll('.practice-buttons .nav-btn').forEach(btn => {
+        btn.classList.remove('active');
+        btn.classList.remove('mixed');
+      });
+      document.getElementById(`btn-${type}`).classList.add('active');
+      if (type === 'mixed') document.getElementById(`btn-${type}`).classList.add('mixed');
+      
+      practiceType = type;
+      generateProblem();
+    }
+    
+    function generateProblem() {
+      let type = practiceType;
+      if (type === 'mixed') {
+        const allTypes = ['toScientific', 'fromScientific', 'countSigFigs', 'multiplyScientific', 'divideScientific', 'roundSigFigs', 'multiplySigFigs', 'addSigFigs', 'compareScientific', 'sciNotationAdd'];
+        type = allTypes[rand(0, allTypes.length - 1)];
+      }
+      
+      let problem;
+      
+      switch(type) {
+        case 'toScientific': {
+          const magnitude = rand(-5, 8);
+          const base = rand(1, 9.99, 2);
+          const num = base * Math.pow(10, magnitude);
+          problem = {
+            question: `Convert to scientific notation: ${num.toLocaleString('fullwide', {useGrouping: false, maximumFractionDigits: 12})}`,
+            answer: toScientificNotation(num),
+            type: 'scientific'
+          };
+          break;
+        }
+        case 'fromScientific': {
+          const coef = rand(1, 9.99, 2);
+          const exp = rand(-5, 6);
+          const result = coef * Math.pow(10, exp);
+          problem = {
+            question: `Convert to standard notation: ${coef} × 10^${exp}`,
+            answer: result,
+            type: 'standard'
+          };
+          break;
+        }
+        case 'countSigFigs': {
+          const patterns = [
+            () => `0.00${rand(1, 9)}${rand(0, 9)}0`,
+            () => `${rand(1, 9)}${rand(0, 9)}.${rand(0, 9)}0`,
+            () => `${rand(1, 9)}000`,
+            () => `${rand(1, 9)}.${rand(0, 9)}${rand(0, 9)}${rand(0, 9)}`,
+            () => `0.${rand(1, 9)}${rand(0, 9)}`,
+            () => `${rand(10, 99)}.00`,
+            () => `0.000${rand(1, 9)}${rand(0, 9)}`,
+            () => `${rand(1, 9)}0${rand(1, 9)}0`,
+          ];
+          const numStr = patterns[rand(0, patterns.length - 1)]();
+          problem = {
+            question: `How many significant figures are in: ${numStr}`,
+            answer: countSigFigs(numStr),
+            type: 'sigfigs'
+          };
+          break;
+        }
+        case 'multiplyScientific': {
+          const coef1 = rand(1, 9, 1);
+          const exp1 = rand(-3, 4);
+          const coef2 = rand(1, 9, 1);
+          const exp2 = rand(-3, 4);
+          let resultCoef = coef1 * coef2;
+          let finalExp = exp1 + exp2;
+          if (resultCoef >= 10) {
+            resultCoef = resultCoef / 10;
+            finalExp += 1;
+          }
+          problem = {
+            question: `Multiply: (${coef1} × 10^${exp1}) × (${coef2} × 10^${exp2})`,
+            answer: { coefficient: parseFloat(resultCoef.toFixed(2)), exponent: finalExp },
+            type: 'scientific',
+            hint: 'Multiply coefficients, add exponents, then adjust if needed'
+          };
+          break;
+        }
+        case 'divideScientific': {
+          const coef1 = rand(2, 9, 1);
+          const exp1 = rand(-2, 5);
+          const coef2 = rand(1, 5, 1);
+          const exp2 = rand(-2, 3);
+          let resultCoef = coef1 / coef2;
+          let finalExp = exp1 - exp2;
+          if (resultCoef < 1) {
+            resultCoef = resultCoef * 10;
+            finalExp -= 1;
+          } else if (resultCoef >= 10) {
+            resultCoef = resultCoef / 10;
+            finalExp += 1;
+          }
+          problem = {
+            question: `Divide: (${coef1} × 10^${exp1}) ÷ (${coef2} × 10^${exp2})`,
+            answer: { coefficient: parseFloat(resultCoef.toFixed(2)), exponent: finalExp },
+            type: 'scientific',
+            hint: 'Divide coefficients, subtract exponents, then adjust if needed'
+          };
+          break;
+        }
+        case 'roundSigFigs': {
+          const targetSigFigs = rand(2, 4);
+          const num = rand(10, 99999, rand(1, 4));
+          const magnitude = Math.floor(Math.log10(Math.abs(num)));
+          const scale = Math.pow(10, magnitude - targetSigFigs + 1);
+          const rounded = Math.round(num / scale) * scale;
+          problem = {
+            question: `Round ${num} to ${targetSigFigs} significant figures`,
+            answer: rounded,
+            type: 'rounded',
+            targetSigFigs
+          };
+          break;
+        }
+        case 'multiplySigFigs': {
+          const sigFigs1 = rand(2, 4);
+          const sigFigs2 = rand(2, 4);
+          const num1 = parseFloat((rand(1, 9) + rand(0, 99) / 100).toFixed(sigFigs1 - 1));
+          const num2 = parseFloat((rand(1, 9) + rand(0, 99) / 100).toFixed(sigFigs2 - 1));
+          const rawResult = num1 * num2;
+          const minSigFigs = Math.min(sigFigs1, sigFigs2);
+          const magnitude = Math.floor(Math.log10(Math.abs(rawResult)));
+          const scale = Math.pow(10, magnitude - minSigFigs + 1);
+          const rounded = Math.round(rawResult / scale) * scale;
+          problem = {
+            question: `Multiply with correct sig figs: ${num1} × ${num2}`,
+            answer: parseFloat(rounded.toPrecision(minSigFigs)),
+            type: 'number',
+            hint: `${num1} has ${sigFigs1} sig figs, ${num2} has ${sigFigs2} sig figs → answer needs ${minSigFigs}`
+          };
+          break;
+        }
+        case 'addSigFigs': {
+          const decimals1 = rand(1, 3);
+          const decimals2 = rand(1, 3);
+          const num1 = rand(10, 99, decimals1);
+          const num2 = rand(1, 20, decimals2);
+          const rawResult = num1 + num2;
+          const minDecimals = Math.min(decimals1, decimals2);
+          const rounded = parseFloat(rawResult.toFixed(minDecimals));
+          problem = {
+            question: `Add with correct sig figs: ${num1} + ${num2}`,
+            answer: rounded,
+            type: 'number',
+            hint: `${num1} has ${decimals1} decimal places, ${num2} has ${decimals2} → answer needs ${minDecimals}`
+          };
+          break;
+        }
+        case 'compareScientific': {
+          const coef1 = rand(1, 9, 1);
+          const exp1 = rand(-3, 5);
+          const coef2 = rand(1, 9, 1);
+          const expDiff = rand(-2, 2);
+          const exp2 = exp1 + expDiff;
+          const val1 = coef1 * Math.pow(10, exp1);
+          const val2 = coef2 * Math.pow(10, exp2);
+          let answer;
+          if (Math.abs(val1 - val2) < 0.0000001) answer = '=';
+          else if (val1 > val2) answer = '>';
+          else answer = '<';
+          problem = {
+            question: `Compare: ${coef1} × 10^${exp1}  ___  ${coef2} × 10^${exp2}`,
+            answer: answer,
+            type: 'compare'
+          };
+          break;
+        }
+        case 'sciNotationAdd': {
+          const exp = rand(2, 6);
+          const coef1 = rand(1, 5, 1);
+          const coef2 = rand(1, 4, 1);
+          let resultCoef = coef1 + coef2;
+          let finalExp = exp;
+          if (resultCoef >= 10) {
+            resultCoef = resultCoef / 10;
+            finalExp += 1;
+          }
+          problem = {
+            question: `Add: (${coef1} × 10^${exp}) + (${coef2} × 10^${exp})`,
+            answer: { coefficient: parseFloat(resultCoef.toFixed(2)), exponent: finalExp },
+            type: 'scientific',
+            hint: 'When exponents are the same, add the coefficients'
+          };
+          break;
+        }
+        case 'orderMagnitude': {
+          const scenarios = [
+            { desc: 'diameter of a human hair', answer: -5, unit: 'meters' },
+            { desc: 'height of Mount Everest', answer: 4, unit: 'meters' },
+            { desc: 'distance from Earth to Moon', answer: 8, unit: 'meters' },
+            { desc: 'width of a bacterium', answer: -6, unit: 'meters' },
+            { desc: 'mass of a car', answer: 3, unit: 'kilograms' },
+            { desc: 'mass of a paperclip', answer: -3, unit: 'kilograms' },
+            { desc: 'population of Earth', answer: 10, unit: 'people' },
+            { desc: 'seconds in a year', answer: 7, unit: 'seconds' },
+            { desc: 'speed of light', answer: 8, unit: 'm/s' },
+            { desc: 'diameter of Earth', answer: 7, unit: 'meters' },
+          ];
+          const scenario = scenarios[rand(0, scenarios.length - 1)];
+          problem = {
+            question: `Estimate the order of magnitude (power of 10) for the ${scenario.desc} in ${scenario.unit}`,
+            answer: scenario.answer,
+            type: 'magnitude',
+            tolerance: 1
+          };
+          break;
+        }
+      }
+      
+      currentProblem = problem;
+      document.getElementById('practiceQuestion').textContent = problem.question;
+      document.getElementById('practiceInput').value = '';
+      document.getElementById('practiceInput').disabled = false;
+      document.getElementById('practiceFeedback').classList.add('hidden');
+      document.getElementById('practiceBtn').textContent = 'Check Answer';
+      document.getElementById('practiceBtn').onclick = checkPracticeAnswer;
+      
+      // Set placeholder and helper text
+      const input = document.getElementById('practiceInput');
+      const helper = document.getElementById('practiceHelper');
+      
+      if (problem.type === 'scientific') {
+        input.placeholder = 'e.g., 3.2 x 10^4';
+        helper.textContent = 'Format: coefficient x 10^exponent (e.g., 3.2 x 10^4 or 3.2 x 10^-3)';
+      } else if (problem.type === 'standard') {
+        input.placeholder = 'e.g., 32000';
+        helper.textContent = 'Enter the number in standard form';
+      } else if (problem.type === 'sigfigs') {
+        input.placeholder = 'Enter a number';
+        helper.textContent = 'Enter the count of significant figures';
+      } else if (problem.type === 'compare') {
+        input.placeholder = 'Enter >, <, or =';
+        helper.textContent = 'Enter > (greater than), < (less than), or = (equal)';
+      } else if (problem.type === 'magnitude') {
+        input.placeholder = 'Enter exponent (e.g., 5 for 10^5)';
+        helper.textContent = 'Enter just the exponent (e.g., 5 means 10^5, -3 means 10^-3)';
+      } else if (problem.type === 'rounded') {
+        input.placeholder = 'Enter your answer';
+        helper.textContent = `Round to exactly ${problem.targetSigFigs} significant figures`;
+      } else {
+        input.placeholder = 'Enter your answer';
+        helper.textContent = 'Enter your calculated answer with correct sig figs';
+      }
+      
+      input.focus();
+    }
+    
+    function checkPracticeAnswer() {
+      const answer = document.getElementById('practiceInput').value.trim().toLowerCase();
+      if (!answer) return;
+      
+      let isCorrect = false;
+      const p = currentProblem;
+      
+      if (p.type === 'scientific') {
+        const match = answer.match(/^([\d.]+)\s*[x×\*]\s*10\^?\s*(-?\d+)$/i);
+        if (match) {
+          const userCoef = parseFloat(match[1]);
+          const userExp = parseInt(match[2]);
+          isCorrect = Math.abs(userCoef - p.answer.coefficient) < 0.05 && userExp === p.answer.exponent;
+        }
+      } else if (p.type === 'standard') {
+        const userNum = parseFloat(answer.replace(/,/g, ''));
+        isCorrect = Math.abs(userNum - p.answer) < Math.abs(p.answer * 0.001);
+      } else if (p.type === 'sigfigs') {
+        isCorrect = parseInt(answer) === p.answer;
+      } else if (p.type === 'rounded' || p.type === 'number') {
+        const userNum = parseFloat(answer.replace(/,/g, ''));
+        isCorrect = Math.abs(userNum - p.answer) < Math.abs(p.answer * 0.01) || Math.abs(userNum - p.answer) < 0.01;
+      } else if (p.type === 'compare') {
+        isCorrect = answer === p.answer || 
+                    (answer === 'greater' && p.answer === '>') ||
+                    (answer === 'less' && p.answer === '<') ||
+                    (answer === 'equal' && p.answer === '=');
+      } else if (p.type === 'magnitude') {
+        const userMag = parseInt(answer);
+        isCorrect = Math.abs(userMag - p.answer) <= (p.tolerance || 0);
+      }
+      
+      // Update score
+      practiceScore.total++;
+      if (isCorrect) {
+        practiceScore.correct++;
+        streak++;
+      } else {
+        streak = 0;
+      }
+      
+      document.getElementById('practiceCorrect').textContent = practiceScore.correct;
+      document.getElementById('practiceTotal').textContent = practiceScore.total;
+      document.getElementById('practicePercent').textContent = practiceScore.total > 0 
+        ? ` (${Math.round((practiceScore.correct / practiceScore.total) * 100)}%)`
+        : '';
+      
+      const streakBadge = document.getElementById('streakBadge');
+      if (streak >= 3) {
+        streakBadge.classList.remove('hidden');
+        document.getElementById('streakCount').textContent = streak;
+      } else {
+        streakBadge.classList.add('hidden');
+      }
+      
+      // Show feedback
+      let correctAnswer;
+      if (p.type === 'scientific') {
+        correctAnswer = `${p.answer.coefficient} × 10^${p.answer.exponent}`;
+      } else if (p.type === 'standard') {
+        correctAnswer = p.answer.toLocaleString('fullwide', {useGrouping: false, maximumFractionDigits: 12});
+      } else {
+        correctAnswer = p.answer;
+      }
+      
+      const feedbackEl = document.getElementById('practiceFeedback');
+      feedbackEl.classList.remove('hidden');
+      feedbackEl.innerHTML = `
+        <div class="feedback-box ${isCorrect ? 'correct' : 'incorrect'}">
+          <div style="color: ${isCorrect ? '#00ff64' : '#ff5050'}; font-weight: 600;">
+            ${isCorrect ? '✓ Correct!' : `✗ Incorrect. The answer was: ${correctAnswer}`}
+          </div>
+          ${!isCorrect && p.hint ? `<div class="hint-text">💡 Hint: ${p.hint}</div>` : ''}
+        </div>
+      `;
+      
+      document.getElementById('practiceInput').disabled = true;
+      document.getElementById('practiceBtn').textContent = 'Next Problem →';
+      document.getElementById('practiceBtn').onclick = generateProblem;
+    }
+    
+    function handlePracticeKey(e) {
+      if (e.key === 'Enter') {
+        if (document.getElementById('practiceInput').disabled) {
+          generateProblem();
+        } else {
+          checkPracticeAnswer();
+        }
+      }
+    }
+    
+    // Initialize
+    document.addEventListener('DOMContentLoaded', () => {
+      showView('welcome');
+    });
+  </script>
+</body>
+</html>
