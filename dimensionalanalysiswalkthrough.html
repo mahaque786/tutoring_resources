@@ -1,0 +1,1184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Dimensional Analysis Tutor</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    body {
+      background: #0f172a;
+      color: #e5e7eb;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      padding: 1.25rem 1.5rem;
+      background: radial-gradient(circle at top left, #1d4ed8, #020617);
+      border-bottom: 1px solid rgba(148, 163, 184, 0.3);
+    }
+
+    header h1 {
+      font-size: 1.7rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+    }
+
+    header p {
+      margin-top: 0.35rem;
+      font-size: 0.95rem;
+      color: #9ca3af;
+      max-width: 50rem;
+    }
+
+    main {
+      display: flex;
+      flex: 1;
+      min-height: 0;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: 250px;
+      border-right: 1px solid rgba(148, 163, 184, 0.2);
+      background: #020617;
+      padding: 1rem 0.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .sidebar-section-title {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: #64748b;
+      padding: 0 0.5rem;
+    }
+
+    .nav-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      padding: 0.25rem 0.25rem 0.5rem;
+    }
+
+    .nav-item {
+      border-radius: 999px;
+      padding: 0.5rem 0.75rem;
+      font-size: 0.9rem;
+      border: 1px solid transparent;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      color: #e5e7eb;
+      transition: background 0.15s ease, transform 0.05s ease, border-color 0.15s ease;
+    }
+
+    .nav-item span.label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .nav-item small {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #6b7280;
+    }
+
+    .nav-item:hover {
+      background: rgba(37, 99, 235, 0.1);
+      border-color: rgba(37, 99, 235, 0.4);
+      transform: translateY(-1px);
+    }
+
+    .nav-item.active {
+      background: linear-gradient(90deg, #1d4ed8, #4f46e5);
+      border-color: transparent;
+      box-shadow: 0 0 0 1px rgba(15, 23, 42, 0.25),
+                  0 18px 40px rgba(37, 99, 235, 0.45);
+    }
+
+    .nav-item.active small {
+      color: rgba(15, 23, 42, 0.8);
+      font-weight: 600;
+    }
+
+    .nav-item .badge {
+      font-size: 0.7rem;
+      padding: 0.15rem 0.45rem;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.8);
+      color: #cbd5f5;
+    }
+
+    .phase-progress {
+      margin-top: 0.5rem;
+      padding: 0.5rem 0.75rem 0.75rem;
+      border-radius: 0.75rem;
+      background: linear-gradient(135deg, rgba(30, 64, 175, 0.15), rgba(15, 23, 42, 0.9));
+      border: 1px solid rgba(56, 189, 248, 0.2);
+    }
+
+    .phase-progress h3 {
+      font-size: 0.85rem;
+      margin-bottom: 0.25rem;
+      color: #e5e7eb;
+    }
+
+    .phase-progress p {
+      font-size: 0.75rem;
+      color: #9ca3af;
+      margin-bottom: 0.5rem;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 6px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      overflow: hidden;
+    }
+
+    .progress-bar-inner {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #22c55e, #a3e635);
+      transition: width 0.25s ease;
+    }
+
+    .progress-text {
+      margin-top: 0.35rem;
+      font-size: 0.7rem;
+      color: #9ca3af;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    /* Content area */
+    .content {
+      flex: 1;
+      padding: 1.25rem 1.5rem 2rem;
+      overflow-y: auto;
+    }
+
+    .card {
+      background: radial-gradient(circle at top left, rgba(37, 99, 235, 0.3), rgba(15, 23, 42, 0.98));
+      border-radius: 1.25rem;
+      padding: 1.5rem 1.4rem;
+      box-shadow: 0 22px 45px rgba(15, 23, 42, 0.8);
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .card-header {
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .card-header h2 {
+      font-size: 1.35rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .card-header h2 span.step-pill {
+      font-size: 0.8rem;
+      padding: 0.15rem 0.55rem;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      color: #e5e7eb;
+    }
+
+    .card-header p {
+      font-size: 0.9rem;
+      color: #cbd5f5;
+      max-width: 32rem;
+    }
+
+    .card-header .meta {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.8rem;
+      color: #9ca3af;
+    }
+
+    .tag {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      padding: 0.15rem 0.5rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      color: #cbd5f5;
+      background: rgba(15, 23, 42, 0.8);
+    }
+
+    .pill {
+      font-size: 0.75rem;
+      padding: 0.2rem 0.5rem;
+      border-radius: 999px;
+      background: rgba(8, 47, 73, 0.9);
+      color: #7dd3fc;
+      border: 1px solid rgba(56, 189, 248, 0.4);
+    }
+
+    .grid {
+      display: grid;
+      gap: 0.85rem;
+      margin-top: 0.5rem;
+    }
+
+    @media (min-width: 800px) {
+      .grid.two {
+        grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+      }
+    }
+
+    .subcard {
+      background: rgba(15, 23, 42, 0.88);
+      border-radius: 0.9rem;
+      padding: 0.9rem 1rem;
+      border: 1px solid rgba(51, 65, 85, 0.9);
+    }
+
+    .subcard h3 {
+      font-size: 0.95rem;
+      margin-bottom: 0.35rem;
+      color: #e5e7eb;
+    }
+
+    .subcard p {
+      font-size: 0.85rem;
+      color: #d1d5db;
+      margin-bottom: 0.35rem;
+    }
+
+    .subcard ul {
+      list-style: disc;
+      padding-left: 1.15rem;
+      font-size: 0.83rem;
+      color: #cbd5f5;
+    }
+
+    .subcard li + li {
+      margin-top: 0.2rem;
+    }
+
+    .activity {
+      margin-top: 0.35rem;
+      font-size: 0.8rem;
+      color: #9ca3af;
+    }
+
+    .activity strong {
+      color: #e5e7eb;
+    }
+
+    .check-row {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.8rem;
+      color: #9ca3af;
+      margin-top: 0.35rem;
+    }
+
+    .check-row input[type="checkbox"] {
+      accent-color: #22c55e;
+      cursor: pointer;
+    }
+
+    /* Review section */
+    .review-intro {
+      font-size: 0.9rem;
+      color: #d1d5db;
+      margin-bottom: 1rem;
+    }
+
+    .review-controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .review-controls button {
+      border: none;
+      border-radius: 999px;
+      padding: 0.4rem 0.9rem;
+      font-size: 0.85rem;
+      cursor: pointer;
+      background: rgba(37, 99, 235, 0.9);
+      color: #e5e7eb;
+      box-shadow: 0 10px 30px rgba(37, 99, 235, 0.7);
+      transition: transform 0.05s ease, box-shadow 0.1s ease, background 0.1s ease;
+    }
+
+    .review-controls button:hover {
+      background: #2563eb;
+      transform: translateY(-1px);
+      box-shadow: 0 16px 40px rgba(37, 99, 235, 0.8);
+    }
+
+    .review-controls button.secondary {
+      background: rgba(15, 23, 42, 0.9);
+      box-shadow: 0 0 0 1px rgba(148, 163, 184, 0.5);
+    }
+
+    .review-controls button.secondary:hover {
+      background: rgba(15, 23, 42, 0.98);
+    }
+
+    .review-counter {
+      font-size: 0.8rem;
+      color: #9ca3af;
+    }
+
+    .question {
+      border-radius: 0.9rem;
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      background: rgba(15, 23, 42, 0.96);
+      padding: 0.8rem 0.9rem 0.9rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .question-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .question-title {
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    .question-index {
+      font-size: 0.75rem;
+      color: #9ca3af;
+    }
+
+    .question-text {
+      margin-top: 0.35rem;
+      font-size: 0.87rem;
+      color: #e5e7eb;
+    }
+
+    .answer-box {
+      margin-top: 0.4rem;
+      font-size: 0.8rem;
+    }
+
+    .answer-input {
+      width: 100%;
+      min-height: 2.2rem;
+      resize: vertical;
+      border-radius: 0.6rem;
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      padding: 0.35rem 0.5rem;
+      font-size: 0.8rem;
+      background: rgba(15, 23, 42, 0.95);
+      color: #e5e7eb;
+      outline: none;
+    }
+
+    .answer-input:focus {
+      border-color: #22c55e;
+      box-shadow: 0 0 0 1px rgba(34, 197, 94, 0.7);
+    }
+
+    .answer-reveal-btn {
+      margin-top: 0.4rem;
+      font-size: 0.78rem;
+      padding: 0.25rem 0.6rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.8);
+      background: rgba(15, 23, 42, 0.95);
+      color: #e5e7eb;
+      cursor: pointer;
+    }
+
+    .answer-reveal-btn:hover {
+      background: rgba(15, 23, 42, 1);
+    }
+
+    .answer-text {
+      margin-top: 0.4rem;
+      padding: 0.45rem 0.6rem;
+      border-radius: 0.6rem;
+      background: rgba(22, 163, 74, 0.15);
+      border: 1px solid rgba(34, 197, 94, 0.5);
+      font-size: 0.8rem;
+      color: #bbf7d0;
+      display: none;
+    }
+
+    .answer-text.visible {
+      display: block;
+    }
+
+    footer {
+      padding: 0.65rem 1.5rem;
+      font-size: 0.75rem;
+      color: #6b7280;
+      text-align: right;
+      border-top: 1px solid rgba(31, 41, 55, 0.85);
+      background: #020617;
+    }
+
+    @media (max-width: 800px) {
+      main {
+        flex-direction: column;
+      }
+      .sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid rgba(31, 41, 55, 0.85);
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+      .sidebar-section-title {
+        flex-basis: 100%;
+      }
+      .phase-progress {
+        width: 100%;
+      }
+      .nav-list {
+        flex-direction: row;
+        flex-wrap: wrap;
+      }
+      .nav-item {
+        flex: 1 1 calc(50% - 0.5rem);
+      }
+      .content {
+        padding: 1rem 1rem 1.5rem;
+      }
+      .card {
+        border-radius: 1rem;
+        padding: 1.1rem 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<header>
+  <h1>Dimensional Analysis Tutor</h1>
+  <p>
+    A guided sequence for teaching and learning dimensional analysis, from conceptual foundations
+    to applications — capped with 50+ review questions for mastery.
+  </p>
+</header>
+
+<main>
+  <!-- Sidebar navigation -->
+  <aside class="sidebar">
+    <div>
+      <div class="sidebar-section-title">Learning Path</div>
+      <ul class="nav-list" id="navList">
+        <li class="nav-item active" data-target="phase1">
+          <span class="label">
+            <span>Phase 1</span>
+            <small>Concepts</small>
+          </span>
+          <span class="badge">L1–2</span>
+        </li>
+        <li class="nav-item" data-target="phase2">
+          <span class="label">
+            <span>Phase 2</span>
+            <small>Procedures</small>
+          </span>
+          <span class="badge">L3–4</span>
+        </li>
+        <li class="nav-item" data-target="phase3">
+          <span class="label">
+            <span>Phase 3</span>
+            <small>Applications</small>
+          </span>
+          <span class="badge">L5–7</span>
+        </li>
+        <li class="nav-item" data-target="phase4">
+          <span class="label">
+            <span>Phase 4</span>
+            <small>Mastery</small>
+          </span>
+          <span class="badge">L8+</span>
+        </li>
+        <li class="nav-item" data-target="review">
+          <span class="label">
+            <span>Master Review</span>
+            <small>50 Qs</small>
+          </span>
+          <span class="badge">Quiz</span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="phase-progress">
+      <h3>Phase completion</h3>
+      <p>Track which phases you've walked through with your students.</p>
+      <div class="progress-bar">
+        <div class="progress-bar-inner" id="progressBar"></div>
+      </div>
+      <div class="progress-text">
+        <span id="progressLabel">0 of 4 phases checked off</span>
+        <span id="progressPercent">0%</span>
+      </div>
+    </div>
+
+    <div class="check-row">
+      <input type="checkbox" id="phase1Check" />
+      <label for="phase1Check">Phase 1 done</label>
+    </div>
+    <div class="check-row">
+      <input type="checkbox" id="phase2Check" />
+      <label for="phase2Check">Phase 2 done</label>
+    </div>
+    <div class="check-row">
+      <input type="checkbox" id="phase3Check" />
+      <label for="phase3Check">Phase 3 done</label>
+    </div>
+    <div class="check-row">
+      <input type="checkbox" id="phase4Check" />
+      <label for="phase4Check">Phase 4 done</label>
+    </div>
+  </aside>
+
+  <!-- Main content -->
+  <section class="content">
+    <!-- Phase 1 -->
+    <div class="card" id="phase1">
+      <div class="card-header">
+        <div>
+          <h2>
+            <span class="step-pill">Phase 1</span>
+            Building conceptual foundation
+          </h2>
+          <p>
+            Help students see dimensions as the “type” of quantity (length, time, mass...), distinct
+            from the numbers and units themselves. This is roughly Lessons 1–2.
+          </p>
+        </div>
+        <div class="meta">
+          <span class="tag">Conceptual</span>
+          <span class="pill">Introduce [L], [T], [M]</span>
+        </div>
+      </div>
+
+      <div class="grid two">
+        <div class="subcard">
+          <h3>Step 1 — Introduce dimensions vs. units</h3>
+          <p>
+            Start with concrete quantities and ask what they have in common (e.g., 5 m, 3 s, 10 kg,
+            25 mi/h). Lead students to the idea that each is “of a certain type” with an associated unit.
+          </p>
+          <ul>
+            <li>Dimension = nature of quantity (e.g. length, time, mass).</li>
+            <li>Unit = how we measure that dimension (meters, seconds, kilograms).</li>
+            <li>Addition/subtraction only makes sense for same dimensions.</li>
+          </ul>
+          <p class="activity">
+            <strong>Activity:</strong> Put “5 m + 3 s” on the board and ask why it doesn’t make sense.
+          </p>
+        </div>
+
+        <div class="subcard">
+          <h3>Step 2 — Bracket notation</h3>
+          <p>Introduce shorthand notation for dimensions:</p>
+          <ul>
+            <li>[L] = length</li>
+            <li>[T] = time</li>
+            <li>[M] = mass</li>
+            <li>[Θ] = temperature (optional)</li>
+          </ul>
+          <p class="activity">
+            <strong>Quick tasks:</strong> Ask students for the dimensions of distance, time, speed,
+            acceleration, and force; have them write in [ ]-notation.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Phase 2 -->
+    <div class="card" id="phase2" style="display:none;">
+      <div class="card-header">
+        <div>
+          <h2>
+            <span class="step-pill">Phase 2</span>
+            Procedural skills
+          </h2>
+          <p>
+            Turn the conceptual ideas into a systematic procedure for checking equations, deriving
+            relationships, and converting units (Lessons 3–4).
+          </p>
+        </div>
+        <div class="meta">
+          <span class="tag">Procedural</span>
+          <span class="pill">Golden rule: homogeneity</span>
+        </div>
+      </div>
+
+      <div class="grid two">
+        <div class="subcard">
+          <h3>Step 3 — Dimensional homogeneity</h3>
+          <p>
+            Emphasize the golden rule: every valid physical equation must be
+            <em>dimensionally homogeneous</em>.
+          </p>
+          <ul>
+            <li>Left and right-hand sides must have the same dimensions.</li>
+            <li>Terms added or subtracted must share dimensions.</li>
+            <li>Example: v = at ⇒ [L][T]⁻¹ = [L][T]⁻² · [T].</li>
+          </ul>
+          <p class="activity">
+            <strong>Activity:</strong> Give several equations and have students label them “OK / not
+            OK” based on dimensions alone.
+          </p>
+        </div>
+
+        <div class="subcard">
+          <h3>Step 4 — Dimensional analysis procedure</h3>
+          <p>Teach a repeatable algorithm students can apply:</p>
+          <ul>
+            <li><strong>A.</strong> Identify what you’re solving for and its dimensions.</li>
+            <li><strong>B.</strong> List all given quantities and their dimensions.</li>
+            <li><strong>C.</strong> Combine them (via multiplication/division) to match target dimensions.</li>
+            <li><strong>D.</strong> Check dimensional consistency.</li>
+            <li><strong>E.</strong> Substitute values and compute.</li>
+          </ul>
+          <p class="activity">
+            <strong>Example:</strong> Using m and a, find a formula for force with dimensions
+            [M][L][T]⁻².
+          </p>
+        </div>
+      </div>
+
+      <div class="subcard" style="margin-top:0.9rem;">
+        <h3>Step 5 — Guided examples</h3>
+        <p>Walk through canonical examples together:</p>
+        <ul>
+          <li>Checking v = at for consistency.</li>
+          <li>Deriving pendulum period T ∝ √(L/g) by solving exponent equations.</li>
+          <li>Simple unit conversion, e.g. 60 mph → m/s.</li>
+        </ul>
+        <p class="activity">
+          <strong>Try:</strong> Ask students to set up the exponent equations for T = kLᵃgᵇ and solve for
+          a and b.
+        </p>
+      </div>
+    </div>
+
+    <!-- Phase 3 -->
+    <div class="card" id="phase3" style="display:none;">
+      <div class="card-header">
+        <div>
+          <h2>
+            <span class="step-pill">Phase 3</span>
+            Applications & problem-solving
+          </h2>
+          <p>
+            Push dimensional analysis into real problem contexts: error checking, scaling arguments,
+            and deriving relationships (Lessons 5–7).
+          </p>
+        </div>
+        <div class="meta">
+          <span class="tag">Applications</span>
+          <span class="pill">Error-check • Scale • Derive</span>
+        </div>
+      </div>
+
+      <div class="grid two">
+        <div class="subcard">
+          <h3>Step 6 — Unit checking as error detection</h3>
+          <p>
+            Use units to catch mistakes the moment they’re made. Every time students compute a
+            new quantity, they should check its unit/dimensions.
+          </p>
+          <ul>
+            <li>Example: speed = distance / time ⇒ [L]/[T].</li>
+            <li>Spot nonsense like m²/s ⋅ s instead of m/s.</li>
+          </ul>
+          <p class="activity">
+            <strong>Activity:</strong> Give “broken” worked examples with incorrect units and ask
+            students to find where the mistake must have happened.
+          </p>
+        </div>
+
+        <div class="subcard">
+          <h3>Step 7 — Scaling arguments</h3>
+          <p>
+            Show how dimensional thinking supports “what if we double the size?” reasoning.
+          </p>
+          <ul>
+            <li>Surface gravity scaling: g ∝ M/r², with M ∝ r³ ⇒ g ∝ r.</li>
+            <li>Students determine how g changes for a planet with 2× or 3× radius, same density.</li>
+          </ul>
+          <p class="activity">
+            <strong>Prompt:</strong> “If we triple the radius at constant density, how does g change?”
+          </p>
+        </div>
+      </div>
+
+      <div class="subcard" style="margin-top:0.9rem;">
+        <h3>Step 8 — Deriving relationships from first principles</h3>
+        <p>
+          Use dimensional analysis to guess the shape of formulas before deriving them rigorously.
+        </p>
+        <ul>
+          <li>Example: kinetic energy E depending on m and v.</li>
+          <li>Set [E] = [M][L]²[T]⁻² = [M]ᵃ[L]ᵇ[T]⁻ᵇ and solve for a, b.</li>
+          <li>Conclude E ∝ mv² (actual formula has dimensionless factor ½).</li>
+        </ul>
+        <p class="activity">
+          <strong>Challenge:</strong> Ask students to derive a possible form for a drag force depending
+          on fluid density, speed, and area.
+        </p>
+      </div>
+    </div>
+
+    <!-- Phase 4 -->
+    <div class="card" id="phase4" style="display:none;">
+      <div class="card-header">
+        <div>
+          <h2>
+            <span class="step-pill">Phase 4</span>
+            Mastery & troubleshooting
+          </h2>
+          <p>
+            Consolidate skills, highlight typical pitfalls, and practice across a range of problem
+            types (Lesson 8+).
+          </p>
+        </div>
+        <div class="meta">
+          <span class="tag">Mastery</span>
+          <span class="pill">Avoid common traps</span>
+        </div>
+      </div>
+
+      <div class="grid two">
+        <div class="subcard">
+          <h3>Step 9 — Common mistakes</h3>
+          <ul>
+            <li>Forgetting dimensionless constants (e.g. 1/2 in E = 1/2 mv²).</li>
+            <li>Mixing units inside a calculation (meters with feet, hours with seconds).</li>
+            <li>Believing “dimensionally correct ⇒ physically true” (not always!).</li>
+            <li>Ignoring dimensionless ratios or parameters (like Reynolds number).</li>
+          </ul>
+          <p class="activity">
+            <strong>Activity:</strong> Show two dimensionally valid formulas, only one physically
+            correct, and have students discuss why.
+          </p>
+        </div>
+
+        <div class="subcard">
+          <h3>Step 10 — Practice problem tiers</h3>
+          <p>Structure practice into four levels:</p>
+          <ul>
+            <li><strong>Level 1:</strong> Check equations for dimensional consistency.</li>
+            <li><strong>Level 2:</strong> Convert units accurately.</li>
+            <li><strong>Level 3:</strong> Derive formulas up to constant factors.</li>
+            <li><strong>Level 4:</strong> Apply to real, multi-step problems.</li>
+          </ul>
+          <p class="activity">
+            <strong>Plan:</strong> Choose or design problems that touch each level, then interleave
+            them over several lessons for spaced practice.
+          </p>
+        </div>
+      </div>
+
+      <div class="subcard" style="margin-top:0.9rem;">
+        <h3>Assessment and feedback ideas</h3>
+        <ul>
+          <li>Quick exit tickets where students check one equation’s dimensions.</li>
+          <li>Peer review: students swap and unit-check each other’s solutions.</li>
+          <li>Bigger assessments with a mix of conceptual and computational items.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Review / question bank -->
+    <div class="card" id="review" style="display:none;">
+      <div class="card-header">
+        <div>
+          <h2>
+            <span class="step-pill">Master Review</span>
+            50-question dimensional analysis checkup
+          </h2>
+          <p>
+            Use this bank as a self-check for students after completing all phases, or as a pool for
+            quizzes and exams. Each question has a collapsible suggested answer.
+          </p>
+        </div>
+        <div class="meta">
+          <span class="tag">Review</span>
+          <span class="pill">Concept + Skills</span>
+        </div>
+      </div>
+
+      <p class="review-intro">
+        Students can jot an answer in the box, then click “Show answer” to compare with the
+        suggested response. Use “Reveal all answers” if you’d like to project the key.
+      </p>
+
+      <div class="review-controls">
+        <div>
+          <button id="revealAllBtn">Reveal all answers</button>
+          <button class="secondary" id="hideAllBtn">Hide all answers</button>
+        </div>
+        <div class="review-counter">
+          50 questions covering: concepts, notation, homogeneity, scaling, derivations & unit conversion.
+        </div>
+      </div>
+
+      <div id="questionsContainer"></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  Dimensional analysis webapp template — adapt freely for your class.
+</footer>
+
+<script>
+  // Navigation between phases
+  const navItems = document.querySelectorAll(".nav-item");
+  const sections = {
+    phase1: document.getElementById("phase1"),
+    phase2: document.getElementById("phase2"),
+    phase3: document.getElementById("phase3"),
+    phase4: document.getElementById("phase4"),
+    review: document.getElementById("review")
+  };
+
+  navItems.forEach(item => {
+    item.addEventListener("click", () => {
+      const targetId = item.getAttribute("data-target");
+      // Toggle nav active
+      navItems.forEach(n => n.classList.remove("active"));
+      item.classList.add("active");
+      // Toggle sections
+      Object.keys(sections).forEach(key => {
+        sections[key].style.display = key === targetId ? "block" : "none";
+      });
+    });
+  });
+
+  // Phase completion tracking
+  const phaseChecks = [
+    document.getElementById("phase1Check"),
+    document.getElementById("phase2Check"),
+    document.getElementById("phase3Check"),
+    document.getElementById("phase4Check")
+  ];
+  const progressBar = document.getElementById("progressBar");
+  const progressLabel = document.getElementById("progressLabel");
+  const progressPercent = document.getElementById("progressPercent");
+
+  function updateProgress() {
+    const total = phaseChecks.length;
+    const done = phaseChecks.filter(cb => cb.checked).length;
+    const percent = Math.round((done / total) * 100);
+    progressBar.style.width = percent + "%";
+    progressLabel.textContent = `${done} of ${total} phases checked off`;
+    progressPercent.textContent = percent + "%";
+  }
+
+  phaseChecks.forEach(cb => cb.addEventListener("change", updateProgress));
+  updateProgress();
+
+  // Question bank data
+  const questions = [
+    {
+      prompt: "What is meant by the 'dimension' of a physical quantity?",
+      answer: "Its fundamental physical type (like length, time, mass), independent of the numerical value or unit used to measure it."
+    },
+    {
+      prompt: "Which of the following is a valid dimension symbol for length?",
+      answer: "[L]."
+    },
+    {
+      prompt: "Which pair of quantities has the same dimensions?",
+      answer: "Speed and velocity (both have dimensions [L][T]^-1)."
+    },
+    {
+      prompt: "Why is adding 5 meters and 3 seconds invalid?",
+      answer: "Because they have different dimensions (length vs. time), so they are not comparable in an addition."
+    },
+    {
+      prompt: "In dimensional notation, velocity has dimensions:",
+      answer: "[L][T]^-1."
+    },
+    {
+      prompt: "In dimensional notation, acceleration has dimensions:",
+      answer: "[L][T]^-2."
+    },
+    {
+      prompt: "The dimension of force is:",
+      answer: "[M][L][T]^-2."
+    },
+    {
+      prompt: "The dimension of area is:",
+      answer: "[L]^2."
+    },
+    {
+      prompt: "The dimension of volume is:",
+      answer: "[L]^3."
+    },
+    {
+      prompt: "Which equation is dimensionally homogeneous?",
+      answer: "Any equation where every term has the same overall dimensions on both sides, e.g. s = ut + 1/2 at^2 (all terms have [L])."
+    },
+    {
+      prompt: "Dimensional homogeneity means:",
+      answer: "All terms you add or equate in an equation have the same dimensions."
+    },
+    {
+      prompt: "If v = at, what are the dimensions of a?",
+      answer: "[L][T]^-2 (so that a·t has [L][T]^-2·[T] = [L][T]^-1 = v)."
+    },
+    {
+      prompt: "In the equation s = ut + 1/2 at^2, the dimension of each term on the right-hand side is:",
+      answer: "[L] (distance)."
+    },
+    {
+      prompt: "Which of the following is a base dimension?",
+      answer: "Mass [M], length [L], time [T], or temperature [Θ] are base dimensions."
+    },
+    {
+      prompt: "Which of the following is a derived dimension?",
+      answer: "Anything built from base dimensions, e.g. speed [L][T]^-1 or force [M][L][T]^-2."
+    },
+    {
+      prompt: "Dimensional analysis can always determine:",
+      answer: "The general form of relationships between quantities up to dimensionless constants."
+    },
+    {
+      prompt: "Dimensional analysis cannot determine:",
+      answer: "The exact numerical values of pure, dimensionless constants (like 1/2 or 2π)."
+    },
+    {
+      prompt: "To check if an equation is plausible using dimensional analysis, you should:",
+      answer: "Replace each quantity by its dimensions and verify both sides match."
+    },
+    {
+      prompt: "For mass m and acceleration a, which combination gives force?",
+      answer: "F = m·a, with dimensions [M][L][T]^-2."
+    },
+    {
+      prompt: "For length L and time T, which combination could represent speed?",
+      answer: "L/T, with dimensions [L][T]^-1."
+    },
+    {
+      prompt: "The SI unit of acceleration m/s^2 corresponds to which dimensions?",
+      answer: "[L][T]^-2."
+    },
+    {
+      prompt: "The SI unit of pressure N/m^2 corresponds to which dimensions?",
+      answer: "[M][L]^-1[T]^-2."
+    },
+    {
+      prompt: "Energy has dimensions:",
+      answer: "[M][L]^2[T]^-2."
+    },
+    {
+      prompt: "Power has dimensions:",
+      answer: "[M][L]^2[T]^-3 (energy per unit time)."
+    },
+    {
+      prompt: "Which of the following is dimensionless?",
+      answer: "Pure numbers, ratios of like quantities, trigonometric functions of angles, coefficients like 2 or π."
+    },
+    {
+      prompt: "The sine of an angle is dimensionless because:",
+      answer: "Its input must be a dimensionless ratio (angle measured as length/length), so its output has no dimensions."
+    },
+    {
+      prompt: "When converting units, the conversion factor must be:",
+      answer: "Equal to 1 in value, just expressed as a ratio of two equivalent units (e.g. 1000 m / 1 km)."
+    },
+    {
+      prompt: "Convert 36 km/h to m/s. Which is closest?",
+      answer: "10 m/s (exactly 10 m/s)."
+    },
+    {
+      prompt: "Which step should come first in a dimensional analysis problem?",
+      answer: "Identify what quantity you are solving for and its dimensions."
+    },
+    {
+      prompt: "When deriving the period of a pendulum, T, from length L and g, which form is assumed?",
+      answer: "T = k·L^a·g^b, where k is a dimensionless constant."
+    },
+    {
+      prompt: "If T = k * L^a * g^b, the dimension equation for T is:",
+      answer: "[T] = [L]^(a+b)[T]^-2b."
+    },
+    {
+      prompt: "Solving the system in the previous question enforces:",
+      answer: "That the exponents of each base dimension match on both sides of the equation."
+    },
+    {
+      prompt: "Scaling arguments focus primarily on:",
+      answer: "How a quantity changes when you scale the size or other parameters of the system (how it depends on powers of variables)."
+    },
+    {
+      prompt: "For a planet with radius 3R and same density as Earth, surface gravity scales as:",
+      answer: "g_new = 3g_Earth (three times Earth’s gravity)."
+    },
+    {
+      prompt: "If g ∝ M/r^2 and M ∝ r^3, then g ∝:",
+      answer: "r (since g ∝ r^3 / r^2 = r)."
+    },
+    {
+      prompt: "A common mistake is to assume that if an equation is dimensionally correct, then:",
+      answer: "It must be physically correct, which is not guaranteed."
+    },
+    {
+      prompt: "Another common mistake is:",
+      answer: "Mixing units within a single calculation (e.g. meters and feet) without converting."
+    },
+    {
+      prompt: "Dimensional analysis is especially useful for:",
+      answer: "Checking equations, converting units, deriving plausible formulas, and spotting errors."
+    },
+    {
+      prompt: "Which of these is the Golden Rule of dimensional analysis?",
+      answer: "Both sides of any physical equation, and any terms you add, must have the same dimensions."
+    },
+    {
+      prompt: "Checking units in a calculation can help you:",
+      answer: "Catch algebraic or numerical mistakes before you trust a result."
+    },
+    {
+      prompt: "In the expression KE = 1/2 mv^2, the factor 1/2 is:",
+      answer: "A dimensionless constant that dimensional analysis cannot predict."
+    },
+    {
+      prompt: "The constant π in formulas like C = 2πr is:",
+      answer: "A dimensionless constant determined by geometry, not by dimensional analysis."
+    },
+    {
+      prompt: "In unit conversion, forgetting to square or cube a conversion factor when needed will:",
+      answer: "Give you the wrong numerical value and incorrect units."
+    },
+    {
+      prompt: "The density ρ has dimensions:",
+      answer: "[M][L]^-3."
+    },
+    {
+      prompt: "Which of the following best describes 'dimensional homogeneity' in an equation?",
+      answer: "Every term in the equation has identical overall dimensions."
+    },
+    {
+      prompt: "Which quantity has dimensions [M][L]^-1 [T]^-2?",
+      answer: "Pressure or stress (force per unit area)."
+    },
+    {
+      prompt: "If a car travels 120 km in 2 hours, its average speed in km/h is:",
+      answer: "60 km/h."
+    },
+    {
+      prompt: "If an equation involves terms with dimensions [L] and [L][T]^-1 added together, the equation:",
+      answer: "Is dimensionally inconsistent and therefore invalid."
+    },
+    {
+      prompt: "The main purpose of 'bracket notation' like [L], [T], [M] is to:",
+      answer: "Represent the dimensions of physical quantities abstractly, independent of units."
+    },
+    {
+      prompt: "Dimensional analysis treats numerical constants like 2, 1/2, or π as:",
+      answer: "Dimensionless factors that do not affect the dimensional balance of an equation."
+    }
+  ];
+
+  const questionsContainer = document.getElementById("questionsContainer");
+
+  function renderQuestions() {
+    questionsContainer.innerHTML = "";
+    questions.forEach((q, idx) => {
+      const qDiv = document.createElement("div");
+      qDiv.className = "question";
+      qDiv.dataset.index = idx;
+
+      qDiv.innerHTML = `
+        <div class="question-header">
+          <div class="question-title">
+            Question ${idx + 1}
+          </div>
+          <div class="question-index">
+            #${idx + 1}/50
+          </div>
+        </div>
+        <div class="question-text">${q.prompt}</div>
+        <div class="answer-box">
+          <textarea class="answer-input" placeholder="Your answer (optional)..."></textarea>
+          <button type="button" class="answer-reveal-btn">Show answer</button>
+          <div class="answer-text">
+            ${q.answer}
+          </div>
+        </div>
+      `;
+
+      const revealBtn = qDiv.querySelector(".answer-reveal-btn");
+      const answerText = qDiv.querySelector(".answer-text");
+
+      revealBtn.addEventListener("click", () => {
+        const isVisible = answerText.classList.contains("visible");
+        if (isVisible) {
+          answerText.classList.remove("visible");
+          revealBtn.textContent = "Show answer";
+        } else {
+          answerText.classList.add("visible");
+          revealBtn.textContent = "Hide answer";
+        }
+      });
+
+      questionsContainer.appendChild(qDiv);
+    });
+  }
+
+  renderQuestions();
+
+  // Reveal/hide all
+  const revealAllBtn = document.getElementById("revealAllBtn");
+  const hideAllBtn = document.getElementById("hideAllBtn");
+
+  revealAllBtn.addEventListener("click", () => {
+    document.querySelectorAll(".answer-text").forEach(el => el.classList.add("visible"));
+    document.querySelectorAll(".answer-reveal-btn").forEach(btn => {
+      btn.textContent = "Hide answer";
+    });
+  });
+
+  hideAllBtn.addEventListener("click", () => {
+    document.querySelectorAll(".answer-text").forEach(el => el.classList.remove("visible"));
+    document.querySelectorAll(".answer-reveal-btn").forEach(btn => {
+      btn.textContent = "Show answer";
+    });
+  });
+</script>
+</body>
+</html>
