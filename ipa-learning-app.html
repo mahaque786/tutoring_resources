@@ -1,0 +1,1777 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IPA Learning App - General American English</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.5/babel.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    .app-container {
+      min-height: 100vh;
+      background: linear-gradient(180deg, #0f0f12 0%, #1a1a24 50%, #0f0f12 100%);
+      color: #e8e6e3;
+      font-family: 'Source Sans 3', -apple-system, sans-serif;
+    }
+
+    /* Header */
+    .app-header {
+      background: rgba(15, 15, 18, 0.95);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 1.5rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(20px);
+    }
+
+    .header-content {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .logo-section {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .logo {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 2rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+    }
+
+    .logo-bracket {
+      color: #4ecdc4;
+    }
+
+    .logo-symbol {
+      color: #ff6b6b;
+      margin: 0 2px;
+    }
+
+    .logo-text {
+      color: #e8e6e3;
+      margin-left: 4px;
+    }
+
+    .app-title {
+      font-family: 'Crimson Pro', serif;
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: #e8e6e3;
+      letter-spacing: 0.5px;
+    }
+
+    .app-subtitle {
+      font-size: 0.85rem;
+      color: #888;
+      margin-top: 0.25rem;
+    }
+
+    .header-nav {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .nav-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.6rem 1.2rem;
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #aaa;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-family: inherit;
+      transition: all 0.2s ease;
+    }
+
+    .nav-btn svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .nav-btn:hover {
+      background: rgba(255, 255, 255, 0.05);
+      color: #e8e6e3;
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .nav-btn.active {
+      background: rgba(78, 205, 196, 0.15);
+      color: #4ecdc4;
+      border-color: #4ecdc4;
+    }
+
+    .nav-btn.quiz-btn {
+      background: linear-gradient(135deg, #ff6b6b 0%, #ee5a5a 100%);
+      border: none;
+      color: white;
+    }
+
+    .nav-btn.quiz-btn:hover {
+      background: linear-gradient(135deg, #ff7b7b 0%, #ff6a6a 100%);
+      transform: translateY(-1px);
+    }
+
+    /* Main Content */
+    .main-content {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    /* Search Bar */
+    .search-filter-bar {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .search-input-container {
+      flex: 1;
+      min-width: 280px;
+      position: relative;
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 20px;
+      height: 20px;
+      color: #666;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 0.9rem 1rem 0.9rem 3rem;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      color: #e8e6e3;
+      font-size: 1rem;
+      font-family: inherit;
+      transition: all 0.2s ease;
+    }
+
+    .search-input:focus {
+      outline: none;
+      border-color: #4ecdc4;
+      background: rgba(78, 205, 196, 0.05);
+    }
+
+    .search-input::placeholder {
+      color: #666;
+    }
+
+    .clear-search {
+      position: absolute;
+      right: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      color: #888;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .clear-search:hover {
+      background: rgba(255, 255, 255, 0.2);
+      color: #e8e6e3;
+    }
+
+    .filter-buttons {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .filter-btn {
+      padding: 0.8rem 1.5rem;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #888;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-family: inherit;
+      font-weight: 500;
+      transition: all 0.2s ease;
+    }
+
+    .filter-btn:hover {
+      background: rgba(255, 255, 255, 0.08);
+      color: #e8e6e3;
+    }
+
+    .filter-btn.active {
+      background: rgba(78, 205, 196, 0.15);
+      color: #4ecdc4;
+      border-color: #4ecdc4;
+    }
+
+    /* Stats Bar */
+    .stats-bar {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 2rem;
+      padding: 1.5rem;
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 16px;
+      margin-bottom: 3rem;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .stat {
+      text-align: center;
+    }
+
+    .stat-number {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 2rem;
+      font-weight: 600;
+      color: #4ecdc4;
+    }
+
+    .stat-label {
+      font-size: 0.85rem;
+      color: #888;
+      margin-top: 0.25rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .stat-divider {
+      width: 1px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    /* Sections */
+    .phoneme-section {
+      margin-bottom: 4rem;
+    }
+
+    .section-header {
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .section-title {
+      font-family: 'Crimson Pro', serif;
+      font-size: 2rem;
+      font-weight: 600;
+      color: #e8e6e3;
+      margin-bottom: 0.5rem;
+    }
+
+    .section-description {
+      color: #888;
+      font-size: 1rem;
+    }
+
+    /* Category Section */
+    .category-section {
+      margin-bottom: 2.5rem;
+    }
+
+    .category-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      padding: 1rem 1.5rem;
+      background: rgba(255, 255, 255, 0.02);
+      border-radius: 12px;
+      border-left: 4px solid var(--cat-color);
+    }
+
+    .category-marker {
+      width: 12px;
+      height: 12px;
+      border-radius: 3px;
+      flex-shrink: 0;
+    }
+
+    .category-info {
+      flex: 1;
+    }
+
+    .category-title {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: #e8e6e3;
+      margin-bottom: 0.2rem;
+    }
+
+    .category-description {
+      font-size: 0.85rem;
+      color: #888;
+    }
+
+    .phoneme-count {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      color: #666;
+      padding: 0.3rem 0.8rem;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 6px;
+    }
+
+    /* Phoneme Grid */
+    .phoneme-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1rem;
+    }
+
+    /* Phoneme Card */
+    .phoneme-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      padding: 1.5rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .phoneme-card:hover {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: rgba(255, 255, 255, 0.15);
+      transform: translateY(-2px);
+    }
+
+    .phoneme-card.expanded {
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .card-accent {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      opacity: 0.8;
+    }
+
+    .card-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .symbol-container {
+      flex-shrink: 0;
+    }
+
+    .ipa-symbol {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 2.2rem;
+      font-weight: 600;
+      color: #4ecdc4;
+      background: rgba(78, 205, 196, 0.1);
+      padding: 0.5rem 1rem;
+      border-radius: 10px;
+      display: inline-block;
+    }
+
+    .phoneme-name {
+      font-size: 0.95rem;
+      color: #ccc;
+      line-height: 1.4;
+      padding-top: 0.5rem;
+    }
+
+    .phoneme-name.quiz-hidden {
+      color: #666;
+      font-style: italic;
+    }
+
+    .card-body {
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      padding-top: 1rem;
+      margin-top: 0.5rem;
+    }
+
+    .description {
+      font-size: 0.9rem;
+      color: #999;
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+
+    .examples-section {
+      background: rgba(0, 0, 0, 0.2);
+      padding: 1rem;
+      border-radius: 10px;
+    }
+
+    .examples-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #666;
+      margin-bottom: 0.75rem;
+    }
+
+    .examples-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .example-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 1.1rem;
+      color: #e8e6e3;
+    }
+
+    .highlighted-sound {
+      color: #ff6b6b;
+      font-weight: 600;
+      text-decoration: underline;
+      text-decoration-color: rgba(255, 107, 107, 0.4);
+      text-underline-offset: 3px;
+    }
+
+    .position-tag {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #666;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+    }
+
+    /* Quiz Mode */
+    .quiz-container {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    .quiz-header {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .quiz-progress {
+      flex: 1;
+      min-width: 200px;
+    }
+
+    .progress-bar {
+      height: 8px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-bottom: 0.5rem;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #4ecdc4, #45b7d1);
+      border-radius: 4px;
+      transition: width 0.3s ease;
+    }
+
+    .progress-text {
+      font-size: 0.85rem;
+      color: #888;
+    }
+
+    .quiz-score {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1rem;
+      color: #4ecdc4;
+      padding: 0.5rem 1rem;
+      background: rgba(78, 205, 196, 0.1);
+      border-radius: 8px;
+    }
+
+    .quiz-type-toggle {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+      background: rgba(255, 255, 255, 0.03);
+      padding: 0.5rem;
+      border-radius: 12px;
+    }
+
+    .toggle-btn {
+      flex: 1;
+      padding: 0.8rem 1rem;
+      background: transparent;
+      border: none;
+      color: #888;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-family: inherit;
+      transition: all 0.2s ease;
+    }
+
+    .toggle-btn:hover {
+      color: #ccc;
+    }
+
+    .toggle-btn.active {
+      background: rgba(78, 205, 196, 0.15);
+      color: #4ecdc4;
+    }
+
+    .quiz-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+
+    .quiz-prompt {
+      margin-bottom: 2rem;
+    }
+
+    .quiz-label {
+      font-size: 1rem;
+      color: #888;
+      display: block;
+      margin-bottom: 1.5rem;
+    }
+
+    .quiz-symbol {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 5rem;
+      font-weight: 600;
+      color: #4ecdc4;
+    }
+
+    .quiz-word {
+      font-size: 3rem;
+      font-weight: 500;
+      color: #e8e6e3;
+    }
+
+    .quiz-word .highlighted-sound {
+      font-size: inherit;
+    }
+
+    .quiz-answer {
+      padding: 2rem;
+      background: rgba(78, 205, 196, 0.05);
+      border-radius: 16px;
+      margin-bottom: 2rem;
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .quiz-answer h4 {
+      font-size: 1.2rem;
+      color: #e8e6e3;
+      margin-bottom: 0.5rem;
+    }
+
+    .quiz-answer p {
+      font-size: 0.95rem;
+      color: #999;
+      margin-bottom: 1rem;
+    }
+
+    .revealed-symbol {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 3rem;
+      font-weight: 600;
+      color: #4ecdc4;
+      margin-bottom: 1rem;
+    }
+
+    .quiz-examples {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .quiz-example {
+      font-size: 1.3rem;
+      color: #e8e6e3;
+    }
+
+    .quiz-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+    }
+
+    .btn {
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-family: inherit;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn-reveal {
+      background: linear-gradient(135deg, #4ecdc4, #45b7d1);
+      color: white;
+      padding: 1rem 3rem;
+    }
+
+    .btn-reveal:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(78, 205, 196, 0.3);
+    }
+
+    .btn-incorrect {
+      background: rgba(255, 107, 107, 0.15);
+      color: #ff6b6b;
+      border: 1px solid rgba(255, 107, 107, 0.3);
+    }
+
+    .btn-incorrect:hover {
+      background: rgba(255, 107, 107, 0.25);
+    }
+
+    .btn-correct {
+      background: rgba(78, 205, 196, 0.15);
+      color: #4ecdc4;
+      border: 1px solid rgba(78, 205, 196, 0.3);
+    }
+
+    .btn-correct:hover {
+      background: rgba(78, 205, 196, 0.25);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: #888;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .btn-ghost:hover {
+      background: rgba(255, 255, 255, 0.05);
+      color: #e8e6e3;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #4ecdc4, #45b7d1);
+      color: white;
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.1);
+      color: #e8e6e3;
+    }
+
+    /* Quiz Complete */
+    .quiz-complete {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 60vh;
+      padding: 2rem;
+    }
+
+    .quiz-complete-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 24px;
+      padding: 4rem 3rem;
+      text-align: center;
+      max-width: 400px;
+    }
+
+    .trophy {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+    }
+
+    .quiz-complete-card h2 {
+      font-family: 'Crimson Pro', serif;
+      font-size: 2rem;
+      color: #e8e6e3;
+      margin-bottom: 2rem;
+    }
+
+    .final-score {
+      display: flex;
+      justify-content: center;
+      align-items: baseline;
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .score-number {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 4rem;
+      font-weight: 600;
+      color: #4ecdc4;
+    }
+
+    .score-divider {
+      font-size: 2rem;
+      color: #666;
+    }
+
+    .score-total {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 2rem;
+      color: #888;
+    }
+
+    .score-percentage {
+      font-size: 1.2rem;
+      color: #888;
+      margin-bottom: 2rem;
+    }
+
+    .quiz-actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+    }
+
+    /* Quick Chart */
+    .quick-chart {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .chart-section {
+      margin-bottom: 3rem;
+    }
+
+    .chart-title {
+      font-family: 'Crimson Pro', serif;
+      font-size: 1.5rem;
+      color: #e8e6e3;
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .chart-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .chart-category {
+      display: flex;
+      gap: 1rem;
+      align-items: stretch;
+    }
+
+    .chart-category-label {
+      width: 160px;
+      flex-shrink: 0;
+      padding: 1rem;
+      border-radius: 10px;
+      color: white;
+      font-weight: 600;
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .chart-symbols {
+      flex: 1;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      background: rgba(255, 255, 255, 0.02);
+      padding: 0.75rem;
+      border-radius: 10px;
+    }
+
+    .chart-symbol {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0.5rem 1rem;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 8px;
+      min-width: 80px;
+      transition: all 0.2s ease;
+    }
+
+    .chart-symbol:hover {
+      background: rgba(78, 205, 196, 0.1);
+      transform: translateY(-2px);
+    }
+
+    .chart-symbol .symbol {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.3rem;
+      color: #4ecdc4;
+      font-weight: 600;
+    }
+
+    .chart-symbol .example {
+      font-size: 0.75rem;
+      color: #888;
+      margin-top: 0.25rem;
+    }
+
+    /* Vowel Trapezoid */
+    .vowel-trapezoid {
+      margin-top: 3rem;
+    }
+
+    .trapezoid-container {
+      background: rgba(255, 255, 255, 0.02);
+      border-radius: 16px;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .trapezoid-svg {
+      width: 100%;
+      max-width: 500px;
+      height: auto;
+    }
+
+    .trapezoid-svg text {
+      font-family: 'Source Sans 3', sans-serif;
+      font-size: 14px;
+      fill: #888;
+    }
+
+    .trapezoid-svg .chart-label-side {
+      font-size: 12px;
+    }
+
+    .trapezoid-svg .vowel-point circle {
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+
+    .trapezoid-svg .vowel-point:hover circle {
+      transform: scale(1.1);
+      filter: brightness(1.2);
+    }
+
+    .trapezoid-svg .vowel-point text {
+      fill: white;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 16px;
+      pointer-events: none;
+    }
+
+    .trapezoid-note {
+      font-size: 0.85rem;
+      color: #666;
+      margin-top: 1.5rem;
+      text-align: center;
+    }
+
+    /* No Results */
+    .no-results {
+      text-align: center;
+      padding: 4rem 2rem;
+      color: #888;
+    }
+
+    .no-results-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .no-results h3 {
+      font-size: 1.3rem;
+      color: #ccc;
+      margin-bottom: 0.5rem;
+    }
+
+    /* Footer */
+    .app-footer {
+      text-align: center;
+      padding: 2rem;
+      color: #666;
+      font-size: 0.85rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      margin-top: 4rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .app-header {
+        padding: 1rem;
+      }
+      
+      .header-content {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      
+      .logo-section {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+      }
+      
+      .header-nav {
+        width: 100%;
+        justify-content: space-between;
+      }
+      
+      .nav-btn {
+        padding: 0.5rem 0.8rem;
+        font-size: 0.8rem;
+      }
+      
+      .main-content {
+        padding: 1rem;
+      }
+      
+      .search-filter-bar {
+        flex-direction: column;
+      }
+      
+      .stats-bar {
+        gap: 1rem;
+        padding: 1rem;
+      }
+      
+      .stat-number {
+        font-size: 1.5rem;
+      }
+      
+      .phoneme-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .chart-category {
+        flex-direction: column;
+      }
+      
+      .chart-category-label {
+        width: 100%;
+      }
+      
+      .quiz-symbol {
+        font-size: 4rem;
+      }
+      
+      .quiz-word {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  
+  <script type="text/babel">
+    const { useState, useMemo } = React;
+
+    // Complete IPA data for General American English
+    const ipaData = {
+      consonants: {
+        stops: [
+          { symbol: 'p', name: 'voiceless bilabial stop', description: 'Lips pressed together, air released with no vibration', examples: [{ word: 'pat', highlight: 'p', position: 'initial' }, { word: 'spin', highlight: 'p', position: 'medial' }, { word: 'top', highlight: 'p', position: 'final' }] },
+          { symbol: 'b', name: 'voiced bilabial stop', description: 'Lips pressed together, air released with vocal cord vibration', examples: [{ word: 'bat', highlight: 'b', position: 'initial' }, { word: 'cabin', highlight: 'b', position: 'medial' }, { word: 'cab', highlight: 'b', position: 'final' }] },
+          { symbol: 't', name: 'voiceless alveolar stop', description: 'Tongue tip touches alveolar ridge, air released without vibration', examples: [{ word: 'top', highlight: 't', position: 'initial' }, { word: 'water', highlight: 't', position: 'medial' }, { word: 'cat', highlight: 't', position: 'final' }] },
+          { symbol: 'd', name: 'voiced alveolar stop', description: 'Tongue tip touches alveolar ridge, air released with vibration', examples: [{ word: 'dog', highlight: 'd', position: 'initial' }, { word: 'ladder', highlight: 'dd', position: 'medial' }, { word: 'bed', highlight: 'd', position: 'final' }] },
+          { symbol: 'k', name: 'voiceless velar stop', description: 'Back of tongue touches soft palate, air released without vibration', examples: [{ word: 'cat', highlight: 'c', position: 'initial' }, { word: 'bacon', highlight: 'c', position: 'medial' }, { word: 'back', highlight: 'ck', position: 'final' }] },
+          { symbol: 'g', name: 'voiced velar stop', description: 'Back of tongue touches soft palate, air released with vibration', examples: [{ word: 'go', highlight: 'g', position: 'initial' }, { word: 'bigger', highlight: 'gg', position: 'medial' }, { word: 'bag', highlight: 'g', position: 'final' }] },
+          { symbol: 'ʔ', name: 'glottal stop', description: 'Vocal cords pressed together then released (like the pause in "uh-oh")', examples: [{ word: 'uh-oh', highlight: '-', position: 'medial' }, { word: 'button', highlight: 'tt', position: 'medial' }, { word: 'mountain', highlight: 't', position: 'medial' }] },
+        ],
+        fricatives: [
+          { symbol: 'f', name: 'voiceless labiodental fricative', description: 'Upper teeth touch lower lip, air passes through without vibration', examples: [{ word: 'fun', highlight: 'f', position: 'initial' }, { word: 'coffee', highlight: 'ff', position: 'medial' }, { word: 'leaf', highlight: 'f', position: 'final' }] },
+          { symbol: 'v', name: 'voiced labiodental fricative', description: 'Upper teeth touch lower lip, air passes through with vibration', examples: [{ word: 'van', highlight: 'v', position: 'initial' }, { word: 'over', highlight: 'v', position: 'medial' }, { word: 'love', highlight: 've', position: 'final' }] },
+          { symbol: 'θ', name: 'voiceless dental fricative', description: 'Tongue tip between teeth, air passes through without vibration', examples: [{ word: 'think', highlight: 'th', position: 'initial' }, { word: 'author', highlight: 'th', position: 'medial' }, { word: 'bath', highlight: 'th', position: 'final' }] },
+          { symbol: 'ð', name: 'voiced dental fricative', description: 'Tongue tip between teeth, air passes through with vibration', examples: [{ word: 'this', highlight: 'th', position: 'initial' }, { word: 'brother', highlight: 'th', position: 'medial' }, { word: 'breathe', highlight: 'the', position: 'final' }] },
+          { symbol: 's', name: 'voiceless alveolar fricative', description: 'Tongue near alveolar ridge, air hisses through without vibration', examples: [{ word: 'sun', highlight: 's', position: 'initial' }, { word: 'passing', highlight: 'ss', position: 'medial' }, { word: 'bus', highlight: 's', position: 'final' }] },
+          { symbol: 'z', name: 'voiced alveolar fricative', description: 'Tongue near alveolar ridge, air buzzes through with vibration', examples: [{ word: 'zoo', highlight: 'z', position: 'initial' }, { word: 'buzzing', highlight: 'zz', position: 'medial' }, { word: 'buzz', highlight: 'zz', position: 'final' }] },
+          { symbol: 'ʃ', name: 'voiceless postalveolar fricative', description: 'Tongue near roof of mouth behind alveolar ridge, air rushes without vibration', examples: [{ word: 'ship', highlight: 'sh', position: 'initial' }, { word: 'nation', highlight: 'ti', position: 'medial' }, { word: 'wash', highlight: 'sh', position: 'final' }] },
+          { symbol: 'ʒ', name: 'voiced postalveolar fricative', description: 'Tongue near roof of mouth behind alveolar ridge, air buzzes with vibration', examples: [{ word: 'genre', highlight: 'g', position: 'initial' }, { word: 'measure', highlight: 's', position: 'medial' }, { word: 'beige', highlight: 'ge', position: 'final' }] },
+          { symbol: 'h', name: 'voiceless glottal fricative', description: 'Air passes through open vocal cords without vibration', examples: [{ word: 'hat', highlight: 'h', position: 'initial' }, { word: 'behind', highlight: 'h', position: 'medial' }, { word: '—', highlight: '', position: 'final' }] },
+        ],
+        affricates: [
+          { symbol: 'tʃ', name: 'voiceless postalveolar affricate', description: 'Starts as /t/ stop, releases into /ʃ/ fricative, no vibration', examples: [{ word: 'chair', highlight: 'ch', position: 'initial' }, { word: 'nature', highlight: 't', position: 'medial' }, { word: 'watch', highlight: 'tch', position: 'final' }] },
+          { symbol: 'dʒ', name: 'voiced postalveolar affricate', description: 'Starts as /d/ stop, releases into /ʒ/ fricative, with vibration', examples: [{ word: 'jump', highlight: 'j', position: 'initial' }, { word: 'magic', highlight: 'g', position: 'medial' }, { word: 'judge', highlight: 'dge', position: 'final' }] },
+        ],
+        nasals: [
+          { symbol: 'm', name: 'bilabial nasal', description: 'Lips pressed together, air flows through nose with vibration', examples: [{ word: 'man', highlight: 'm', position: 'initial' }, { word: 'hammer', highlight: 'mm', position: 'medial' }, { word: 'ham', highlight: 'm', position: 'final' }] },
+          { symbol: 'n', name: 'alveolar nasal', description: 'Tongue tip at alveolar ridge, air flows through nose with vibration', examples: [{ word: 'no', highlight: 'n', position: 'initial' }, { word: 'dinner', highlight: 'nn', position: 'medial' }, { word: 'sun', highlight: 'n', position: 'final' }] },
+          { symbol: 'ŋ', name: 'velar nasal', description: 'Back of tongue at soft palate, air flows through nose with vibration', examples: [{ word: '—', highlight: '', position: 'initial' }, { word: 'singer', highlight: 'ng', position: 'medial' }, { word: 'sing', highlight: 'ng', position: 'final' }] },
+        ],
+        liquids: [
+          { symbol: 'l', name: 'alveolar lateral approximant', description: 'Tongue tip at alveolar ridge, air flows around sides of tongue', examples: [{ word: 'love', highlight: 'l', position: 'initial' }, { word: 'yellow', highlight: 'll', position: 'medial' }, { word: 'full', highlight: 'll', position: 'final' }] },
+          { symbol: 'ɹ', name: 'alveolar approximant', description: 'Tongue tip curled back, not touching roof of mouth (American R)', examples: [{ word: 'red', highlight: 'r', position: 'initial' }, { word: 'carrot', highlight: 'rr', position: 'medial' }, { word: 'car', highlight: 'r', position: 'final' }] },
+        ],
+        glides: [
+          { symbol: 'w', name: 'labio-velar approximant', description: 'Lips rounded, back of tongue raised toward soft palate', examples: [{ word: 'wait', highlight: 'w', position: 'initial' }, { word: 'away', highlight: 'w', position: 'medial' }, { word: '—', highlight: '', position: 'final' }] },
+          { symbol: 'j', name: 'palatal approximant', description: 'Middle of tongue raised toward hard palate (like "y" in "yes")', examples: [{ word: 'yes', highlight: 'y', position: 'initial' }, { word: 'beyond', highlight: 'y', position: 'medial' }, { word: '—', highlight: '', position: 'final' }] },
+          { symbol: 'ʍ', name: 'voiceless labio-velar fricative', description: 'Like /w/ but without voice (some dialects use in "which")', examples: [{ word: 'which', highlight: 'wh', position: 'initial' }, { word: 'anywhere', highlight: 'wh', position: 'medial' }, { word: '—', highlight: '', position: 'final' }] },
+        ],
+      },
+      vowels: {
+        front: [
+          { symbol: 'i', name: 'close front unrounded vowel', description: 'Tongue high and forward, lips spread (tense, long "ee")', examples: [{ word: 'see', highlight: 'ee', position: 'final' }, { word: 'beat', highlight: 'ea', position: 'medial' }, { word: 'we', highlight: 'e', position: 'final' }] },
+          { symbol: 'ɪ', name: 'near-close near-front unrounded vowel', description: 'Tongue high-ish and forward, lips relaxed (short "i")', examples: [{ word: 'sit', highlight: 'i', position: 'medial' }, { word: 'bit', highlight: 'i', position: 'medial' }, { word: 'gym', highlight: 'y', position: 'medial' }] },
+          { symbol: 'eɪ', name: 'mid front unrounded vowel (diphthong)', description: 'Tongue mid-high, glides upward (long "a" as in "day")', examples: [{ word: 'say', highlight: 'ay', position: 'final' }, { word: 'make', highlight: 'a_e', position: 'medial' }, { word: 'rain', highlight: 'ai', position: 'medial' }] },
+          { symbol: 'ɛ', name: 'open-mid front unrounded vowel', description: 'Tongue mid-low and forward, mouth fairly open (short "e")', examples: [{ word: 'bed', highlight: 'e', position: 'medial' }, { word: 'said', highlight: 'ai', position: 'medial' }, { word: 'head', highlight: 'ea', position: 'medial' }] },
+          { symbol: 'æ', name: 'near-open front unrounded vowel', description: 'Tongue low and forward, mouth wide open (short "a" as in "cat")', examples: [{ word: 'cat', highlight: 'a', position: 'medial' }, { word: 'bad', highlight: 'a', position: 'medial' }, { word: 'laugh', highlight: 'au', position: 'medial' }] },
+        ],
+        central: [
+          { symbol: 'ə', name: 'mid central vowel (schwa)', description: 'Tongue relaxed in center, neutral position (unstressed syllables)', examples: [{ word: 'about', highlight: 'a', position: 'initial' }, { word: 'sofa', highlight: 'a', position: 'final' }, { word: 'the', highlight: 'e', position: 'final' }] },
+          { symbol: 'ʌ', name: 'open-mid back unrounded vowel', description: 'Tongue low-central, mouth fairly open (stressed "uh")', examples: [{ word: 'cut', highlight: 'u', position: 'medial' }, { word: 'love', highlight: 'o', position: 'medial' }, { word: 'blood', highlight: 'oo', position: 'medial' }] },
+          { symbol: 'ɝ', name: 'r-colored mid central vowel (stressed)', description: 'Tongue mid-central with r-coloring (stressed "er")', examples: [{ word: 'bird', highlight: 'ir', position: 'medial' }, { word: 'nurse', highlight: 'ur', position: 'medial' }, { word: 'her', highlight: 'er', position: 'final' }] },
+          { symbol: 'ɚ', name: 'r-colored schwa (unstressed)', description: 'Tongue mid-central with r-coloring (unstressed "er")', examples: [{ word: 'butter', highlight: 'er', position: 'final' }, { word: 'doctor', highlight: 'or', position: 'final' }, { word: 'color', highlight: 'or', position: 'final' }] },
+        ],
+        back: [
+          { symbol: 'u', name: 'close back rounded vowel', description: 'Tongue high and back, lips rounded (long "oo")', examples: [{ word: 'boot', highlight: 'oo', position: 'medial' }, { word: 'blue', highlight: 'ue', position: 'final' }, { word: 'food', highlight: 'oo', position: 'medial' }] },
+          { symbol: 'ʊ', name: 'near-close near-back rounded vowel', description: 'Tongue high-ish and back, lips slightly rounded (short "oo")', examples: [{ word: 'book', highlight: 'oo', position: 'medial' }, { word: 'put', highlight: 'u', position: 'medial' }, { word: 'good', highlight: 'oo', position: 'medial' }] },
+          { symbol: 'oʊ', name: 'mid back rounded vowel (diphthong)', description: 'Tongue mid-back, glides upward with lip rounding (long "o")', examples: [{ word: 'go', highlight: 'o', position: 'final' }, { word: 'boat', highlight: 'oa', position: 'medial' }, { word: 'snow', highlight: 'ow', position: 'final' }] },
+          { symbol: 'ɔ', name: 'open-mid back rounded vowel', description: 'Tongue low-mid and back, lips rounded (as in "thought")', examples: [{ word: 'law', highlight: 'aw', position: 'final' }, { word: 'caught', highlight: 'au', position: 'medial' }, { word: 'all', highlight: 'a', position: 'medial' }] },
+          { symbol: 'ɑ', name: 'open back unrounded vowel', description: 'Tongue low and back, mouth wide open (as in "father")', examples: [{ word: 'father', highlight: 'a', position: 'medial' }, { word: 'hot', highlight: 'o', position: 'medial' }, { word: 'spa', highlight: 'a', position: 'final' }] },
+        ],
+        diphthongs: [
+          { symbol: 'aɪ', name: 'diphthong (open front to close front)', description: 'Tongue starts low, glides high and forward (long "i" as in "my")', examples: [{ word: 'my', highlight: 'y', position: 'final' }, { word: 'time', highlight: 'i_e', position: 'medial' }, { word: 'sky', highlight: 'y', position: 'final' }] },
+          { symbol: 'aʊ', name: 'diphthong (open front to close back)', description: 'Tongue starts low, glides high and back with lip rounding', examples: [{ word: 'now', highlight: 'ow', position: 'final' }, { word: 'house', highlight: 'ou', position: 'medial' }, { word: 'cow', highlight: 'ow', position: 'final' }] },
+          { symbol: 'ɔɪ', name: 'diphthong (open-mid back to close front)', description: 'Tongue starts back and rounded, glides forward', examples: [{ word: 'boy', highlight: 'oy', position: 'final' }, { word: 'coin', highlight: 'oi', position: 'medial' }, { word: 'joy', highlight: 'oy', position: 'final' }] },
+        ],
+      },
+    };
+
+    // Category labels and colors
+    const categoryInfo = {
+      stops: { label: 'Stops (Plosives)', color: '#e63946', description: 'Complete closure, then release of air' },
+      fricatives: { label: 'Fricatives', color: '#f4a261', description: 'Air forced through narrow channel' },
+      affricates: { label: 'Affricates', color: '#e9c46a', description: 'Stop + fricative combined' },
+      nasals: { label: 'Nasals', color: '#2a9d8f', description: 'Air flows through the nose' },
+      liquids: { label: 'Liquids', color: '#264653', description: 'Air flows around tongue' },
+      glides: { label: 'Glides (Semivowels)', color: '#8338ec', description: 'Quick movement to next sound' },
+      front: { label: 'Front Vowels', color: '#ff6b6b', description: 'Tongue positioned forward' },
+      central: { label: 'Central Vowels', color: '#4ecdc4', description: 'Tongue in center position' },
+      back: { label: 'Back Vowels', color: '#45b7d1', description: 'Tongue positioned back' },
+      diphthongs: { label: 'Diphthongs', color: '#96ceb4', description: 'Vowel sound that glides' },
+    };
+
+    // Highlight the target sound in the word
+    const HighlightedWord = ({ word, highlight }) => {
+      if (!highlight || highlight === '' || word === '—') {
+        return <span className="text-gray-400 italic">{word}</span>;
+      }
+      
+      // Handle special case for split digraphs like "a_e"
+      if (highlight.includes('_')) {
+        const [first, second] = highlight.split('_');
+        const regex = new RegExp(`(${first})(.+)(${second})`, 'i');
+        const match = word.match(regex);
+        if (match) {
+          const beforeIndex = word.indexOf(match[1]);
+          const before = word.slice(0, beforeIndex);
+          const afterIndex = word.lastIndexOf(match[3]) + match[3].length;
+          const after = word.slice(afterIndex);
+          return (
+            <span>
+              {before}
+              <span className="highlighted-sound">{match[1]}</span>
+              {match[2]}
+              <span className="highlighted-sound">{match[3]}</span>
+              {after}
+            </span>
+          );
+        }
+      }
+      
+      const lowerWord = word.toLowerCase();
+      const lowerHighlight = highlight.toLowerCase();
+      const index = lowerWord.indexOf(lowerHighlight);
+      
+      if (index === -1) {
+        return <span>{word}</span>;
+      }
+      
+      const before = word.slice(0, index);
+      const match = word.slice(index, index + highlight.length);
+      const after = word.slice(index + highlight.length);
+      
+      return (
+        <span>
+          {before}
+          <span className="highlighted-sound">{match}</span>
+          {after}
+        </span>
+      );
+    };
+
+    // Individual phoneme card
+    const PhonemeCard = ({ phoneme, category, isExpanded, onToggle, isQuizMode, showAnswer }) => {
+      const catInfo = categoryInfo[category];
+      
+      return (
+        <div 
+          className={`phoneme-card ${isExpanded ? 'expanded' : ''}`}
+          onClick={onToggle}
+          style={{ '--accent-color': catInfo.color }}
+        >
+          <div className="card-header">
+            <div className="symbol-container">
+              <span className="ipa-symbol">/{phoneme.symbol}/</span>
+            </div>
+            {!isQuizMode && (
+              <div className="phoneme-name">{phoneme.name}</div>
+            )}
+            {isQuizMode && showAnswer && (
+              <div className="phoneme-name">{phoneme.name}</div>
+            )}
+            {isQuizMode && !showAnswer && (
+              <div className="phoneme-name quiz-hidden">Click to reveal</div>
+            )}
+          </div>
+          
+          {(isExpanded || !isQuizMode) && (
+            <div className="card-body">
+              <p className="description">{phoneme.description}</p>
+              
+              <div className="examples-section">
+                <div className="examples-label">Examples:</div>
+                <div className="examples-grid">
+                  {phoneme.examples.map((ex, i) => (
+                    <div key={i} className="example-item">
+                      <HighlightedWord word={ex.word} highlight={ex.highlight} />
+                      <span className="position-tag">{ex.position}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
+          
+          <div className="card-accent" style={{ backgroundColor: catInfo.color }}></div>
+        </div>
+      );
+    };
+
+    // Category section
+    const CategorySection = ({ title, description, phonemes, category, expandedCards, toggleCard, isQuizMode, revealedCards }) => {
+      const catInfo = categoryInfo[category];
+      
+      return (
+        <div className="category-section">
+          <div className="category-header" style={{ '--cat-color': catInfo.color }}>
+            <div className="category-marker" style={{ backgroundColor: catInfo.color }}></div>
+            <div className="category-info">
+              <h3 className="category-title">{catInfo.label}</h3>
+              <p className="category-description">{catInfo.description}</p>
+            </div>
+            <div className="phoneme-count">{phonemes.length} sounds</div>
+          </div>
+          
+          <div className="phoneme-grid">
+            {phonemes.map((phoneme, index) => (
+              <PhonemeCard
+                key={phoneme.symbol}
+                phoneme={phoneme}
+                category={category}
+                isExpanded={expandedCards.has(`${category}-${index}`)}
+                onToggle={() => toggleCard(`${category}-${index}`)}
+                isQuizMode={isQuizMode}
+                showAnswer={revealedCards.has(`${category}-${index}`)}
+              />
+            ))}
+          </div>
+        </div>
+      );
+    };
+
+    // Quiz component
+    const QuizMode = ({ allPhonemes, onExit }) => {
+      const [currentIndex, setCurrentIndex] = useState(0);
+      const [showAnswer, setShowAnswer] = useState(false);
+      const [score, setScore] = useState({ correct: 0, total: 0 });
+      const [quizType, setQuizType] = useState('symbol-to-sound');
+      
+      const shuffledPhonemes = useMemo(() => {
+        return [...allPhonemes].sort(() => Math.random() - 0.5);
+      }, []);
+      
+      const currentPhoneme = shuffledPhonemes[currentIndex];
+      
+      const handleNext = (wasCorrect) => {
+        setScore(prev => ({
+          correct: prev.correct + (wasCorrect ? 1 : 0),
+          total: prev.total + 1
+        }));
+        setShowAnswer(false);
+        if (currentIndex < shuffledPhonemes.length - 1) {
+          setCurrentIndex(prev => prev + 1);
+        }
+      };
+      
+      const resetQuiz = () => {
+        setCurrentIndex(0);
+        setShowAnswer(false);
+        setScore({ correct: 0, total: 0 });
+      };
+      
+      if (currentIndex >= shuffledPhonemes.length - 1 && score.total > 0) {
+        return (
+          <div className="quiz-complete">
+            <div className="quiz-complete-card">
+              <div className="trophy">🎉</div>
+              <h2>Quiz Complete!</h2>
+              <div className="final-score">
+                <span className="score-number">{score.correct}</span>
+                <span className="score-divider">/</span>
+                <span className="score-total">{score.total}</span>
+              </div>
+              <p className="score-percentage">
+                {Math.round((score.correct / score.total) * 100)}% correct
+              </p>
+              <div className="quiz-actions">
+                <button onClick={resetQuiz} className="btn btn-primary">Try Again</button>
+                <button onClick={onExit} className="btn btn-secondary">Back to Study</button>
+              </div>
+            </div>
+          </div>
+        );
+      }
+      
+      return (
+        <div className="quiz-container">
+          <div className="quiz-header">
+            <div className="quiz-progress">
+              <div className="progress-bar">
+                <div 
+                  className="progress-fill" 
+                  style={{ width: `${(currentIndex / shuffledPhonemes.length) * 100}%` }}
+                ></div>
+              </div>
+              <span className="progress-text">{currentIndex + 1} / {shuffledPhonemes.length}</span>
+            </div>
+            <div className="quiz-score">Score: {score.correct}/{score.total}</div>
+            <button onClick={onExit} className="btn btn-ghost">Exit Quiz</button>
+          </div>
+          
+          <div className="quiz-type-toggle">
+            <button 
+              className={`toggle-btn ${quizType === 'symbol-to-sound' ? 'active' : ''}`}
+              onClick={() => setQuizType('symbol-to-sound')}
+            >
+              Symbol → Sound
+            </button>
+            <button 
+              className={`toggle-btn ${quizType === 'example-to-symbol' ? 'active' : ''}`}
+              onClick={() => setQuizType('example-to-symbol')}
+            >
+              Word → Symbol
+            </button>
+          </div>
+          
+          <div className="quiz-card">
+            {quizType === 'symbol-to-sound' ? (
+              <>
+                <div className="quiz-prompt">
+                  <span className="quiz-label">What sound does this symbol represent?</span>
+                  <div className="quiz-symbol">/{currentPhoneme.symbol}/</div>
+                </div>
+                
+                {showAnswer && (
+                  <div className="quiz-answer">
+                    <h4>{currentPhoneme.name}</h4>
+                    <p>{currentPhoneme.description}</p>
+                    <div className="quiz-examples">
+                      {currentPhoneme.examples.filter(e => e.word !== '—').slice(0, 2).map((ex, i) => (
+                        <span key={i} className="quiz-example">
+                          <HighlightedWord word={ex.word} highlight={ex.highlight} />
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </>
+            ) : (
+              <>
+                <div className="quiz-prompt">
+                  <span className="quiz-label">What IPA symbol represents the highlighted sound?</span>
+                  <div className="quiz-word">
+                    <HighlightedWord 
+                      word={currentPhoneme.examples[0]?.word || ''} 
+                      highlight={currentPhoneme.examples[0]?.highlight || ''} 
+                    />
+                  </div>
+                </div>
+                
+                {showAnswer && (
+                  <div className="quiz-answer">
+                    <div className="revealed-symbol">/{currentPhoneme.symbol}/</div>
+                    <h4>{currentPhoneme.name}</h4>
+                    <p>{currentPhoneme.description}</p>
+                  </div>
+                )}
+              </>
+            )}
+            
+            <div className="quiz-buttons">
+              {!showAnswer ? (
+                <button onClick={() => setShowAnswer(true)} className="btn btn-reveal">
+                  Reveal Answer
+                </button>
+              ) : (
+                <>
+                  <button onClick={() => handleNext(false)} className="btn btn-incorrect">
+                    ✗ Didn't Know
+                  </button>
+                  <button onClick={() => handleNext(true)} className="btn btn-correct">
+                    ✓ Got It
+                  </button>
+                </>
+              )}
+            </div>
+          </div>
+        </div>
+      );
+    };
+
+    // Search/filter functionality
+    const SearchBar = ({ searchTerm, setSearchTerm, activeFilter, setActiveFilter }) => {
+      return (
+        <div className="search-filter-bar">
+          <div className="search-input-container">
+            <svg className="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <circle cx="11" cy="11" r="8"></circle>
+              <path d="m21 21-4.35-4.35"></path>
+            </svg>
+            <input
+              type="text"
+              placeholder="Search by symbol, name, or example word..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="search-input"
+            />
+            {searchTerm && (
+              <button className="clear-search" onClick={() => setSearchTerm('')}>×</button>
+            )}
+          </div>
+          
+          <div className="filter-buttons">
+            <button 
+              className={`filter-btn ${activeFilter === 'all' ? 'active' : ''}`}
+              onClick={() => setActiveFilter('all')}
+            >
+              All
+            </button>
+            <button 
+              className={`filter-btn ${activeFilter === 'consonants' ? 'active' : ''}`}
+              onClick={() => setActiveFilter('consonants')}
+            >
+              Consonants
+            </button>
+            <button 
+              className={`filter-btn ${activeFilter === 'vowels' ? 'active' : ''}`}
+              onClick={() => setActiveFilter('vowels')}
+            >
+              Vowels
+            </button>
+          </div>
+        </div>
+      );
+    };
+
+    // Main App
+    function IPALearningApp() {
+      const [expandedCards, setExpandedCards] = useState(new Set());
+      const [revealedCards, setRevealedCards] = useState(new Set());
+      const [isQuizMode, setIsQuizMode] = useState(false);
+      const [searchTerm, setSearchTerm] = useState('');
+      const [activeFilter, setActiveFilter] = useState('all');
+      const [activeTab, setActiveTab] = useState('learn');
+      
+      const toggleCard = (cardId) => {
+        setExpandedCards(prev => {
+          const newSet = new Set(prev);
+          if (newSet.has(cardId)) {
+            newSet.delete(cardId);
+          } else {
+            newSet.add(cardId);
+          }
+          return newSet;
+        });
+        setRevealedCards(prev => {
+          const newSet = new Set(prev);
+          newSet.add(cardId);
+          return newSet;
+        });
+      };
+      
+      // Flatten all phonemes for quiz and search
+      const allPhonemes = useMemo(() => {
+        const phonemes = [];
+        Object.entries(ipaData.consonants).forEach(([category, items]) => {
+          items.forEach(p => phonemes.push({ ...p, type: 'consonant', category }));
+        });
+        Object.entries(ipaData.vowels).forEach(([category, items]) => {
+          items.forEach(p => phonemes.push({ ...p, type: 'vowel', category }));
+        });
+        return phonemes;
+      }, []);
+      
+      // Filter phonemes based on search and filter
+      const filteredData = useMemo(() => {
+        const matchesSearch = (phoneme) => {
+          if (!searchTerm) return true;
+          const term = searchTerm.toLowerCase();
+          return (
+            phoneme.symbol.toLowerCase().includes(term) ||
+            phoneme.name.toLowerCase().includes(term) ||
+            phoneme.description.toLowerCase().includes(term) ||
+            phoneme.examples.some(ex => ex.word.toLowerCase().includes(term))
+          );
+        };
+        
+        const filterCategory = (items) => items.filter(matchesSearch);
+        
+        const consonants = {};
+        const vowels = {};
+        
+        if (activeFilter === 'all' || activeFilter === 'consonants') {
+          Object.entries(ipaData.consonants).forEach(([cat, items]) => {
+            const filtered = filterCategory(items);
+            if (filtered.length > 0) consonants[cat] = filtered;
+          });
+        }
+        
+        if (activeFilter === 'all' || activeFilter === 'vowels') {
+          Object.entries(ipaData.vowels).forEach(([cat, items]) => {
+            const filtered = filterCategory(items);
+            if (filtered.length > 0) vowels[cat] = filtered;
+          });
+        }
+        
+        return { consonants, vowels };
+      }, [searchTerm, activeFilter]);
+      
+      const totalConsonants = Object.values(ipaData.consonants).flat().length;
+      const totalVowels = Object.values(ipaData.vowels).flat().length;
+      
+      if (isQuizMode) {
+        return (
+          <div className="app-container">
+            <QuizMode allPhonemes={allPhonemes} onExit={() => setIsQuizMode(false)} />
+          </div>
+        );
+      }
+      
+      return (
+        <div className="app-container">
+          <header className="app-header">
+            <div className="header-content">
+              <div className="logo-section">
+                <div className="logo">
+                  <span className="logo-bracket">[</span>
+                  <span className="logo-symbol">aɪ</span>
+                  <span className="logo-bracket">]</span>
+                  <span className="logo-text">PA</span>
+                </div>
+                <h1 className="app-title">International Phonetic Alphabet</h1>
+                <p className="app-subtitle">General American English · {totalConsonants + totalVowels} Sounds</p>
+              </div>
+              
+              <nav className="header-nav">
+                <button 
+                  className={`nav-btn ${activeTab === 'learn' ? 'active' : ''}`}
+                  onClick={() => setActiveTab('learn')}
+                >
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                  </svg>
+                  Learn
+                </button>
+                <button 
+                  className={`nav-btn ${activeTab === 'chart' ? 'active' : ''}`}
+                  onClick={() => setActiveTab('chart')}
+                >
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <rect x="3" y="3" width="7" height="7"></rect>
+                    <rect x="14" y="3" width="7" height="7"></rect>
+                    <rect x="14" y="14" width="7" height="7"></rect>
+                    <rect x="3" y="14" width="7" height="7"></rect>
+                  </svg>
+                  Quick Chart
+                </button>
+                <button 
+                  className="nav-btn quiz-btn"
+                  onClick={() => setIsQuizMode(true)}
+                >
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                    <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                  </svg>
+                  Quiz Me
+                </button>
+              </nav>
+            </div>
+          </header>
+          
+          <main className="main-content">
+            {activeTab === 'learn' && (
+              <>
+                <SearchBar 
+                  searchTerm={searchTerm}
+                  setSearchTerm={setSearchTerm}
+                  activeFilter={activeFilter}
+                  setActiveFilter={setActiveFilter}
+                />
+                
+                <div className="stats-bar">
+                  <div className="stat">
+                    <span className="stat-number">{totalConsonants}</span>
+                    <span className="stat-label">Consonants</span>
+                  </div>
+                  <div className="stat-divider"></div>
+                  <div className="stat">
+                    <span className="stat-number">{totalVowels}</span>
+                    <span className="stat-label">Vowels</span>
+                  </div>
+                  <div className="stat-divider"></div>
+                  <div className="stat">
+                    <span className="stat-number">{totalConsonants + totalVowels}</span>
+                    <span className="stat-label">Total Phonemes</span>
+                  </div>
+                </div>
+                
+                {Object.keys(filteredData.consonants).length > 0 && (
+                  <section className="phoneme-section">
+                    <div className="section-header">
+                      <h2 className="section-title">Consonants</h2>
+                      <p className="section-description">Sounds produced with partial or complete obstruction of airflow</p>
+                    </div>
+                    
+                    {Object.entries(filteredData.consonants).map(([category, phonemes]) => (
+                      <CategorySection
+                        key={category}
+                        title={categoryInfo[category].label}
+                        description={categoryInfo[category].description}
+                        phonemes={phonemes}
+                        category={category}
+                        expandedCards={expandedCards}
+                        toggleCard={toggleCard}
+                        isQuizMode={false}
+                        revealedCards={revealedCards}
+                      />
+                    ))}
+                  </section>
+                )}
+                
+                {Object.keys(filteredData.vowels).length > 0 && (
+                  <section className="phoneme-section">
+                    <div className="section-header">
+                      <h2 className="section-title">Vowels</h2>
+                      <p className="section-description">Sounds produced with open vocal tract</p>
+                    </div>
+                    
+                    {Object.entries(filteredData.vowels).map(([category, phonemes]) => (
+                      <CategorySection
+                        key={category}
+                        title={categoryInfo[category].label}
+                        description={categoryInfo[category].description}
+                        phonemes={phonemes}
+                        category={category}
+                        expandedCards={expandedCards}
+                        toggleCard={toggleCard}
+                        isQuizMode={false}
+                        revealedCards={revealedCards}
+                      />
+                    ))}
+                  </section>
+                )}
+                
+                {Object.keys(filteredData.consonants).length === 0 && 
+                 Object.keys(filteredData.vowels).length === 0 && (
+                  <div className="no-results">
+                    <div className="no-results-icon">🔍</div>
+                    <h3>No matches found</h3>
+                    <p>Try a different search term or filter</p>
+                  </div>
+                )}
+              </>
+            )}
+            
+            {activeTab === 'chart' && (
+              <div className="quick-chart">
+                <div className="chart-section">
+                  <h3 className="chart-title">Consonants</h3>
+                  <div className="chart-grid consonant-chart">
+                    {Object.entries(ipaData.consonants).map(([category, phonemes]) => (
+                      <div key={category} className="chart-category">
+                        <div 
+                          className="chart-category-label"
+                          style={{ backgroundColor: categoryInfo[category].color }}
+                        >
+                          {categoryInfo[category].label}
+                        </div>
+                        <div className="chart-symbols">
+                          {phonemes.map(p => (
+                            <div key={p.symbol} className="chart-symbol" title={p.name}>
+                              <span className="symbol">/{p.symbol}/</span>
+                              <span className="example">{p.examples[0]?.word}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                
+                <div className="chart-section">
+                  <h3 className="chart-title">Vowels</h3>
+                  <div className="chart-grid vowel-chart">
+                    {Object.entries(ipaData.vowels).map(([category, phonemes]) => (
+                      <div key={category} className="chart-category">
+                        <div 
+                          className="chart-category-label"
+                          style={{ backgroundColor: categoryInfo[category].color }}
+                        >
+                          {categoryInfo[category].label}
+                        </div>
+                        <div className="chart-symbols">
+                          {phonemes.map(p => (
+                            <div key={p.symbol} className="chart-symbol" title={p.name}>
+                              <span className="symbol">/{p.symbol}/</span>
+                              <span className="example">{p.examples[0]?.word}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                
+                <div className="vowel-trapezoid">
+                  <h3 className="chart-title">Vowel Chart (Mouth Position)</h3>
+                  <div className="trapezoid-container">
+                    <svg viewBox="0 0 400 300" className="trapezoid-svg">
+                      {/* Trapezoid outline */}
+                      <path d="M 80 40 L 320 40 L 360 260 L 40 260 Z" fill="none" stroke="#333" strokeWidth="2"/>
+                      
+                      {/* Grid lines */}
+                      <line x1="80" y1="40" x2="40" y2="260" stroke="#ddd" strokeWidth="1"/>
+                      <line x1="200" y1="40" x2="200" y2="260" stroke="#ddd" strokeWidth="1"/>
+                      <line x1="320" y1="40" x2="360" y2="260" stroke="#ddd" strokeWidth="1"/>
+                      <line x1="80" y1="113" x2="340" y2="113" stroke="#ddd" strokeWidth="1"/>
+                      <line x1="60" y1="186" x2="350" y2="186" stroke="#ddd" strokeWidth="1"/>
+                      
+                      {/* Labels */}
+                      <text x="100" y="25" textAnchor="middle" className="chart-label">Front</text>
+                      <text x="200" y="25" textAnchor="middle" className="chart-label">Central</text>
+                      <text x="300" y="25" textAnchor="middle" className="chart-label">Back</text>
+                      <text x="20" y="50" textAnchor="middle" className="chart-label-side">Close</text>
+                      <text x="20" y="150" textAnchor="middle" className="chart-label-side">Mid</text>
+                      <text x="20" y="250" textAnchor="middle" className="chart-label-side">Open</text>
+                      
+                      {/* Vowels positioned */}
+                      <g className="vowel-point">
+                        <circle cx="90" cy="50" r="20" fill="#ff6b6b"/>
+                        <text x="90" y="55" textAnchor="middle" fill="white" fontWeight="bold">i</text>
+                      </g>
+                      <g className="vowel-point">
+                        <circle cx="120" cy="80" r="20" fill="#ff6b6b"/>
+                        <text x="120" y="85" textAnchor="middle" fill="white" fontWeight="bold">ɪ</text>
+                      </g>
+                      <g className="vowel-point">
+                        <circle cx="140" cy="130" r="20" fill="#ff6b6b"/>
+                        <text x="140" y="135" textAnchor="middle" fill="white" fontWeight="bold">ɛ</text>
+                      </g>
+                      <g className="vowel-point">
+                        <circle cx="100" cy="220" r="20" fill="#ff6b6b"/>
+                        <text x="100" y="225" textAnchor="middle" fill="white" fontWeight="bold">æ</text>
+                      </g>
+                      <g className="vowel-point">
+                        <circle cx="200" cy="130" r="20" fill="#4ecdc4"/>
+                        <text x="200" y="135" textAnchor="middle" fill="white" fontWeight="bold">ə</text>
+                      </g>
+                      <g className="vowel-point">
+                        <circle cx="220" cy="180" r="20" fill="#4ecdc4"/>
+                        <text x="220" y="185" textAnchor="middle" fill="white" fontWeight="bold">ʌ</text>
+                      </g>
+                      <g className="vowel-point">
+                        <circle cx="310" cy="50" r="20" fill="#45b7d1"/>
+                        <text x="310" y="55" textAnchor="middle" fill="white" fontWeight="bold">u</text>
+                      </g>
+                      <g className="vowel-point">
+                        <circle cx="290" cy="80" r="20" fill="#45b7d1"/>
+                        <text x="290" y="85" textAnchor="middle" fill="white" fontWeight="bold">ʊ</text>
+                      </g>
+                      <g className="vowel-point">
+                        <circle cx="300" cy="150" r="20" fill="#45b7d1"/>
+                        <text x="300" y="155" textAnchor="middle" fill="white" fontWeight="bold">ɔ</text>
+                      </g>
+                      <g className="vowel-point">
+                        <circle cx="320" cy="230" r="20" fill="#45b7d1"/>
+                        <text x="320" y="235" textAnchor="middle" fill="white" fontWeight="bold">ɑ</text>
+                      </g>
+                    </svg>
+                    <p className="trapezoid-note">Position represents tongue placement in mouth (front/back, high/low)</p>
+                  </div>
+                </div>
+              </div>
+            )}
+          </main>
+          
+          <footer className="app-footer">
+            <p>General American English IPA Reference · Interactive Learning Tool</p>
+          </footer>
+        </div>
+      );
+    }
+
+    ReactDOM.render(<IPALearningApp />, document.getElementById('root'));
+  </script>
+</body>
+</html>
