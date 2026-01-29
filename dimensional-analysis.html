@@ -1,325 +1,143 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dimensional Analysis Practice</title>
-    <style>
-        * {
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Segoe UI', system-ui, sans-serif;
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 20px;
-            background: #f5f5f5;
-            color: #333;
-            line-height: 1.6;
-        }
-        
-        h1 {
-            text-align: center;
-            color: #2c3e50;
-            border-bottom: 3px solid #3498db;
-            padding-bottom: 15px;
-        }
-        
-        h2 {
-            color: #2980b9;
-            margin-top: 40px;
-        }
-        
-        h3 {
-            color: #27ae60;
-            cursor: pointer;
-            user-select: none;
-            padding: 10px;
-            background: #e8f6e9;
-            border-radius: 5px;
-            margin: 10px 0;
-        }
-        
-        h3:hover {
-            background: #d4edda;
-        }
-        
-        h3::before {
-            content: '▶ ';
-            font-size: 12px;
-        }
-        
-        h3.open::before {
-            content: '▼ ';
-        }
-        
-        .reference-section {
-            display: none;
-            background: white;
-            padding: 15px;
-            border-radius: 5px;
-            margin-bottom: 10px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-        }
-        
-        .reference-section.show {
-            display: block;
-        }
-        
-        .reference-section ul {
-            columns: 2;
-            column-gap: 30px;
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        
-        .reference-section li {
-            padding: 3px 0;
-            break-inside: avoid;
-        }
-        
-        .problem {
-            background: white;
-            padding: 20px;
-            margin: 15px 0;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        
-        .problem-number {
-            font-weight: bold;
-            color: #3498db;
-            font-size: 1.1em;
-        }
-        
-        .problem-text {
-            margin: 10px 0;
-            font-size: 1.05em;
-        }
-        
-        .conversion-setup {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            gap: 8px;
-            margin: 15px 0;
-            font-size: 1.1em;
-        }
-        
-        .fraction {
-            display: inline-flex;
-            flex-direction: column;
-            align-items: center;
-            margin: 0 5px;
-        }
-        
-        .fraction-num, .fraction-den {
-            padding: 2px 5px;
-        }
-        
-        .fraction-line {
-            width: 100%;
-            height: 2px;
-            background: #333;
-        }
-        
-        .times {
-            font-size: 1.2em;
-            color: #666;
-        }
-        
-        .equals {
-            font-size: 1.2em;
-            color: #666;
-            margin-left: 10px;
-        }
-        
-        input[type="text"] {
-            width: 60px;
-            padding: 5px 8px;
-            border: 2px solid #ddd;
-            border-radius: 4px;
-            text-align: center;
-            font-size: 1em;
-        }
-        
-        input[type="text"]:focus {
-            outline: none;
-            border-color: #3498db;
-        }
-        
-        input.correct {
-            border-color: #27ae60;
-            background: #e8f6e9;
-        }
-        
-        input.incorrect {
-            border-color: #e74c3c;
-            background: #fdeaea;
-        }
-        
-        .answer-input {
-            width: 100px;
-        }
-        
-        .unit-label {
-            color: #666;
-        }
-        
-        .buttons {
-            margin-top: 15px;
-            display: flex;
-            gap: 10px;
-        }
-        
-        button {
-            padding: 8px 16px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 0.95em;
-            transition: background 0.2s;
-        }
-        
-        .check-btn {
-            background: #3498db;
-            color: white;
-        }
-        
-        .check-btn:hover {
-            background: #2980b9;
-        }
-        
-        .show-btn {
-            background: #95a5a6;
-            color: white;
-        }
-        
-        .show-btn:hover {
-            background: #7f8c8d;
-        }
-        
-        .solution {
-            display: none;
-            margin-top: 15px;
-            padding: 15px;
-            background: #fef9e7;
-            border-left: 4px solid #f1c40f;
-            border-radius: 0 5px 5px 0;
-        }
-        
-        .solution.show {
-            display: block;
-        }
-        
-        .solution-label {
-            font-weight: bold;
-            color: #b7950b;
-        }
-        
-        .instructions {
-            background: #e8f4fc;
-            padding: 15px 20px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-        }
-        
-        .instructions ul {
-            margin: 10px 0 0 0;
-            padding-left: 20px;
-        }
-        
-        .tab-container {
-            display: flex;
-            gap: 5px;
-            margin-bottom: 20px;
-        }
-        
-        .tab {
-            padding: 12px 24px;
-            background: #ddd;
-            border: none;
-            border-radius: 8px 8px 0 0;
-            cursor: pointer;
-            font-size: 1em;
-            font-weight: 500;
-        }
-        
-        .tab.active {
-            background: #3498db;
-            color: white;
-        }
-        
-        .tab-content {
-            display: none;
-        }
-        
-        .tab-content.active {
-            display: block;
-        }
-        
-        @media (max-width: 600px) {
-            .reference-section ul {
-                columns: 1;
-            }
-            
-            .conversion-setup {
-                font-size: 0.95em;
-            }
-            
-            input[type="text"] {
-                width: 50px;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dimensional Analysis Practice - Mustafa Abdul Haque</title>
+  <link rel="icon" type="image/svg+xml" href="logos/ICON ONLY Mustafa Abdul Haque (Logo).svg">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Page-specific styles */
+    .reference-section {
+      display: none;
+      background: var(--color-white);
+      padding: 1rem;
+      border-radius: var(--radius-sm);
+      margin-bottom: 0.75rem;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--color-light-gray);
+    }
+
+    .reference-section.show {
+      display: block;
+    }
+
+    .reference-section ul {
+      columns: 2;
+      column-gap: 2rem;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .reference-section li {
+      padding: 0.25rem 0;
+      break-inside: avoid;
+      color: var(--color-dark-green);
+    }
+
+    .conversion-setup input[type="text"] {
+      width: 60px;
+      padding: 0.4rem 0.6rem;
+      text-align: center;
+      font-size: 1rem;
+    }
+
+    .conversion-setup .answer-input {
+      width: 100px;
+    }
+
+    .unit-label {
+      color: var(--color-medium-green);
+      font-weight: 500;
+    }
+
+    .buttons {
+      margin-top: 1rem;
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 600px) {
+      .reference-section ul {
+        columns: 1;
+      }
+
+      .conversion-setup input[type="text"] {
+        width: 50px;
+      }
+    }
+  </style>
 </head>
 <body>
-    <h1>Dimensional Analysis Practice</h1>
-    
-    <div class="instructions">
-        <strong>Instructions:</strong>
-        <ul>
-            <li>Use dimensional analysis (factor-label method) to solve each problem</li>
-            <li>Units in numerator and denominator cancel when they match</li>
-            <li>Arrange conversion factors so unwanted units cancel</li>
-            <li>Click the reference sections below to see conversion factors</li>
-        </ul>
+  <header class="site-header">
+    <div class="header-content">
+      <a href="index.html" class="site-logo">
+        <img src="logos/Mustafa Abdul Haque.svg" alt="Mustafa Abdul Haque">
+      </a>
+      <nav class="site-nav">
+        <a href="index.html">Home</a>
+        <a href="dimensional-analysis.html" class="active">Dimensional Analysis</a>
+        <a href="ipa-learning-app.html">IPA Learning</a>
+      </nav>
     </div>
-    
+  </header>
+
+  <main class="main-content">
+    <div class="page-title">
+      <h1>Dimensional Analysis Practice</h1>
+      <p class="subtitle">Master unit conversions with the factor-label method</p>
+    </div>
+
+    <div class="info-box info-box-primary mb-3">
+      <strong>Instructions:</strong>
+      <ul style="margin-top: 0.5rem; padding-left: 1.25rem;">
+        <li>Use dimensional analysis (factor-label method) to solve each problem</li>
+        <li>Units in numerator and denominator cancel when they match</li>
+        <li>Arrange conversion factors so unwanted units cancel</li>
+        <li>Click the reference sections below to see conversion factors</li>
+      </ul>
+    </div>
+
     <div class="tab-container">
-        <button class="tab active" onclick="showTab('reference')">Reference</button>
-        <button class="tab" onclick="showTab('part1')">Part I: Fill Numbers</button>
-        <button class="tab" onclick="showTab('part2')">Part II: Full Setup</button>
+      <button class="tab active" onclick="showTab('reference')">Reference</button>
+      <button class="tab" onclick="showTab('part1')">Part I: Fill Numbers</button>
+      <button class="tab" onclick="showTab('part2')">Part II: Full Setup</button>
     </div>
-    
+
     <!-- REFERENCE TAB -->
     <div id="reference" class="tab-content active">
-        <div id="reference-sections"></div>
+      <div id="reference-sections"></div>
     </div>
-    
+
     <!-- PART I TAB -->
     <div id="part1" class="tab-content">
+      <div class="section-header">
         <h2>Part I: Fill in the Numbers</h2>
         <p>The units are provided. Fill in the correct numbers to complete each conversion.</p>
-        <div id="part1-problems"></div>
+      </div>
+      <div id="part1-problems"></div>
     </div>
-    
+
     <!-- PART II TAB -->
     <div id="part2" class="tab-content">
+      <div class="section-header">
         <h2>Part II: Set Up the Conversion</h2>
         <p>Fill in both the numbers AND the units for each conversion factor.</p>
-        <div id="part2-problems"></div>
+      </div>
+      <div id="part2-problems"></div>
     </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>Mustafa Abdul Haque - Tutoring Resources</p>
+  </footer>
 
 <script>
 // ============================================================================
 // CONVERSION REFERENCE DATA
 // ============================================================================
-// To add a new category: Add a new object with "title" and "conversions" array
-// Each conversion is a string displayed in the list
-
 const referenceData = [
     {
         title: "Length",
@@ -447,38 +265,10 @@ const referenceData = [
     }
 ];
 
-
 // ============================================================================
-// PART I PROBLEMS - Fill in the Numbers (Units Provided)
+// PART I PROBLEMS
 // ============================================================================
-// 
-// ┌─────────────────────────────────────────────────────────────────────────┐
-// │  HOW TO ADD A NEW PART I PROBLEM:                                       │
-// │                                                                         │
-// │  Copy this template and add it to the array below:                      │
-// │                                                                         │
-// │    {                                                                    │
-// │        question: "Convert X [unit] to [target unit].",                  │
-// │        startValue: "X",                                                 │
-// │        startUnit: "unit",                                               │
-// │        factors: [                                                       │
-// │            { num: "A", numUnit: "unit2", den: "B", denUnit: "unit1" },  │
-// │            // Add more factors for multi-step conversions               │
-// │        ],                                                               │
-// │        finalUnit: "target unit",                                        │
-// │        answer: "result",                                                │
-// │        explanation: "X × A ÷ B = result"                                │
-// │    }                                                                    │
-// │                                                                         │
-// │  The "factors" array defines each conversion fraction:                  │
-// │    - num: number in numerator                                           │
-// │    - numUnit: unit in numerator                                         │
-// │    - den: number in denominator                                         │
-// │    - denUnit: unit in denominator                                       │
-// └─────────────────────────────────────────────────────────────────────────┘
-
 const part1Problems = [
-    // -------- EXAMPLE: One-step conversion --------
     {
         question: "Convert 5.2 kilometers to meters.",
         startValue: "5.2",
@@ -490,8 +280,6 @@ const part1Problems = [
         answer: "5200",
         explanation: "5.2 × 1000 = 5200"
     },
-    
-    // -------- EXAMPLE: Two-step conversion --------
     {
         question: "Convert 6 feet to centimeters.",
         startValue: "6",
@@ -504,8 +292,6 @@ const part1Problems = [
         answer: "182.88",
         explanation: "6 × 12 × 2.54 = 182.88"
     },
-    
-    // -------- MORE PROBLEMS --------
     {
         question: "Convert 3500 grams to kilograms.",
         startValue: "3500",
@@ -657,43 +443,12 @@ const part1Problems = [
         answer: "0.201",
         explanation: "150 ÷ 746 = 0.201"
     }
-    
-    // ┌─────────────────────────────────────────────────────────────────────┐
-    // │  ADD MORE PART I PROBLEMS HERE                                      │
-    // │  Just add a comma after the last problem and paste a new one        │
-    // └─────────────────────────────────────────────────────────────────────┘
 ];
 
-
 // ============================================================================
-// PART II PROBLEMS - Fill in Numbers AND Units
+// PART II PROBLEMS
 // ============================================================================
-//
-// ┌─────────────────────────────────────────────────────────────────────────┐
-// │  HOW TO ADD A NEW PART II PROBLEM:                                      │
-// │                                                                         │
-// │  Copy this template and add it to the array below:                      │
-// │                                                                         │
-// │    {                                                                    │
-// │        question: "Convert X [unit] to [target unit].",                  │
-// │        startValue: "X",                                                 │
-// │        startUnit: "unit",                                               │
-// │        numFactors: 2,  // How many blank fractions to show              │
-// │        finalUnit: "target unit",                                        │
-// │        answer: "result",                                                │
-// │        solutionFactors: [                                               │
-// │            { num: "A", numUnit: "u2", den: "B", denUnit: "u1" },        │
-// │            { num: "C", numUnit: "u3", den: "D", denUnit: "u2" }         │
-// │        ],                                                               │
-// │        explanation: "X × A/B × C/D = result"                            │
-// │    }                                                                    │
-// │                                                                         │
-// │  The numFactors determines how many blank conversion fractions appear.  │
-// │  The solutionFactors show the correct answer when revealed.             │
-// └─────────────────────────────────────────────────────────────────────────┘
-
 const part2Problems = [
-    // -------- EXAMPLE: Two-step conversion --------
     {
         question: "Convert 8.5 miles to meters.",
         startValue: "8.5",
@@ -707,8 +462,6 @@ const part2Problems = [
         ],
         explanation: "8.5 × 1.609 × 1000 = 13,677"
     },
-    
-    // -------- EXAMPLE: One-step conversion --------
     {
         question: "Convert 175 pounds to kilograms.",
         startValue: "175",
@@ -721,8 +474,6 @@ const part2Problems = [
         ],
         explanation: "175 ÷ 2.205 = 79.4"
     },
-    
-    // -------- MORE PROBLEMS --------
     {
         question: "Convert 3 weeks to hours.",
         startValue: "3",
@@ -850,22 +601,17 @@ const part2Problems = [
         ],
         explanation: "12 × 14 ÷ 2.205 = 76.2"
     }
-    
-    // ┌─────────────────────────────────────────────────────────────────────┐
-    // │  ADD MORE PART II PROBLEMS HERE                                     │
-    // │  Just add a comma after the last problem and paste a new one        │
-    // └─────────────────────────────────────────────────────────────────────┘
 ];
 
-
 // ============================================================================
-// RENDERING FUNCTIONS (You don't need to modify below this line)
+// RENDERING FUNCTIONS
 // ============================================================================
-
 function renderReference() {
     const container = document.getElementById('reference-sections');
     container.innerHTML = referenceData.map((section, idx) => `
-        <h3 onclick="toggleSection(${idx})">${section.title}</h3>
+        <div class="collapsible-header" onclick="toggleSection(${idx})" id="header-${idx}">
+            <h3>${section.title}</h3>
+        </div>
         <div id="ref-section-${idx}" class="reference-section">
             <ul>
                 ${section.conversions.map(c => `<li>${c}</li>`).join('')}
@@ -876,7 +622,7 @@ function renderReference() {
 
 function toggleSection(idx) {
     const section = document.getElementById(`ref-section-${idx}`);
-    const header = section.previousElementSibling;
+    const header = document.getElementById(`header-${idx}`);
     section.classList.toggle('show');
     header.classList.toggle('open');
 }
@@ -896,9 +642,9 @@ function renderPart1() {
                 </div>
             </div>
         `).join('');
-        
+
         return `
-            <div class="problem">
+            <div class="problem card">
                 <span class="problem-number">${idx + 1}.</span>
                 <span class="problem-text">${p.question}</span>
                 <div class="conversion-setup">
@@ -909,8 +655,8 @@ function renderPart1() {
                     <span class="unit-label">${p.finalUnit}</span>
                 </div>
                 <div class="buttons">
-                    <button class="check-btn" onclick="checkPart1(${idx})">Check</button>
-                    <button class="show-btn" onclick="showSolution('p1-sol-${idx}')">Show Solution</button>
+                    <button class="btn btn-primary" onclick="checkPart1(${idx})">Check</button>
+                    <button class="btn btn-secondary" onclick="showSolution('p1-sol-${idx}')">Show Solution</button>
                 </div>
                 <div id="p1-sol-${idx}" class="solution">
                     <span class="solution-label">Solution:</span><br>
@@ -931,24 +677,24 @@ function renderPart2() {
                 <span class="times">×</span>
                 <div class="fraction">
                     <div class="fraction-num">
-                        <input type="text" id="p2-${idx}-f${i}-num" placeholder="#"> 
+                        <input type="text" id="p2-${idx}-f${i}-num" placeholder="#">
                         <input type="text" id="p2-${idx}-f${i}-numU" placeholder="unit">
                     </div>
                     <div class="fraction-line"></div>
                     <div class="fraction-den">
-                        <input type="text" id="p2-${idx}-f${i}-den" placeholder="#"> 
+                        <input type="text" id="p2-${idx}-f${i}-den" placeholder="#">
                         <input type="text" id="p2-${idx}-f${i}-denU" placeholder="unit">
                     </div>
                 </div>
             `;
         }
-        
-        const solutionSetup = p.solutionFactors.map(f => 
+
+        const solutionSetup = p.solutionFactors.map(f =>
             `× (${f.num} ${f.numUnit} / ${f.den} ${f.denUnit})`
         ).join(' ');
-        
+
         return `
-            <div class="problem">
+            <div class="problem card">
                 <span class="problem-number">${idx + 1}.</span>
                 <span class="problem-text">${p.question}</span>
                 <div class="conversion-setup">
@@ -959,8 +705,8 @@ function renderPart2() {
                     <span class="unit-label">${p.finalUnit}</span>
                 </div>
                 <div class="buttons">
-                    <button class="check-btn" onclick="checkPart2Answer(${idx})">Check Answer</button>
-                    <button class="show-btn" onclick="showSolution('p2-sol-${idx}')">Show Solution</button>
+                    <button class="btn btn-primary" onclick="checkPart2Answer(${idx})">Check Answer</button>
+                    <button class="btn btn-secondary" onclick="showSolution('p2-sol-${idx}')">Show Solution</button>
                 </div>
                 <div id="p2-sol-${idx}" class="solution">
                     <span class="solution-label">Solution:</span><br>
@@ -974,14 +720,10 @@ function renderPart2() {
 
 function checkPart1(idx) {
     const p = part1Problems[idx];
-    
-    // Check each factor
     p.factors.forEach((f, fIdx) => {
         checkInput(`p1-${idx}-f${fIdx}-num`, f.num);
         checkInput(`p1-${idx}-f${fIdx}-den`, f.den);
     });
-    
-    // Check final answer
     checkInput(`p1-${idx}-ans`, p.answer);
 }
 
@@ -994,16 +736,14 @@ function checkInput(id, correctAnswer) {
     const input = document.getElementById(id);
     const userValue = input.value.trim().toLowerCase();
     const correct = String(correctAnswer).toLowerCase();
-    
-    // Allow for some flexibility (π vs pi, slight rounding differences)
+
     let isCorrect = false;
-    
+
     if (userValue === correct) {
         isCorrect = true;
     } else if (correct === 'π' && (userValue === 'pi' || userValue === '3.14' || userValue === '3.1416')) {
         isCorrect = true;
     } else {
-        // Check if numbers are close (within 1%)
         const userNum = parseFloat(userValue.replace(/,/g, ''));
         const correctNum = parseFloat(correct.replace(/,/g, ''));
         if (!isNaN(userNum) && !isNaN(correctNum)) {
@@ -1011,7 +751,7 @@ function checkInput(id, correctAnswer) {
             if (diff < 0.01) isCorrect = true;
         }
     }
-    
+
     input.classList.remove('correct', 'incorrect');
     input.classList.add(isCorrect ? 'correct' : 'incorrect');
 }
@@ -1022,11 +762,9 @@ function showSolution(id) {
 }
 
 function showTab(tabId) {
-    // Hide all tabs
     document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
     document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-    
-    // Show selected tab
+
     document.getElementById(tabId).classList.add('active');
     event.target.classList.add('active');
 }
@@ -1036,6 +774,5 @@ renderReference();
 renderPart1();
 renderPart2();
 </script>
-
 </body>
 </html>

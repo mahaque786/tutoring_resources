@@ -1,48 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Sci-Math Tutor</title>
-<style>
-  body { font-family: Arial, sans-serif; background:#f8f8f8; padding:40px; }
-  h1 { text-align:center; }
-  .container { max-width:600px; margin:auto; }
-  .link-box {
-    background:#fff; padding:15px; margin:10px 0;
-    border-radius:8px; border:1px solid #ccc;
-  }
-  a { text-decoration:none; font-size:18px; color:#0070c9; }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tutoring Resources - Mustafa Abdul Haque</title>
+  <link rel="icon" type="image/svg+xml" href="logos/ICON ONLY Mustafa Abdul Haque (Logo).svg">
+  <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
-  <h1>Sci-Math Tutor</h1>
-  <div class="container">
+  <header class="site-header">
+    <div class="header-content">
+      <a href="index.html" class="site-logo">
+        <img src="logos/Mustafa Abdul Haque.svg" alt="Mustafa Abdul Haque">
+      </a>
+      <nav class="site-nav">
+        <a href="index.html" class="active">Home</a>
+        <a href="dimensional-analysis.html">Dimensional Analysis</a>
+        <a href="ipa-learning-app.html">IPA Learning</a>
+      </nav>
+    </div>
+  </header>
 
-    <div class="link-box">
-      <a href="dimensional-analysis.html">Dimensional Analysis</a>
+  <main class="main-content">
+    <div class="page-title">
+      <h1>Tutoring Resources</h1>
+      <p class="subtitle">Interactive learning tools for science and mathematics</p>
     </div>
 
-    <div class="link-box">
-      <a href="dimensionalanalysiswalkthrough.html">Dimensional Analysis Walkthrough</a>
-    </div>
+    <div class="grid grid-2">
+      <a href="dimensional-analysis.html" class="link-card">
+        <span>Dimensional Analysis Practice</span>
+      </a>
 
-    <div class="link-box">
-      <a href="formula_choices.html">Formula Choices</a>
-    </div>
+      <a href="dimensionalanalysiswalkthrough.html" class="link-card">
+        <span>Dimensional Analysis Walkthrough</span>
+      </a>
 
-    <div class="link-box">
-      <a href="sci-math-tutor.html">Sci-Math Tutor (Interactive)</a>
-    </div>
+      <a href="formula_choices.html" class="link-card">
+        <span>Equation Chooser Trainer</span>
+      </a>
 
-    <div class="link-box">
-      <a href="sci-notation-app.jsx">Scientific Notation App (React/JSX)</a>
-    </div>
+      <a href="sci-math-tutor.html" class="link-card">
+        <span>Scientific Notation Lab</span>
+      </a>
 
-    <div class="link-box">
-      <a href="ipa-learning-app.html">IPA Learning App</a>
+      <a href="ipa-learning-app.html" class="link-card">
+        <span>IPA Learning App</span>
+      </a>
     </div>
+  </main>
 
-  </div>
+  <footer class="site-footer">
+    <p>Mustafa Abdul Haque - Tutoring Resources</p>
+  </footer>
 </body>
 </html>
