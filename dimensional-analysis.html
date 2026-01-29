@@ -262,6 +262,43 @@ const referenceData = [
             "1 GB = 1024 MB",
             "1 TB = 1024 GB"
         ]
+    },
+    {
+        title: "Commodity Pricing",
+        conversions: [
+            "Gold: $65 per gram",
+            "Gold: $2020 per troy oz",
+            "Silver: $0.80 per gram",
+            "Silver: $25 per troy oz",
+            "Platinum: $32 per gram",
+            "Copper: $0.009 per gram",
+            "Copper: $9 per kg",
+            "Aluminum: $2.50 per kg",
+            "1 troy oz = 31.1 g",
+            "1 lb = 14.58 troy oz"
+        ]
+    },
+    {
+        title: "Currency",
+        conversions: [
+            "$1 USD = €0.92 EUR",
+            "$1 USD = £0.79 GBP",
+            "$1 USD = ¥150 JPY",
+            "$1 USD = $1.36 CAD",
+            "$1 USD = $1.53 AUD"
+        ]
+    },
+    {
+        title: "Density",
+        conversions: [
+            "Gold: 19.3 g/cm³",
+            "Silver: 10.5 g/cm³",
+            "Platinum: 21.5 g/cm³",
+            "Water: 1.0 g/mL",
+            "Iron: 7.87 g/cm³",
+            "Aluminum: 2.70 g/cm³",
+            "Lead: 11.3 g/cm³"
+        ]
     }
 ];
 
@@ -442,6 +479,118 @@ const part1Problems = [
         finalUnit: "hp",
         answer: "0.201",
         explanation: "150 ÷ 746 = 0.201"
+    },
+    // ========== NEW DIFFICULT PROBLEMS ==========
+    {
+        question: "How much does 15 grams of gold cost in dollars?",
+        startValue: "15",
+        startUnit: "g gold",
+        factors: [
+            { num: "$65", numUnit: "", den: "1", denUnit: "g gold" }
+        ],
+        finalUnit: "$",
+        answer: "975",
+        explanation: "15 × $65/g = $975"
+    },
+    {
+        question: "Convert 2 troy ounces of silver to grams.",
+        startValue: "2",
+        startUnit: "troy oz",
+        factors: [
+            { num: "31.1", numUnit: "g", den: "1", denUnit: "troy oz" }
+        ],
+        finalUnit: "g",
+        answer: "62.2",
+        explanation: "2 × 31.1 = 62.2"
+    },
+    {
+        question: "A gold bar weighs 500 grams. What is its value in dollars?",
+        startValue: "500",
+        startUnit: "g gold",
+        factors: [
+            { num: "$65", numUnit: "", den: "1", denUnit: "g gold" }
+        ],
+        finalUnit: "$",
+        answer: "32500",
+        explanation: "500 × $65/g = $32,500"
+    },
+    {
+        question: "Convert 100 grams of gold price from dollars to euros (€0.92 per $1).",
+        startValue: "100",
+        startUnit: "g gold",
+        factors: [
+            { num: "$65", numUnit: "", den: "1", denUnit: "g gold" },
+            { num: "€0.92", numUnit: "", den: "$1", denUnit: "" }
+        ],
+        finalUnit: "€",
+        answer: "5980",
+        explanation: "100 × $65/g × €0.92/$1 = €5,980"
+    },
+    {
+        question: "How many grams of silver can you buy with $200?",
+        startValue: "200",
+        startUnit: "$",
+        factors: [
+            { num: "1", numUnit: "g silver", den: "$0.80", denUnit: "" }
+        ],
+        finalUnit: "g silver",
+        answer: "250",
+        explanation: "$200 ÷ $0.80/g = 250 g"
+    },
+    {
+        question: "A copper pipe weighs 2.5 kg. What is its material cost?",
+        startValue: "2.5",
+        startUnit: "kg copper",
+        factors: [
+            { num: "$9", numUnit: "", den: "1", denUnit: "kg copper" }
+        ],
+        finalUnit: "$",
+        answer: "22.5",
+        explanation: "2.5 × $9/kg = $22.50"
+    },
+    {
+        question: "Convert 1 pound of gold to troy ounces.",
+        startValue: "1",
+        startUnit: "lb",
+        factors: [
+            { num: "14.58", numUnit: "troy oz", den: "1", denUnit: "lb" }
+        ],
+        finalUnit: "troy oz",
+        answer: "14.58",
+        explanation: "1 × 14.58 = 14.58"
+    },
+    {
+        question: "What volume does 100 grams of gold occupy? (Density = 19.3 g/cm³)",
+        startValue: "100",
+        startUnit: "g",
+        factors: [
+            { num: "1", numUnit: "cm³", den: "19.3", denUnit: "g" }
+        ],
+        finalUnit: "cm³",
+        answer: "5.18",
+        explanation: "100 ÷ 19.3 = 5.18"
+    },
+    {
+        question: "A silver coin has a volume of 2.5 cm³. What is its mass? (Density = 10.5 g/cm³)",
+        startValue: "2.5",
+        startUnit: "cm³",
+        factors: [
+            { num: "10.5", numUnit: "g", den: "1", denUnit: "cm³" }
+        ],
+        finalUnit: "g",
+        answer: "26.25",
+        explanation: "2.5 × 10.5 = 26.25"
+    },
+    {
+        question: "Convert $500 USD to Japanese Yen (¥150 per $1).",
+        startValue: "500",
+        startUnit: "$",
+        factors: [
+            { num: "¥150", numUnit: "", den: "$1", denUnit: "" }
+        ],
+        finalUnit: "¥",
+        answer: "75000",
+        explanation: "500 × ¥150/$1 = ¥75,000"
     }
 ];
 
@@ -600,6 +749,162 @@ const part2Problems = [
             { num: "1", numUnit: "kg", den: "2.205", denUnit: "lb" }
         ],
         explanation: "12 × 14 ÷ 2.205 = 76.2"
+    },
+    // ========== NEW CHALLENGING PROBLEMS ==========
+    {
+        question: "Calculate the value of 1 pound of gold in dollars. (1 lb = 14.58 troy oz, Gold = $2020/troy oz)",
+        startValue: "1",
+        startUnit: "lb gold",
+        numFactors: 2,
+        finalUnit: "$",
+        answer: "29451.6",
+        solutionFactors: [
+            { num: "14.58", numUnit: "troy oz", den: "1", denUnit: "lb" },
+            { num: "$2020", numUnit: "", den: "1", denUnit: "troy oz" }
+        ],
+        explanation: "1 × 14.58 × $2020 = $29,451.60"
+    },
+    {
+        question: "A jeweler has 50 grams of silver. What is its value in British Pounds? ($0.80/g, £0.79 per $1)",
+        startValue: "50",
+        startUnit: "g silver",
+        numFactors: 2,
+        finalUnit: "£",
+        answer: "31.6",
+        solutionFactors: [
+            { num: "$0.80", numUnit: "", den: "1", denUnit: "g silver" },
+            { num: "£0.79", numUnit: "", den: "$1", denUnit: "" }
+        ],
+        explanation: "50 × $0.80/g × £0.79/$1 = £31.60"
+    },
+    {
+        question: "How many cm³ of gold is worth $10,000? (Gold = $65/g, Density = 19.3 g/cm³)",
+        startValue: "10000",
+        startUnit: "$",
+        numFactors: 2,
+        finalUnit: "cm³",
+        answer: "7.97",
+        solutionFactors: [
+            { num: "1", numUnit: "g gold", den: "$65", denUnit: "" },
+            { num: "1", numUnit: "cm³", den: "19.3", denUnit: "g" }
+        ],
+        explanation: "$10,000 ÷ $65/g ÷ 19.3 g/cm³ = 7.97 cm³"
+    },
+    {
+        question: "A 5 cm³ cube of platinum weighs how many grams? (Platinum density ≈ 21.5 g/cm³)",
+        startValue: "5",
+        startUnit: "cm³",
+        numFactors: 1,
+        finalUnit: "g",
+        answer: "107.5",
+        solutionFactors: [
+            { num: "21.5", numUnit: "g", den: "1", denUnit: "cm³" }
+        ],
+        explanation: "5 × 21.5 = 107.5 g"
+    },
+    {
+        question: "Convert 500 Japanese Yen to Canadian Dollars. (¥150 = $1 USD, $1 USD = $1.36 CAD)",
+        startValue: "500",
+        startUnit: "¥",
+        numFactors: 2,
+        finalUnit: "CAD",
+        answer: "4.53",
+        solutionFactors: [
+            { num: "$1", numUnit: "USD", den: "¥150", denUnit: "" },
+            { num: "$1.36", numUnit: "CAD", den: "$1", denUnit: "USD" }
+        ],
+        explanation: "¥500 ÷ ¥150/$1 × $1.36 CAD/$1 = $4.53 CAD"
+    },
+    {
+        question: "A copper wire is 250 meters long and has a mass of 1.2 kg. What is the total material cost? ($9/kg copper)",
+        startValue: "1.2",
+        startUnit: "kg copper",
+        numFactors: 1,
+        finalUnit: "$",
+        answer: "10.8",
+        solutionFactors: [
+            { num: "$9", numUnit: "", den: "1", denUnit: "kg copper" }
+        ],
+        explanation: "1.2 × $9/kg = $10.80"
+    },
+    {
+        question: "How much aluminum (in grams) can you buy for $50 if aluminum costs $2.50 per kg?",
+        startValue: "50",
+        startUnit: "$",
+        numFactors: 2,
+        finalUnit: "g",
+        answer: "20000",
+        solutionFactors: [
+            { num: "1", numUnit: "kg", den: "$2.50", denUnit: "" },
+            { num: "1000", numUnit: "g", den: "1", denUnit: "kg" }
+        ],
+        explanation: "$50 ÷ $2.50/kg × 1000 g/kg = 20,000 g"
+    },
+    {
+        question: "A lead brick has a volume of 500 cm³. What is its mass in pounds? (Lead density = 11.3 g/cm³, 1 lb = 453.592 g)",
+        startValue: "500",
+        startUnit: "cm³",
+        numFactors: 2,
+        finalUnit: "lb",
+        answer: "12.45",
+        solutionFactors: [
+            { num: "11.3", numUnit: "g", den: "1", denUnit: "cm³" },
+            { num: "1", numUnit: "lb", den: "453.592", denUnit: "g" }
+        ],
+        explanation: "500 × 11.3 ÷ 453.592 = 12.45 lb"
+    },
+    {
+        question: "An iron beam weighs 150 kg. What volume does it occupy in liters? (Iron density = 7.87 g/cm³, 1 L = 1000 cm³)",
+        startValue: "150",
+        startUnit: "kg",
+        numFactors: 3,
+        finalUnit: "L",
+        answer: "19.1",
+        solutionFactors: [
+            { num: "1000", numUnit: "g", den: "1", denUnit: "kg" },
+            { num: "1", numUnit: "cm³", den: "7.87", denUnit: "g" },
+            { num: "1", numUnit: "L", den: "1000", denUnit: "cm³" }
+        ],
+        explanation: "150 × 1000 ÷ 7.87 ÷ 1000 = 19.1 L"
+    },
+    {
+        question: "Gold costs $2020 per troy oz. How much is 1 kilogram of gold worth? (1 troy oz = 31.1 g)",
+        startValue: "1",
+        startUnit: "kg gold",
+        numFactors: 2,
+        finalUnit: "$",
+        answer: "64951.8",
+        solutionFactors: [
+            { num: "1000", numUnit: "g", den: "1", denUnit: "kg" },
+            { num: "$2020", numUnit: "", den: "31.1", denUnit: "g" }
+        ],
+        explanation: "1 × 1000 ÷ 31.1 × $2020 = $64,951.77"
+    },
+    {
+        question: "A water tank holds 500 gallons. What is its capacity in cubic meters? (1 gal = 3.785 L, 1 m³ = 1000 L)",
+        startValue: "500",
+        startUnit: "gal",
+        numFactors: 2,
+        finalUnit: "m³",
+        answer: "1.89",
+        solutionFactors: [
+            { num: "3.785", numUnit: "L", den: "1", denUnit: "gal" },
+            { num: "1", numUnit: "m³", den: "1000", denUnit: "L" }
+        ],
+        explanation: "500 × 3.785 ÷ 1000 = 1.89 m³"
+    },
+    {
+        question: "A car travels at 75 mph. How many feet does it travel in 1 second? (1 mi = 5280 ft, 1 hr = 3600 s)",
+        startValue: "75",
+        startUnit: "mi/hr",
+        numFactors: 2,
+        finalUnit: "ft/s",
+        answer: "110",
+        solutionFactors: [
+            { num: "5280", numUnit: "ft", den: "1", denUnit: "mi" },
+            { num: "1", numUnit: "hr", den: "3600", denUnit: "s" }
+        ],
+        explanation: "75 × 5280 ÷ 3600 = 110 ft/s"
     }
 ];
 
