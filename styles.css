@@ -105,6 +105,7 @@ a:hover {
 .site-logo img {
   height: 100%;
   width: auto;
+  filter: drop-shadow(0 0 1px var(--color-white)) drop-shadow(0 0 1px var(--color-white));
 }
 
 .site-nav {
