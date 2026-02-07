@@ -156,6 +156,49 @@ a:hover {
   font-weight: 400;
 }
 
+/* Table of Contents */
+.toc-list {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 1rem;
+}
+
+.toc-list li {
+  margin-bottom: 0.5rem;
+}
+
+.toc-list a {
+  font-weight: 600;
+}
+
+/* Equation Reference */
+.equation-section {
+  margin-bottom: 2.5rem;
+}
+
+.equation-section h3 {
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.equation-block {
+  background: rgba(76, 107, 60, 0.06);
+  border-left: 4px solid var(--color-gold);
+  border-radius: var(--radius-sm);
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.5rem;
+  font-family: 'Times New Roman', serif;
+  font-size: 1.05rem;
+}
+
+.equation-block p {
+  margin-bottom: 0.5rem;
+}
+
+.equation-block p:last-child {
+  margin-bottom: 0;
+}
+
 /* Cards */
 .card {
   background: var(--color-white);
