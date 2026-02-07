@@ -769,7 +769,8 @@ input.incorrect {
   box-shadow: var(--shadow-md);
 }
 
-.pdf-container embed {
+.pdf-container embed,
+.pdf-container object {
   display: block;
   border: none;
 }
