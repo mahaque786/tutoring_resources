@@ -1,0 +1,1830 @@
+{
+  "title": "Chemistry Key Equations — Practice Problem Set",
+  "description": "3 problems per equation: Simple, Unit Conversion, and Multi-Step",
+  "sections": [
+    {
+      "section": "Electrochemistry",
+      "equations": [
+        {
+          "id": "EC1",
+          "equation": "E°_cell = E°_cathode − E°_anode",
+          "problems": [
+            {
+              "difficulty": "simple",
+              "problem": "A galvanic cell uses Cu²⁺/Cu (E° = +0.34 V) as the cathode and Zn²⁺/Zn (E° = −0.76 V) as the anode. Calculate E°_cell.",
+              "answer": "1.10 V"
+            },
+            {
+              "difficulty": "unit_conversion",
+              "problem": "A cell uses Ag⁺/Ag (E° = +0.80 V) as the cathode and Fe²⁺/Fe (E° = −0.44 V) as the anode. Calculate the standard cell potential in millivolts (mV).",
+              "answer": "1240 mV"
+            },
+            {
+              "difficulty": "multi_step",
+              "problem": "Given these standard reduction potentials: Ni²⁺/Ni = −0.26 V, Sn²⁺/Sn = −0.14 V, and Ag⁺/Ag = +0.80 V. Which pair produces the largest E°_cell? Identify the cathode and anode and calculate E°_cell.",
+              "answer": "Ag⁺/Ag (cathode) and Ni²⁺/Ni (anode), E°_cell = 1.06 V"
+            }
+          ]
+        },
+        {
+          "id": "EC2",
+          "equation": "E°_cell = (RT)/(nF) ln K",
+          "problems": [
+            {
+              "difficulty": "simple",
+              "problem": "A cell reaction has K = 1.0 × 10¹⁰ and n = 2 at 298 K. Calculate E°_cell using E° = (0.0257/n) ln K.",
+              "answer": "0.296 V"
+            },
+            {
+              "difficulty": "unit_conversion",
+              "problem": "At 298 K, a 1-electron cell reaction has E°_cell = 0.150 V. Find K. (R = 8.314 J/(mol·K), F = 96485 C/mol.)",
+              "answer": "K ≈ 339"
+            },
+            {
+              "difficulty": "multi_step",
+              "problem": "For 2 Ag⁺(aq) + Cu(s) → 2 Ag(s) + Cu²⁺(aq), E°(Ag⁺/Ag) = +0.80 V and E°(Cu²⁺/Cu) = +0.34 V. Find E°_cell, then calculate K at 298 K.",
+              "answer": "E°_cell = 0.46 V, K ≈ 3.9 × 10¹⁵"
+            }
+          ]
+        },
+        {
+          "id": "EC3",
+          "equation": "E°_cell = (0.0257/n) ln K = (0.0592/n) log K  (at 298 K)",
+          "problems": [
+            {
+              "difficulty": "simple",
+              "problem": "A reaction with n = 1 has K = 1.0 × 10⁶. Find E°_cell using the log form at 298 K.",
+              "answer": "0.355 V"
+            },
+            {
+              "difficulty": "unit_conversion",
+              "problem": "A 3-electron reaction at 25°C has E°_cell = 0.50 V. Find K, then express ln K in kJ/mol using ΔG° = −RT ln K.",
+              "answer": "K ≈ 1.4 × 10²⁵; ΔG° = −144.8 kJ/mol"
+            },
+            {
+              "difficulty": "multi_step",
+              "problem": "For the reaction Zn + Cu²⁺ → Zn²⁺ + Cu, E°_cell = 1.10 V and n = 2. Calculate K at 298 K. Then determine what E°_cell would be needed for K to equal exactly 1.0.",
+              "answer": "K ≈ 1.5 × 10³⁷; E°_cell = 0 V for K = 1"
+            }
+          ]
+        },
+        {
+          "id": "EC4",
+          "equation": "E_cell = E°_cell − (RT)/(nF) ln Q  (Nernst equation)",
+          "problems": [
+            {
+              "difficulty": "simple",
+              "problem": "For a cell with E°_cell = 1.10 V, n = 2, and Q = 1.0 at 298 K, find E_cell.",
+              "answer": "1.10 V (since ln 1 = 0)"
+            },
+            {
+              "difficulty": "unit_conversion",
+              "problem": "A Daniell cell (E° = 1.10 V, n = 2) has [Zn²⁺] = 2.0 M and [Cu²⁺] = 0.010 M at 25°C. Calculate E_cell in both V and mV.",
+              "answer": "E_cell = 1.032 V = 1032 mV"
+            },
+            {
+              "difficulty": "multi_step",
+              "problem": "A concentration cell uses Cu²⁺/Cu electrodes with [Cu²⁺] = 0.0010 M on the anode side and [Cu²⁺] = 1.5 M on the cathode side at 25°C. Calculate E°_cell, Q, then E_cell. (n = 2)",
+              "answer": "E°_cell = 0 V, Q = 0.0010/1.5 = 6.67 × 10⁻⁴, E_cell = 0.094 V"
+            }
+          ]
+        },
+        {
+          "id": "EC5",
+          "equation": "E_cell = E°_cell − (0.0592/n) log Q  (Nernst at 25°C)",
+          "problems": [
+            {
+              "difficulty": "simple",
+              "problem": "E°_cell = 0.80 V, n = 1, Q = 100. Find E_cell at 25°C.",
+              "answer": "0.682 V"
+            },
+            {
+              "difficulty": "unit_conversion",
+              "problem": "For a cell with E°_cell = 1.50 V, n = 3, and Q = 5.0 × 10⁴, calculate E_cell at 25°C. Express your answer in both volts and joules per coulomb.",
+              "answer": "E_cell = 1.407 V = 1.407 J/C"
+            },
+            {
+              "difficulty": "multi_step",
+              "problem": "A cell has E°_cell = 0.46 V and n = 2. At what value of Q does E_cell = 0.00 V at 25°C? What does this Q represent physically?",
+              "answer": "Q = K = 10^(2×0.46/0.0592) ≈ 3.9 × 10¹⁵; this Q equals K (equilibrium)"
+            }
+          ]
+        },
+        {
+          "id": "EC6",
+          "equation": "ΔG = −nFE_cell",
+          "problems": [
+            {
+              "difficulty": "simple",
+              "problem": "Calculate ΔG for a cell with n = 2, E_cell = 1.10 V. (F = 96485 C/mol)",
+              "answer": "ΔG = −212,267 J ≈ −212.3 kJ"
+            },
+            {
+              "difficulty": "unit_conversion",
+              "problem": "A fuel cell operates at E_cell = 0.90 V with n = 4. Calculate ΔG in kJ/mol, then convert to kcal/mol (1 kcal = 4.184 kJ).",
+              "answer": "ΔG = −347.3 kJ/mol = −83.0 kcal/mol"
+            },
+            {
+              "difficulty": "multi_step",
+              "problem": "A cell with E°_cell = 1.10 V and n = 2 operates with Q = 100 at 25°C. First find E_cell using the Nernst equation, then calculate ΔG.",
+              "answer": "E_cell = 1.10 − (0.0592/2)log(100) = 1.041 V; ΔG = −(2)(96485)(1.041) = −200.9 kJ"
+            }
+          ]
+        },
+        {
+          "id": "EC7",
+          "equation": "ΔG° = −nFE°_cell",
+          "problems": [
+            {
+              "difficulty": "simple",
+              "problem": "Find ΔG° for a reaction with E°_cell = 0.46 V and n = 2.",
+              "answer": "ΔG° = −88.8 kJ"
+            },
+            {
+              "difficulty": "unit_conversion",
+              "problem": "ΔG° for a reaction is −145 kJ/mol with n = 3. Calculate E°_cell in mV.",
+              "answer": "E°_cell = 145000/(3 × 96485) = 0.501 V = 501 mV"
+            },
+            {
+              "difficulty": "multi_step",
+              "problem": "For 2 Fe³⁺ + Sn → 2 Fe²⁺ + Sn²⁺, E°(Fe³⁺/Fe²⁺) = +0.77 V and E°(Sn²⁺/Sn) = −0.14 V. Find E°_cell, then ΔG°, then use ΔG° = −RT ln K to find K at 298 K.",
+              "answer": "E°_cell = 0.91 V; ΔG° = −175.6 kJ; K = 2.4 × 10³⁰"
+            }
+          ]
+        },
+        {
+          "id": "EC8",
+          "equation": "w_elec = w_max = −nFE_cell",
+          "problems": [
+            {
+              "difficulty": "simple",
+              "problem": "What is the maximum electrical work from a cell with E_cell = 1.50 V and n = 2?",
+              "answer": "w_max = −289.5 kJ/mol"
+            },
+            {
+              "difficulty": "unit_conversion",
+              "problem": "A battery delivers w_max = −400 kJ/mol with n = 2. What is E_cell in volts? Convert to eV per electron (1 eV = 1.602 × 10⁻¹⁹ J).",
+              "answer": "E_cell = 2.073 V; per electron = 2.073 eV"
+            },
+            {
+              "difficulty": "multi_step",
+              "problem": "A Daniell cell (E° = 1.10 V, n = 2) powers a device at nonstandard conditions where Q = 50 at 25°C. Calculate E_cell, then the maximum work available per mole of reaction, then the work for 0.50 mol of Zn consumed.",
+              "answer": "E_cell = 1.050 V; w_max/mol = −202.6 kJ/mol; for 0.50 mol: w = −101.3 kJ"
+            }
+          ]
+        },
+        {
+          "id": "EC9",
+          "equation": "Q = It = nF",
+          "problems": [
+            {
+              "difficulty": "simple",
+              "problem": "A current of 5.00 A flows for 3600 s through an electrolytic cell. What total charge (in coulombs) passes?",
+              "answer": "Q = 18000 C"
+            },
+            {
+              "difficulty": "unit_conversion",
+              "problem": "A current of 2.50 A flows for 45.0 minutes through a solution of CuSO₄. How many moles of electrons pass? (F = 96485 C/mol)",
+              "answer": "Q = 2.50 × 2700 = 6750 C; n_e = 6750/96485 = 0.0699 mol e⁻"
+            },
+            {
+              "difficulty": "multi_step",
+              "problem": "How many grams of copper are deposited at the cathode when a 3.00 A current flows through a CuSO₄ solution for 2.00 hours? (Cu²⁺ + 2e⁻ → Cu; M_Cu = 63.55 g/mol)",
+              "answer": "Q = 3.00 × 7200 = 21600 C; mol e⁻ = 0.2239; mol Cu = 0.1119; mass = 7.12 g"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "section": "Thermodynamics",
+      "equations": [
+        {
+          "id": "TD1",
+          "equation": "ΔS = q_rev / T",
+          "problems": [
+            {
+              "difficulty": "simple",
+              "problem": "A system absorbs 5000 J of heat reversibly at 350 K. Calculate ΔS.",
+              "answer": "ΔS = 14.3 J/K"
+            },
+            {
+              "difficulty": "unit_conversion",
+              "problem": "A system absorbs 2.50 kJ of heat reversibly at 75°C. Calculate ΔS in J/K.",
+              "answer": "T = 348.15 K; ΔS = 2500/348.15 = 7.18 J/K"
+            },
+            {
+              "difficulty": "multi_step",
+              "problem": "Ice melts at 0°C with ΔH_fus = 6.01 kJ/mol. Calculate ΔS for melting 36.0 g of ice (M_H₂O = 18.02 g/mol).",
+              "answer": "mol = 2.00; q = 12.02 kJ = 12020 J; T = 273.15 K; ΔS = 44.0 J/K"
+            }
+          ]
+        },
+        {
+          "id": "TD2",
+          "equation": "S = k ln W",
+          "problems": [
+            {
+              "difficulty": "simple",
+              "problem": "A system has W = 1 microstate. What is S? (k = 1.381 × 10⁻²³ J/K)",
+              "answer": "S = k ln(1) = 0 J/K"
+            },
+            {
+              "difficulty": "unit_conversion",
+              "problem": "A crystal has W = 3.0 × 10²⁰ microstates. Calculate S in J/K, then convert to J/(mol·K) by multiplying by Avogadro's number.",
+              "answer": "S = 1.381×10⁻²³ × ln(3.0×10²⁰) = 6.51×10⁻²² J/K; per mol = 392 J/(mol·K)"
+            },
+            {
+              "difficulty": "multi_step",
+              "problem": "System A has W_A = 100 and System B has W_B = 500. Calculate S for each, then the total entropy if they are combined (W_total = W_A × W_B).",
+              "answer": "S_A = 6.36×10⁻²² J/K, S_B = 8.58×10⁻²² J/K; W_total = 50000; S_total = S_A + S_B = 1.49×10⁻²¹ J/K"
+            }
+          ]
+        },
+        {
+          "id": "TD3",
+          "equation": "ΔS = k ln(W_f / W_i)",
+          "problems": [
+            {
+              "difficulty": "simple",
+              "problem": "A system goes from W_i = 10 to W_f = 1000. Calculate ΔS.",
+              "answer": "ΔS = 1.381×10⁻²³ × ln(100) = 6.36×10⁻²³ J/K"
+            },
+            {
+              "difficulty": "unit_conversion",
+              "problem": "A gas expands and its microstates increase by a factor of 10⁶. Calculate ΔS per molecule in J/K, then per mole in J/(mol·K).",
+              "answer": "ΔS/molecule = 1.381×10⁻²³ × ln(10⁶) = 1.91×10⁻²² J/K; per mol = 115 J/(mol·K)"
+            },
+            {
+              "difficulty": "multi_step",
+              "problem": "One mole of ideal gas expands from V_i to V_f = 2V_i. Given that for an ideal gas W ∝ V^N where N = Avogadro's number, show that ΔS = nR ln(V_f/V_i) and calculate its value.",
+              "answer": "ΔS = Nk ln(2V_i/V_i) = Nk ln 2 = R ln 2 = 5.76 J/(mol·K)"
+            }
+          ]
+        },
+        {
+          "id": "TD4",
+          "equation": "ΔS° = Σ νS°(products) − Σ νS°(reactants)",
+          "problems": [
+            {
+              "difficulty": "simple",
+              "problem": "For A → B, S°(A) = 150 J/(mol·K) and S°(B) = 200 J/(mol·K). Find ΔS°_rxn.",
+              "answer": "ΔS° = 200 − 150 = 50 J/(mol·K)"
+            },
+            {
+              "difficulty": "unit_conversion",
+              "problem": "For 2 NO(g) + O₂(g) → 2 NO₂(g): S°(NO) = 210.8, S°(O₂) = 205.2, S°(NO₂) = 240.1 J/(mol·K). Calculate ΔS° in J/(mol·K) and kJ/(mol·K).",
+              "answer": "ΔS° = 2(240.1) − [2(210.8) + 205.2] = −146.6 J/(mol·K) = −0.1466 kJ/(mol·K)"
+            },
+            {
+              "difficulty": "multi_step",
+              "problem": "For CaCO₃(s) → CaO(s) + CO₂(g): S° values are 91.7, 38.1, and 213.8 J/(mol·K) respectively. Calculate ΔS°. Then, given ΔH° = +178.3 kJ, find the temperature above which this reaction is spontaneous (ΔG° < 0).",
+              "answer": "ΔS° = (38.1 + 213.8) − 91.7 = 160.2 J/(mol·K); T > ΔH°/ΔS° = 178300/160.2 = 1113 K = 840°C"
+            }
+          ]
+        },
+        {
+          "id": "TD5",
+          "equation": "ΔS = q/T",
+          "problems": [
+            {
+              "difficulty": "simple",
+              "problem": "A process transfers 1200 J of heat at 400 K. Calculate ΔS.",
+              "answer": "ΔS = 3.00 J/K"
+            },
+            {
+              "difficulty": "unit_conversion",
+              "problem": "A reaction releases 8.50 kJ of heat at 100°C. Calculate ΔS_surr in J/K.",
+              "answer": "q_surr = +8500 J; T = 373.15 K; ΔS_surr = 22.8 J/K"
+            },
+            {
+              "difficulty": "multi_step",
+              "problem": "An exothermic reaction releases 50.0 kJ at 25°C. Calculate ΔS_surr. If ΔS_sys = −120 J/K, find ΔS_univ and determine if the reaction is spontaneous.",
+              "answer": "ΔS_surr = 50000/298.15 = 167.7 J/K; ΔS_univ = −120 + 167.7 = +47.7 J/K; spontaneous"
+            }
+          ]
+        },
+        {
+          "id": "TD6",
+          "equation": "ΔS_univ = ΔS_sys + ΔS_surr",
+          "problems": [
+            {
+              "difficulty": "simple",
+              "problem": "ΔS_sys = +50 J/K and ΔS_surr = −30 J/K. Find ΔS_univ. Is the process spontaneous?",
+              "answer": "ΔS_univ = +20 J/K; yes, spontaneous"
+            },
+            {
+              "difficulty": "unit_conversion",
+              "problem": "ΔS_sys = +0.150 kJ/K and ΔS_surr = −85.0 J/K. Calculate ΔS_univ in J/K.",
+              "answer": "ΔS_univ = 150 − 85.0 = +65.0 J/K"
+            },
+            {
+              "difficulty": "multi_step",
+              "problem": "A reaction has ΔH = −200 kJ and ΔS_sys = −50 J/K at 400 K. Calculate ΔS_surr, then ΔS_univ, and determine spontaneity.",
+              "answer": "ΔS_surr = +200000/400 = +500 J/K; ΔS_univ = −50 + 500 = +450 J/K; spontaneous"
+            }
+          ]
+        },
+        {
+          "id": "TD7",
+          "equation": "ΔS_univ = ΔS_sys + q_surr/T",
+          "problems": [
+            {
+              "difficulty": "simple",
+              "problem": "ΔS_sys = +100 J/K and the surroundings absorb 25000 J of heat at 300 K. Find ΔS_univ.",
+              "answer": "ΔS_surr = 25000/300 = 83.3 J/K; ΔS_univ = 183.3 J/K"
+            },
+            {
+              "difficulty": "unit_conversion",
+              "problem": "ΔS_sys = −45.0 J/K. The system releases 15.0 kJ of heat to surroundings at 27°C. Calculate ΔS_univ.",
+              "answer": "q_surr = +15000 J; T = 300.15 K; ΔS_surr = 50.0 J/K; ΔS_univ = 5.0 J/K"
+            },
+            {
+              "difficulty": "multi_step",
+              "problem": "An exothermic reaction at 500 K has ΔH_sys = −100 kJ and ΔS_sys = −180 J/K. Find ΔS_surr, ΔS_univ, and verify by computing ΔG = ΔH − TΔS to check sign agreement.",
+              "answer": "ΔS_surr = 100000/500 = 200 J/K; ΔS_univ = 20 J/K (>0); ΔG = −100000 − 500(−180) = −10000 J = −10 kJ (<0); both agree: spontaneous"
+            }
+          ]
+        },
+        {
+          "id": "TD8",
+          "equation": "ΔG = ΔH − TΔS",
+          "problems": [
+            {
+              "difficulty": "simple",
+              "problem": "ΔH = −100 kJ, ΔS = +50 J/K, T = 298 K. Calculate ΔG.",
+              "answer": "ΔG = −100000 − 298(50) = −114900 J = −114.9 kJ"
+            },
+            {
+              "difficulty": "unit_conversion",
+              "problem": "ΔH = −40.0 kcal, ΔS = +0.100 kJ/K, T = 37°C. Calculate ΔG in kJ. (1 kcal = 4.184 kJ)",
+              "answer": "ΔH = −167.4 kJ; T = 310.15 K; ΔG = −167.4 − 310.15(0.100) = −198.4 kJ"
+            },
+            {
+              "difficulty": "multi_step",
+              "problem": "A reaction has ΔH = +50 kJ and ΔS = +150 J/K. At what temperature does it become spontaneous? Calculate ΔG at 25°C and at 500 K to verify.",
+              "answer": "T_cross = 50000/150 = 333 K; at 298 K: ΔG = +5.3 kJ (nonspontaneous); at 500 K: ΔG = −25 kJ (spontaneous)"
+            }
+          ]
+        },
+        {
+          "id": "TD9",
+          "equation": "q = cmΔT = cm(T_f − T_i)",
+          "problems": [
+            {
+              "difficulty": "simple",
+              "problem": "How much heat is needed to raise 100.0 g of water from 20.0°C to 80.0°C? (c_water = 4.184 J/(g·°C))",
+              "answer": "q = 4.184 × 100.0 × 60.0 = 25104 J ≈ 25.1 kJ"
+            },
+            {
+              "difficulty": "unit_conversion",
+              "problem": "A 2.50 lb block of iron (c = 0.449 J/(g·°C)) is heated from 25.0°C to 200°C. Calculate q in kJ. (1 lb = 453.6 g)",
+              "answer": "m = 1134 g; q = 0.449 × 1134 × 175 = 89080 J = 89.1 kJ"
+            },
+            {
+              "difficulty": "multi_step",
+              "problem": "50.0 g of metal at 95.0°C is dropped into 150.0 g of water at 22.0°C. Final temperature is 24.5°C. Find the specific heat of the metal, then identify it (Al = 0.897, Fe = 0.449, Cu = 0.385, Pb = 0.128 J/(g·°C)).",
+              "answer": "q_water = 4.184(150)(2.5) = 1569 J; q_metal = −1569 J; c = 1569/(50.0 × 70.5) = 0.445 J/(g·°C) ≈ iron"
+            }
+          ]
+        },
+        {
+          "id": "TD10",
+          "equation": "ΔU = q + w",
+          "problems": [
+            {
+              "difficulty": "simple",
+              "problem": "A system absorbs 500 J of heat and has 200 J of work done on it. Find ΔU.",
+              "answer": "ΔU = 500 + 200 = 700 J"
+            },
+            {
+              "difficulty": "unit_conversion",
+              "problem": "A gas absorbs 3.50 kJ of heat and expands against a pressure doing 1.20 L·atm of work on the surroundings. Find ΔU. (1 L·atm = 101.325 J)",
+              "answer": "w = −1.20 × 101.325 = −121.6 J; ΔU = 3500 + (−121.6) = 3378 J = 3.38 kJ"
+            },
+            {
+              "difficulty": "multi_step",
+              "problem": "An ideal gas at 2.00 atm expands from 5.00 L to 10.0 L against constant external pressure of 1.00 atm, while absorbing 800 J of heat. Calculate w, ΔU, and determine if the gas temperature increased or decreased.",
+              "answer": "w = −P_ext × ΔV = −1.00(5.00) = −5.00 L·atm = −506.6 J; ΔU = 800 + (−506.6) = 293 J; ΔU > 0 so temperature increased"
+            }
+          ]
+        },
+        {
+          "id": "TD11",
+          "equation": "ΔH°_rxn = Σ nΔH°_f(products) − Σ nΔH°_f(reactants)",
+          "problems": [
+            {
+              "difficulty": "simple",
+              "problem": "For A → B: ΔH°_f(A) = −200 kJ/mol, ΔH°_f(B) = −350 kJ/mol. Find ΔH°_rxn.",
+              "answer": "ΔH°_rxn = −350 − (−200) = −150 kJ"
+            },
+            {
+              "difficulty": "unit_conversion",
+              "problem": "For CH₄(g) + 2O₂(g) → CO₂(g) + 2H₂O(l): ΔH°_f values are −74.8, 0, −393.5, −285.8 kJ/mol. Calculate ΔH°_rxn in kJ/mol and kcal/mol.",
+              "answer": "ΔH° = [−393.5 + 2(−285.8)] − [−74.8 + 0] = −890.3 kJ/mol = −212.8 kcal/mol"
+            },
+            {
+              "difficulty": "multi_step",
+              "problem": "For 2C₂H₆(g) + 7O₂(g) → 4CO₂(g) + 6H₂O(l): ΔH°_f = −84.7, 0, −393.5, −285.8 kJ/mol. Find ΔH° per mole of reaction, then per gram of C₂H₆ burned (M = 30.07 g/mol).",
+              "answer": "ΔH° = [4(−393.5)+6(−285.8)]−[2(−84.7)+0] = −3119.4 kJ per rxn; per g C₂H₆ = −3119.4/(2×30.07) = −51.9 kJ/g"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "section": "Equilibrium",
+      "equations": [
+        {
+          "id": "EQ1",
+          "equation": "Q_c = [C]^x[D]^y / ([A]^m[B]^n)",
+          "problems": [
+            {
+              "difficulty": "simple",
+              "problem": "For N₂ + 3H₂ ⇌ 2NH₃, [N₂] = 0.50 M, [H₂] = 0.30 M, [NH₃] = 0.20 M. Calculate Q_c.",
+              "answer": "Q_c = (0.20)² / ((0.50)(0.30)³) = 2.96"
+            },
+            {
+              "difficulty": "unit_conversion",
+              "problem": "For the same reaction, if concentrations are given as 500 mmol/L, 300 mmol/L, and 200 mmol/L, convert to M and compute Q_c.",
+              "answer": "Same as above: 0.50, 0.30, 0.20 M; Q_c = 2.96"
+            },
+            {
+              "difficulty": "multi_step",
+              "problem": "For A ⇌ 2B, K_c = 4.0. Initially [A] = 1.0 M and [B] = 0 M. Calculate Q_c initially. Then if [A] drops by x and [B] = 2x at equilibrium, find x and equilibrium concentrations.",
+              "answer": "Q_c,initial = 0 < K; 4x²/(1.0−x) = 4.0; x = 0.618; [A]=0.382 M, [B]=1.236 M"
+            }
+          ]
+        },
+        {
+          "id": "EQ2",
+          "equation": "Q_p = P_C^x P_D^y / (P_A^m P_B^n)",
+          "problems": [
+            {
+              "difficulty": "simple",
+              "problem": "For PCl₅(g) ⇌ PCl₃(g) + Cl₂(g), P(PCl₅) = 2.0 atm, P(PCl₃) = 0.50 atm, P(Cl₂) = 0.50 atm. Find Q_p.",
+              "answer": "Q_p = (0.50)(0.50)/2.0 = 0.125"
+            },
+            {
+              "difficulty": "unit_conversion",
+              "problem": "Same reaction: P(PCl₅) = 202.6 kPa, P(PCl₃) = 50.7 kPa, P(Cl₂) = 50.7 kPa. Convert to atm (1 atm = 101.325 kPa), then find Q_p.",
+              "answer": "2.0, 0.50, 0.50 atm; Q_p = 0.125 atm"
+            },
+            {
+              "difficulty": "multi_step",
+              "problem": "For 2SO₂ + O₂ ⇌ 2SO₃, K_p = 3.0 × 10⁴ at some T. P(SO₂) = 0.10 atm, P(O₂) = 0.20 atm, P(SO₃) = 5.0 atm. Calculate Q_p and predict the direction of shift.",
+              "answer": "Q_p = (5.0)²/((0.10)²(0.20)) = 12500; Q_p < K_p so reaction shifts right (toward products)"
+            }
+          ]
+        },
+        {
+          "id": "EQ3",
+          "equation": "P = MRT",
+          "problems": [
+            {
+              "difficulty": "simple",
+              "problem": "A gas has concentration 0.0400 M at 300 K. What is its pressure? (R = 0.08206 L·atm/(mol·K))",
+              "answer": "P = 0.0400 × 0.08206 × 300 = 0.985 atm"
+            },
+            {
+              "difficulty": "unit_conversion",
+              "problem": "A gas at 500 K has a pressure of 760 torr. Convert to atm and find its molar concentration.",
+              "answer": "P = 1.00 atm; M = P/(RT) = 1.00/(0.08206 × 500) = 0.0244 M"
+            },
+            {
+              "difficulty": "multi_step",
+              "problem": "For A(g) ⇌ 2B(g), K_c = 0.050 at 400 K. Convert K_c to K_p using K_p = K_c(RT)^Δn.",
+              "answer": "Δn = 2 − 1 = 1; RT = 0.08206 × 400 = 32.82; K_p = 0.050 × 32.82 = 1.64"
+            }
+          ]
+        },
+        {
+          "id": "EQ6",
+          "equation": "K_p = K_c(RT)^Δn",
+          "problems": [
+            {
+              "difficulty": "simple",
+              "problem": "For N₂ + 3H₂ ⇌ 2NH₃, K_c = 0.500 at 500 K. Find K_p. (Δn = 2−4 = −2)",
+              "answer": "K_p = 0.500 × (0.08206 × 500)^(−2) = 0.500/1683.7 = 2.97 × 10⁻⁴"
+            },
+            {
+              "difficulty": "unit_conversion",
+              "problem": "K_p = 1.8 × 10⁻⁴ at 227°C for a reaction with Δn = −1. Find K_c. (Convert T to K first.)",
+              "answer": "T = 500 K; K_c = K_p/(RT)^(−1) = K_p × RT = 1.8×10⁻⁴ × 41.03 = 7.39 × 10⁻³"
+            },
+            {
+              "difficulty": "multi_step",
+              "problem": "For 2SO₃ ⇌ 2SO₂ + O₂ at 1000 K, K_p = 1.60. Calculate K_c, then use it to find concentrations if all three species happen to be at the same equilibrium concentration [x].",
+              "answer": "Δn = 3−2 = 1; K_c = 1.60/(0.08206×1000) = 0.0195; if all = x: x³/x² = x = 0.0195 M"
+            }
+          ]
+        },
+        {
+          "id": "EQ7",
+          "equation": "Dissolution: M_pX_q(s) ⇌ pM^(m+) + qX^(n−)",
+          "problems": [
+            {
+              "difficulty": "simple",
+              "problem": "Write the dissolution equation and K_sp expression for AgCl.",
+              "answer": "AgCl(s) ⇌ Ag⁺(aq) + Cl⁻(aq); K_sp = [Ag⁺][Cl⁻]"
+            },
+            {
+              "difficulty": "unit_conversion",
+              "problem": "Write the K_sp expression for Ca₃(PO₄)₂ and express units of K_sp if concentrations are in mol/L.",
+              "answer": "K_sp = [Ca²⁺]³[PO₄³⁻]²; units = M⁵"
+            },
+            {
+              "difficulty": "multi_step",
+              "problem": "PbI₂ has K_sp = 9.8 × 10⁻⁹. Write the dissolution equation, set up the K_sp expression with molar solubility s, and solve for s in mol/L and g/L (M = 461.0 g/mol).",
+              "answer": "PbI₂ ⇌ Pb²⁺ + 2I⁻; K_sp = (s)(2s)² = 4s³; s = (9.8×10⁻⁹/4)^(1/3) = 1.35 × 10⁻³ M = 0.623 g/L"
+            }
+          ]
+        },
+        {
+          "id": "EQ8",
+          "equation": "K_sp = [M^(m+)]^p [X^(n−)]^q",
+          "problems": [
+            {
+              "difficulty": "simple",
+              "problem": "The molar solubility of BaSO₄ is 1.05 × 10⁻⁵ M. Calculate K_sp.",
+              "answer": "K_sp = s² = (1.05×10⁻⁵)² = 1.10 × 10⁻¹⁰"
+            },
+            {
+              "difficulty": "unit_conversion",
+              "problem": "The solubility of AgCl is 1.9 mg/L. Find K_sp. (M_AgCl = 143.32 g/mol)",
+              "answer": "s = 0.0019/143.32 = 1.33 × 10⁻⁵ M; K_sp = s² = 1.76 × 10⁻¹⁰"
+            },
+            {
+              "difficulty": "multi_step",
+              "problem": "K_sp(AgCl) = 1.8 × 10⁻¹⁰. Will a precipitate form if 50.0 mL of 0.0010 M AgNO₃ is mixed with 50.0 mL of 0.0020 M NaCl? Calculate Q and compare to K_sp.",
+              "answer": "[Ag⁺] = 5.0×10⁻⁴ M, [Cl⁻] = 1.0×10⁻³ M; Q = 5.0×10⁻⁷ > K_sp; precipitate forms"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "section": "Acid-Base Chemistry",
+      "equations": [
+        {
+          "id": "AB1",
+          "equation": "K_w = [H₃O⁺][OH⁻] = 1.0 × 10⁻¹⁴ (25°C)",
+          "problems": [
+            {
+              "difficulty": "simple",
+              "problem": "[H₃O⁺] = 1.0 × 10⁻³ M. Find [OH⁻].",
+              "answer": "[OH⁻] = 1.0×10⁻¹⁴/1.0×10⁻³ = 1.0 × 10⁻¹¹ M"
+            },
+            {
+              "difficulty": "unit_conversion",
+              "problem": "A solution has [OH⁻] = 0.025 mmol/mL. Find [H₃O⁺] and classify the solution.",
+              "answer": "[OH⁻] = 0.025 M; [H₃O⁺] = 4.0×10⁻¹³ M; basic"
+            },
+            {
+              "difficulty": "multi_step",
+              "problem": "At body temperature (37°C), K_w = 2.4 × 10⁻¹⁴. Calculate [H₃O⁺] in neutral water at 37°C, and find the pH of neutral water at this temperature.",
+              "answer": "[H₃O⁺] = √(2.4×10⁻¹⁴) = 1.55×10⁻⁷ M; pH = 6.81 (not 7.00!)"
+            }
+          ]
+        },
+        {
+          "id": "AB2",
+          "equation": "pH = −log[H₃O⁺]",
+          "problems": [
+            {
+              "difficulty": "simple",
+              "problem": "[H₃O⁺] = 3.5 × 10⁻⁵ M. Find pH.",
+              "answer": "pH = −log(3.5×10⁻⁵) = 4.46"
+            },
+            {
+              "difficulty": "unit_conversion",
+              "problem": "A solution has [H₃O⁺] = 50 nmol/L (nanomoles per liter). Calculate pH.",
+              "answer": "[H₃O⁺] = 50 × 10⁻⁹ = 5.0 × 10⁻⁸ M; pH = 7.30"
+            },
+            {
+              "difficulty": "multi_step",
+              "problem": "25.0 mL of 0.10 M HCl is diluted to 500.0 mL. Find the new [H₃O⁺] and pH.",
+              "answer": "mol H⁺ = 0.0025; [H₃O⁺] = 0.0025/0.500 = 0.0050 M; pH = 2.30"
+            }
+          ]
+        },
+        {
+          "id": "AB3",
+          "equation": "pOH = −log[OH⁻]",
+          "problems": [
+            {
+              "difficulty": "simple",
+              "problem": "[OH⁻] = 2.0 × 10⁻⁴ M. Find pOH.",
+              "answer": "pOH = −log(2.0×10⁻⁴) = 3.70"
+            },
+            {
+              "difficulty": "unit_conversion",
+              "problem": "A solution has [OH⁻] = 0.75 μmol/L. Find pOH.",
+              "answer": "[OH⁻] = 7.5 × 10⁻⁷ M; pOH = 6.12"
+            },
+            {
+              "difficulty": "multi_step",
+              "problem": "0.40 g of NaOH (M = 40.00 g/mol) is dissolved in 250 mL of water. Find [OH⁻], pOH, and pH.",
+              "answer": "mol = 0.010; [OH⁻] = 0.040 M; pOH = 1.40; pH = 12.60"
+            }
+          ]
+        },
+        {
+          "id": "AB4",
+          "equation": "[H₃O⁺] = 10^(−pH)",
+          "problems": [
+            {
+              "difficulty": "simple",
+              "problem": "pH = 3.50. Find [H₃O⁺].",
+              "answer": "[H₃O⁺] = 10⁻³·⁵⁰ = 3.16 × 10⁻⁴ M"
+            },
+            {
+              "difficulty": "unit_conversion",
+              "problem": "Blood has pH = 7.40. Find [H₃O⁺] in nmol/L.",
+              "answer": "[H₃O⁺] = 10⁻⁷·⁴⁰ = 3.98 × 10⁻⁸ M = 39.8 nmol/L"
+            },
+            {
+              "difficulty": "multi_step",
+              "problem": "Solution A (pH = 2.00, 100 mL) is mixed with Solution B (pH = 4.00, 200 mL). Assuming strong acids, find the final pH.",
+              "answer": "[H⁺]_A=0.010, [H⁺]_B=1.0×10⁻⁴; mol_total=0.001+0.00002=0.00102; [H⁺]=0.00102/0.300=0.00340 M; pH=2.47"
+            }
+          ]
+        },
+        {
+          "id": "AB5",
+          "equation": "[OH⁻] = 10^(−pOH)",
+          "problems": [
+            {
+              "difficulty": "simple",
+              "problem": "pOH = 5.20. Find [OH⁻].",
+              "answer": "[OH⁻] = 10⁻⁵·²⁰ = 6.31 × 10⁻⁶ M"
+            },
+            {
+              "difficulty": "unit_conversion",
+              "problem": "A cleaner has pH = 12.5. Find [OH⁻] in mmol/L.",
+              "answer": "pOH = 1.5; [OH⁻] = 10⁻¹·⁵ = 0.0316 M = 31.6 mmol/L"
+            },
+            {
+              "difficulty": "multi_step",
+              "problem": "50 mL of a solution with pOH = 2.00 is diluted to 500 mL. Find the new [OH⁻], new pOH, and pH.",
+              "answer": "[OH⁻]_i = 0.010 M; mol = 5.0×10⁻⁴; [OH⁻]_f = 0.0010 M; pOH = 3.00; pH = 11.00"
+            }
+          ]
+        },
+        {
+          "id": "AB6",
+          "equation": "pH + pOH = 14.00 (25°C)",
+          "problems": [
+            {
+              "difficulty": "simple",
+              "problem": "pH = 9.25. Find pOH.",
+              "answer": "pOH = 14.00 − 9.25 = 4.75"
+            },
+            {
+              "difficulty": "unit_conversion",
+              "problem": "A solution has [OH⁻] = 0.0050 M. Find pOH, then pH, then [H₃O⁺] in μmol/L.",
+              "answer": "pOH = 2.30; pH = 11.70; [H₃O⁺] = 2.0×10⁻¹² M = 2.0×10⁻⁶ μmol/L = 0.002 nmol/mL"
+            },
+            {
+              "difficulty": "multi_step",
+              "problem": "At 37°C, K_w = 2.4 × 10⁻¹⁴ so pK_w = 13.62. If a solution at 37°C has pH = 7.00, calculate pOH and determine if it is acidic, basic, or neutral.",
+              "answer": "pOH = 13.62 − 7.00 = 6.62; since pH < pK_w/2 = 6.81, the solution is actually acidic at 37°C"
+            }
+          ]
+        },
+        {
+          "id": "AB7",
+          "equation": "K_a = [H₃O⁺][A⁻] / [HA]",
+          "problems": [
+            {
+              "difficulty": "simple",
+              "problem": "A 0.10 M weak acid has [H₃O⁺] = 0.0013 M at equilibrium. Find K_a.",
+              "answer": "K_a = (0.0013)²/(0.10 − 0.0013) = 1.7 × 10⁻⁵"
+            },
+            {
+              "difficulty": "unit_conversion",
+              "problem": "K_a of acetic acid = 1.8 × 10⁻⁵. A 500 mL solution contains 3.0 g of acetic acid (M = 60.05 g/mol). Find the pH.",
+              "answer": "[HA] = (3.0/60.05)/0.500 = 0.0999 M; x² = 1.8×10⁻⁵ × 0.0999; x = 1.34×10⁻³; pH = 2.87"
+            },
+            {
+              "difficulty": "multi_step",
+              "problem": "A 0.20 M solution of a monoprotic weak acid has pH = 2.72. Find [H₃O⁺], K_a, and pK_a.",
+              "answer": "[H₃O⁺] = 1.91×10⁻³ M; K_a = (1.91×10⁻³)²/(0.20−0.00191) = 1.84×10⁻⁵; pK_a = 4.74"
+            }
+          ]
+        },
+        {
+          "id": "AB8",
+          "equation": "K_b = [HB⁺][OH⁻] / [B]",
+          "problems": [
+            {
+              "difficulty": "simple",
+              "problem": "A 0.15 M weak base has [OH⁻] = 0.0021 M. Find K_b.",
+              "answer": "K_b = (0.0021)²/(0.15 − 0.0021) = 2.98 × 10⁻⁵"
+            },
+            {
+              "difficulty": "unit_conversion",
+              "problem": "K_b for NH₃ = 1.8 × 10⁻⁵. Find the pH of 0.25 M NH₃. Express [OH⁻] in mmol/L as well.",
+              "answer": "x² = 1.8×10⁻⁵ × 0.25; x = 2.12×10⁻³ M = 2.12 mmol/L; pOH = 2.67; pH = 11.33"
+            },
+            {
+              "difficulty": "multi_step",
+              "problem": "The K_a of HCN is 6.2 × 10⁻¹⁰. Find K_b for CN⁻, then calculate the pH of a 0.10 M NaCN solution.",
+              "answer": "K_b = 1.0×10⁻¹⁴/6.2×10⁻¹⁰ = 1.61×10⁻⁵; x² = 1.61×10⁻⁵(0.10); x = 1.27×10⁻³; pOH = 2.90; pH = 11.10"
+            }
+          ]
+        },
+        {
+          "id": "AB9",
+          "equation": "K_a × K_b = K_w",
+          "problems": [
+            {
+              "difficulty": "simple",
+              "problem": "K_a of HF = 6.8 × 10⁻⁴. Find K_b of F⁻.",
+              "answer": "K_b = 1.0×10⁻¹⁴/6.8×10⁻⁴ = 1.47 × 10⁻¹¹"
+            },
+            {
+              "difficulty": "unit_conversion",
+              "problem": "pK_a of NH₄⁺ = 9.25. Find K_a of NH₄⁺, K_b of NH₃, and pK_b of NH₃.",
+              "answer": "K_a = 10⁻⁹·²⁵ = 5.62×10⁻¹⁰; K_b = 1.78×10⁻⁵; pK_b = 4.75"
+            },
+            {
+              "difficulty": "multi_step",
+              "problem": "Which is more basic: 0.10 M NaF (K_a of HF = 6.8 × 10⁻⁴) or 0.10 M NaCN (K_a of HCN = 6.2 × 10⁻¹⁰)? Calculate pH of each to decide.",
+              "answer": "K_b(F⁻)=1.47×10⁻¹¹, pH≈7.58; K_b(CN⁻)=1.61×10⁻⁵, pH≈11.10; NaCN is more basic"
+            }
+          ]
+        },
+        {
+          "id": "AB10",
+          "equation": "pK_a = −log K_a",
+          "problems": [
+            {
+              "difficulty": "simple",
+              "problem": "K_a = 4.5 × 10⁻⁷. Find pK_a.",
+              "answer": "pK_a = −log(4.5×10⁻⁷) = 6.35"
+            },
+            {
+              "difficulty": "unit_conversion",
+              "problem": "pK_a = 3.75. Find K_a, then express K_a in scientific notation.",
+              "answer": "K_a = 10⁻³·⁷⁵ = 1.78 × 10⁻⁴"
+            },
+            {
+              "difficulty": "multi_step",
+              "problem": "An acid has pK_a = 4.74. It is dissolved at 0.50 M. Calculate K_a, then find the pH and percent ionization.",
+              "answer": "K_a = 1.82×10⁻⁵; x = √(1.82×10⁻⁵ × 0.50) = 3.02×10⁻³; pH = 2.52; % = 0.60%"
+            }
+          ]
+        },
+        {
+          "id": "AB11",
+          "equation": "pK_b = −log K_b",
+          "problems": [
+            {
+              "difficulty": "simple",
+              "problem": "K_b = 1.8 × 10⁻⁵. Find pK_b.",
+              "answer": "pK_b = 4.74"
+            },
+            {
+              "difficulty": "unit_conversion",
+              "problem": "pK_b = 3.36. Find K_b. Also express this as the number of mol/L that would ionize per mole of base in pure water.",
+              "answer": "K_b = 10⁻³·³⁶ = 4.37 × 10⁻⁴"
+            },
+            {
+              "difficulty": "multi_step",
+              "problem": "A base has pK_b = 4.74 and K_w = 1.0 × 10⁻¹⁴. Find K_b, then K_a of its conjugate acid, and pK_a. Verify pK_a + pK_b = 14.",
+              "answer": "K_b = 1.82×10⁻⁵; K_a = 5.49×10⁻¹⁰; pK_a = 9.26; 4.74 + 9.26 = 14.00 ✓"
+            }
+          ]
+        },
+        {
+          "id": "AB12",
+          "equation": "Henderson-Hasselbalch: pH = pK_a + log([A⁻]/[HA])",
+          "problems": [
+            {
+              "difficulty": "simple",
+              "problem": "A buffer has pK_a = 4.74, [A⁻] = 0.20 M, [HA] = 0.20 M. Find pH.",
+              "answer": "pH = 4.74 + log(1) = 4.74"
+            },
+            {
+              "difficulty": "unit_conversion",
+              "problem": "A buffer contains 6.0 g of acetic acid (M = 60.05 g/mol) and 8.2 g of sodium acetate (M = 82.03 g/mol) in 500 mL of solution. K_a = 1.8 × 10⁻⁵. Find pH.",
+              "answer": "[HA]=0.200 M, [A⁻]=0.200 M; pH = 4.74 + log(1.00) = 4.74"
+            },
+            {
+              "difficulty": "multi_step",
+              "problem": "A buffer at pH 4.74 (pK_a = 4.74, [HA] = [A⁻] = 0.50 M, 1.00 L) has 0.010 mol of HCl added. Find the new pH.",
+              "answer": "[HA] = 0.50+0.01 = 0.51 M; [A⁻] = 0.50−0.01 = 0.49 M; pH = 4.74 + log(0.49/0.51) = 4.72"
+            }
+          ]
+        },
+        {
+          "id": "AB13",
+          "equation": "Percent ionization = ([H₃O⁺]_eq / [HA]₀) × 100",
+          "problems": [
+            {
+              "difficulty": "simple",
+              "problem": "A 0.10 M acid has [H₃O⁺] = 4.2 × 10⁻³ M. Find percent ionization.",
+              "answer": "% = (4.2×10⁻³/0.10) × 100 = 4.2%"
+            },
+            {
+              "difficulty": "unit_conversion",
+              "problem": "A 250 mL solution contains 1.50 g of a monoprotic acid (M = 60.0 g/mol) and has pH = 2.70. Find percent ionization.",
+              "answer": "[HA]₀ = 0.100 M; [H₃O⁺] = 2.0×10⁻³; % = 2.0%"
+            },
+            {
+              "difficulty": "multi_step",
+              "problem": "Acetic acid (K_a = 1.8 × 10⁻⁵) is prepared at 0.10 M and 0.0010 M. Calculate percent ionization for each and explain the trend.",
+              "answer": "At 0.10 M: x=1.34×10⁻³, %=1.3%; at 0.0010 M: x=1.26×10⁻⁴, %=12.6%; dilution increases % ionization"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "section": "Chemical Kinetics",
+      "equations": [
+        {
+          "id": "KN1",
+          "equation": "Rate: −(1/a)(Δ[A]/Δt) = (1/b)(Δ[B]/Δt)",
+          "problems": [
+            {
+              "difficulty": "simple",
+              "problem": "For 2A → B, if Δ[A]/Δt = −0.040 M/s, find Δ[B]/Δt.",
+              "answer": "Δ[B]/Δt = (1/2)(0.040) = 0.020 M/s"
+            },
+            {
+              "difficulty": "unit_conversion",
+              "problem": "For N₂ + 3H₂ → 2NH₃, if Δ[H₂]/Δt = −0.30 mol/(L·min), find the rate of NH₃ formation in mol/(L·s).",
+              "answer": "Δ[NH₃]/Δt = (2/3)(0.30) = 0.20 mol/(L·min) = 0.00333 mol/(L·s)"
+            },
+            {
+              "difficulty": "multi_step",
+              "problem": "For 4NH₃ + 5O₂ → 4NO + 6H₂O, if 0.024 mol of O₂ is consumed in 10.0 s in a 2.0 L vessel, find the rates of disappearance and appearance of all species.",
+              "answer": "Δ[O₂]/Δt = −0.0012 M/s; rate = 0.00024 M/s; Δ[NH₃]/Δt = −0.00096 M/s; Δ[NO]/Δt = +0.00096 M/s; Δ[H₂O]/Δt = +0.00144 M/s"
+            }
+          ]
+        },
+        {
+          "id": "KN2",
+          "equation": "Zero order: [A]_t = −kt + [A]₀",
+          "problems": [
+            {
+              "difficulty": "simple",
+              "problem": "[A]₀ = 0.50 M, k = 0.020 M/s. Find [A] after 10 s.",
+              "answer": "[A] = 0.50 − 0.020(10) = 0.30 M"
+            },
+            {
+              "difficulty": "unit_conversion",
+              "problem": "[A]₀ = 1.0 M, k = 3.0 × 10⁻³ mol/(L·min). How long (in hours) until [A] = 0.10 M?",
+              "answer": "t = (1.0−0.10)/0.003 = 300 min = 5.0 hours"
+            },
+            {
+              "difficulty": "multi_step",
+              "problem": "A zero-order reaction has [A] = 0.80 M at t = 20 s and [A] = 0.60 M at t = 40 s. Find k, [A]₀, and t when [A] = 0.",
+              "answer": "k = (0.80−0.60)/20 = 0.010 M/s; [A]₀ = 0.80+0.010(20) = 1.00 M; t = 1.00/0.010 = 100 s"
+            }
+          ]
+        },
+        {
+          "id": "KN3",
+          "equation": "Zero-order half-life: t₁/₂ = [A]₀/(2k)",
+          "problems": [
+            {
+              "difficulty": "simple",
+              "problem": "[A]₀ = 0.80 M, k = 0.040 M/s. Find t₁/₂.",
+              "answer": "t₁/₂ = 0.80/(2 × 0.040) = 10.0 s"
+            },
+            {
+              "difficulty": "unit_conversion",
+              "problem": "[A]₀ = 2.0 M, t₁/₂ = 500 s. Find k in M/min.",
+              "answer": "k = 2.0/(2 × 500) = 0.0020 M/s = 0.12 M/min"
+            },
+            {
+              "difficulty": "multi_step",
+              "problem": "A zero-order reaction has [A]₀ = 1.0 M and k = 0.050 M/s. Find the first half-life, then the second half-life (from [A] = 0.50 to 0.25 M). Explain why they differ.",
+              "answer": "t₁/₂(1st) = 1.0/(2×0.050)=10 s; t₁/₂(2nd) = 0.50/(2×0.050)=5.0 s; zero-order half-life depends on [A]₀, which decreases"
+            }
+          ]
+        },
+        {
+          "id": "KN4",
+          "equation": "First order: ln[A]_t = −kt + ln[A]₀",
+          "problems": [
+            {
+              "difficulty": "simple",
+              "problem": "[A]₀ = 1.0 M, k = 0.050 s⁻¹. Find [A] at t = 20 s.",
+              "answer": "ln[A] = ln(1.0) − 0.050(20) = −1.0; [A] = e⁻¹ = 0.368 M"
+            },
+            {
+              "difficulty": "unit_conversion",
+              "problem": "[A]₀ = 0.250 M, k = 2.5 × 10⁻³ min⁻¹. Find [A] after 6.0 hours.",
+              "answer": "t = 360 min; ln[A] = ln(0.250) − 0.0025(360) = −2.286; [A] = 0.102 M"
+            },
+            {
+              "difficulty": "multi_step",
+              "problem": "A first-order reaction gives [A] = 0.80 M at t = 10 min and [A] = 0.40 M at t = 40 min. Find k, [A]₀, and the time for 95% decomposition.",
+              "answer": "k = ln(0.80/0.40)/30 = 0.0231 min⁻¹; [A]₀ = 0.80e^(0.0231×10) = 1.007 M; t₉₅ = ln(20)/0.0231 = 130 min"
+            }
+          ]
+        },
+        {
+          "id": "KN5",
+          "equation": "First-order half-life: t₁/₂ = 0.693/k",
+          "problems": [
+            {
+              "difficulty": "simple",
+              "problem": "k = 0.0100 s⁻¹. Find t₁/₂.",
+              "answer": "t₁/₂ = 0.693/0.010 = 69.3 s"
+            },
+            {
+              "difficulty": "unit_conversion",
+              "problem": "A drug has t₁/₂ = 4.0 hours. Find k in s⁻¹.",
+              "answer": "k = 0.693/(4.0 × 3600) = 4.81 × 10⁻⁵ s⁻¹"
+            },
+            {
+              "difficulty": "multi_step",
+              "problem": "A radioactive isotope has t₁/₂ = 5730 years. What fraction of the original sample remains after 20000 years? How old is a sample with 25% of the original amount?",
+              "answer": "k = 1.21×10⁻⁴ yr⁻¹; after 20000 yr: fraction = e^(−0.00121×20000) = 0.0887 (8.87%); 25% → t = 0.693×2/k = 11460 years (2 half-lives)"
+            }
+          ]
+        },
+        {
+          "id": "KN6",
+          "equation": "Second order: 1/[A]_t = kt + 1/[A]₀",
+          "problems": [
+            {
+              "difficulty": "simple",
+              "problem": "[A]₀ = 0.50 M, k = 0.10 M⁻¹s⁻¹. Find [A] after 30 s.",
+              "answer": "1/[A] = 0.10(30) + 1/0.50 = 5.0; [A] = 0.20 M"
+            },
+            {
+              "difficulty": "unit_conversion",
+              "problem": "[A]₀ = 250 mmol/L, k = 0.40 L/(mol·min). Find [A] after 2.0 hours.",
+              "answer": "[A]₀ = 0.250 M; t = 120 min; 1/[A] = 0.40(120)+4.0 = 52; [A] = 0.0192 M = 19.2 mmol/L"
+            },
+            {
+              "difficulty": "multi_step",
+              "problem": "A second-order reaction gives 1/[A] = 5.0 at t = 0 and 1/[A] = 15.0 at t = 100 s (all in M⁻¹). Find k, [A]₀, and the time to reach [A] = 0.010 M.",
+              "answer": "k = (15−5)/100 = 0.10 M⁻¹s⁻¹; [A]₀ = 0.20 M; t = (100−5)/0.10 = 950 s"
+            }
+          ]
+        },
+        {
+          "id": "KN7",
+          "equation": "Second-order half-life: t₁/₂ = 1/(k[A]₀)",
+          "problems": [
+            {
+              "difficulty": "simple",
+              "problem": "k = 0.20 M⁻¹s⁻¹, [A]₀ = 1.0 M. Find t₁/₂.",
+              "answer": "t₁/₂ = 1/(0.20 × 1.0) = 5.0 s"
+            },
+            {
+              "difficulty": "unit_conversion",
+              "problem": "t₁/₂ = 200 s when [A]₀ = 0.50 M. Find k in L/(mol·min).",
+              "answer": "k = 1/(200 × 0.50) = 0.010 M⁻¹s⁻¹ = 0.60 L/(mol·min)"
+            },
+            {
+              "difficulty": "multi_step",
+              "problem": "A second-order reaction has [A]₀ = 1.0 M and k = 0.10 M⁻¹s⁻¹. Find the 1st, 2nd, and 3rd half-lives and explain the pattern.",
+              "answer": "t₁/₂(1st) = 1/(0.10×1.0) = 10 s; t₁/₂(2nd) = 1/(0.10×0.50) = 20 s; t₁/₂(3rd) = 1/(0.10×0.25) = 40 s; each doubles"
+            }
+          ]
+        },
+        {
+          "id": "KN8",
+          "equation": "Arrhenius: k = Ae^(−E_a/RT)",
+          "problems": [
+            {
+              "difficulty": "simple",
+              "problem": "A = 1.0 × 10¹⁰ s⁻¹, E_a = 50.0 kJ/mol, T = 300 K. Find k. (R = 8.314 J/(mol·K))",
+              "answer": "k = 10¹⁰ × e^(−50000/(8.314×300)) = 10¹⁰ × e⁻²⁰·⁰⁴ = 10¹⁰ × 1.98×10⁻⁹ = 19.8 s⁻¹"
+            },
+            {
+              "difficulty": "unit_conversion",
+              "problem": "E_a = 12.0 kcal/mol. Convert to kJ/mol, then find k at 400 K if A = 5.0 × 10⁸ s⁻¹.",
+              "answer": "E_a = 50.2 kJ/mol; k = 5.0×10⁸ × e^(−50200/(8.314×400)) = 5.0×10⁸ × 3.36×10⁻⁷ = 168 s⁻¹"
+            },
+            {
+              "difficulty": "multi_step",
+              "problem": "k = 0.010 s⁻¹ at 300 K and k = 0.050 s⁻¹ at 350 K. Find E_a using the two-temperature Arrhenius equation, then find A.",
+              "answer": "ln(0.010/0.050) = (E_a/8.314)(1/350−1/300); E_a = 28.1 kJ/mol; A = 0.010/e^(−28100/(8.314×300)) = 755 s⁻¹"
+            }
+          ]
+        },
+        {
+          "id": "KN9",
+          "equation": "ln k = −(E_a/R)(1/T) + ln A",
+          "problems": [
+            {
+              "difficulty": "simple",
+              "problem": "A plot of ln k vs 1/T gives slope = −6000 K. Find E_a.",
+              "answer": "E_a = −slope × R = 6000 × 8.314 = 49.9 kJ/mol"
+            },
+            {
+              "difficulty": "unit_conversion",
+              "problem": "The slope of ln k vs 1/T is −12000 K. Find E_a in both kJ/mol and kcal/mol.",
+              "answer": "E_a = 12000 × 8.314 = 99.8 kJ/mol = 23.8 kcal/mol"
+            },
+            {
+              "difficulty": "multi_step",
+              "problem": "Data: T₁ = 300 K, k₁ = 2.0 × 10⁻³; T₂ = 350 K, k₂ = 1.5 × 10⁻²; T₃ = 400 K, k₃ = 8.0 × 10⁻². Compute ln k and 1/T for each, determine the slope and E_a, then extrapolate k at 500 K.",
+              "answer": "Slope ≈ −6200 K; E_a ≈ 51.5 kJ/mol; at 500 K: ln k = −6200(1/500) + ln A; k ≈ 1.9 s⁻¹"
+            }
+          ]
+        },
+        {
+          "id": "KN10",
+          "equation": "ln(k₁/k₂) = (E_a/R)(1/T₂ − 1/T₁)",
+          "problems": [
+            {
+              "difficulty": "simple",
+              "problem": "k₁ = 0.020 s⁻¹ at T₁ = 300 K, k₂ = 0.12 s⁻¹ at T₂ = 350 K. Find E_a.",
+              "answer": "ln(0.020/0.12) = (E_a/8.314)(1/350 − 1/300); E_a = 38.5 kJ/mol"
+            },
+            {
+              "difficulty": "unit_conversion",
+              "problem": "E_a = 75.0 kJ/mol. k at 25°C is 0.010 s⁻¹. Find k at 50°C.",
+              "answer": "ln(0.010/k₂) = (75000/8.314)(1/323.15 − 1/298.15); k₂ = 0.079 s⁻¹"
+            },
+            {
+              "difficulty": "multi_step",
+              "problem": "A reaction doubles its rate constant when temperature increases from 300 K to 310 K. Find E_a. Then predict the factor by which k increases from 300 K to 400 K.",
+              "answer": "E_a = 53.6 kJ/mol; ln(k₃₀₀/k₄₀₀) = (53600/8.314)(1/400−1/300); k₄₀₀/k₃₀₀ = 190"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "section": "Gas Laws",
+      "equations": [
+        {
+          "id": "GL1",
+          "equation": "PV = nRT",
+          "problems": [
+            {
+              "difficulty": "simple",
+              "problem": "What volume does 2.00 mol of an ideal gas occupy at 1.00 atm and 273.15 K?",
+              "answer": "V = nRT/P = 2.00(0.08206)(273.15)/1.00 = 44.8 L"
+            },
+            {
+              "difficulty": "unit_conversion",
+              "problem": "3.20 g of O₂ (M = 32.00) is in a 500 mL flask at 37°C. Find P in both atm and mmHg.",
+              "answer": "n = 0.100 mol; P = 0.100(0.08206)(310.15)/0.500 = 5.09 atm = 3868 mmHg"
+            },
+            {
+              "difficulty": "multi_step",
+              "problem": "A 10.0 L tank at 25°C contains N₂ at 5.0 atm and is connected to a 15.0 L empty tank. When the valve is opened (isothermal), find the final pressure. Then calculate the mass of N₂ present (M = 28.02 g/mol).",
+              "answer": "P_f = 5.0(10.0)/25.0 = 2.0 atm; n = 5.0(10.0)/(0.08206×298.15) = 2.044 mol; mass = 57.3 g"
+            }
+          ]
+        },
+        {
+          "id": "GL2",
+          "equation": "P = F/A",
+          "problems": [
+            {
+              "difficulty": "simple",
+              "problem": "A force of 500 N acts on an area of 0.25 m². Find the pressure in Pa.",
+              "answer": "P = 500/0.25 = 2000 Pa"
+            },
+            {
+              "difficulty": "unit_conversion",
+              "problem": "A 75 kg person stands on one foot (area = 150 cm²). Calculate the pressure in kPa. (g = 9.81 m/s²)",
+              "answer": "F = 735.75 N; A = 0.0150 m²; P = 49050 Pa = 49.1 kPa"
+            },
+            {
+              "difficulty": "multi_step",
+              "problem": "A hydraulic press has a small piston (A = 2.0 cm²) and large piston (A = 200 cm²). If 100 N is applied to the small piston, find the pressure in the fluid and the force exerted by the large piston.",
+              "answer": "P = 100/2.0×10⁻⁴ = 500000 Pa; F_large = 500000 × 0.0200 = 10000 N"
+            }
+          ]
+        },
+        {
+          "id": "GL3",
+          "equation": "P = hρg",
+          "problems": [
+            {
+              "difficulty": "simple",
+              "problem": "Mercury column height = 760 mm. Find P in Pa. (ρ_Hg = 13546 kg/m³, g = 9.81 m/s²)",
+              "answer": "P = 0.760 × 13546 × 9.81 = 101000 Pa ≈ 101 kPa"
+            },
+            {
+              "difficulty": "unit_conversion",
+              "problem": "A water manometer shows a height difference of 25.0 cm. Convert to pressure in atm. (ρ_water = 1000 kg/m³)",
+              "answer": "P = 0.250(1000)(9.81) = 2452.5 Pa = 0.0242 atm"
+            },
+            {
+              "difficulty": "multi_step",
+              "problem": "A closed-end manometer attached to a gas flask shows a mercury column of 520 mm on the gas side and 200 mm on the closed (vacuum) side. What is the gas pressure in atm?",
+              "answer": "P_gas = (520 − 200) mm Hg = 320 mm Hg = 320/760 = 0.421 atm"
+            }
+          ]
+        },
+        {
+          "id": "GL4",
+          "equation": "P_total = ΣP_i (Dalton's law)",
+          "problems": [
+            {
+              "difficulty": "simple",
+              "problem": "A mixture has P(N₂) = 0.60 atm, P(O₂) = 0.30 atm, P(Ar) = 0.05 atm. Find P_total.",
+              "answer": "P_total = 0.95 atm"
+            },
+            {
+              "difficulty": "unit_conversion",
+              "problem": "P(N₂) = 593 torr, P(O₂) = 159 torr, P(H₂O) = 24 torr. Find P_total in atm.",
+              "answer": "P_total = 776 torr = 1.021 atm"
+            },
+            {
+              "difficulty": "multi_step",
+              "problem": "O₂ gas is collected over water at 25°C (P_H₂O = 23.8 mmHg). The total pressure is 758 mmHg. If the wet gas occupies 250 mL, find P(O₂), then n(O₂), and mass of O₂ collected.",
+              "answer": "P(O₂) = 734.2 mmHg = 0.966 atm; n = 0.966(0.250)/(0.08206×298.15) = 0.00987 mol; mass = 0.316 g"
+            }
+          ]
+        },
+        {
+          "id": "GL5",
+          "equation": "P_A = X_A × P_total",
+          "problems": [
+            {
+              "difficulty": "simple",
+              "problem": "X(O₂) = 0.21 in air, P_total = 1.00 atm. Find P(O₂).",
+              "answer": "P(O₂) = 0.21 atm"
+            },
+            {
+              "difficulty": "unit_conversion",
+              "problem": "A gas mixture at 2.5 atm has X(He) = 0.40. Express P(He) in torr.",
+              "answer": "P(He) = 0.40 × 2.5 = 1.00 atm = 760 torr"
+            },
+            {
+              "difficulty": "multi_step",
+              "problem": "A mixture contains 4.0 g He (M=4), 28.0 g N₂ (M=28), and 32.0 g O₂ (M=32) at P_total = 3.0 atm. Find mole fractions and partial pressures of each.",
+              "answer": "mol: He=1.0, N₂=1.0, O₂=1.0; total=3.0; X_each=1/3; P_each=1.0 atm"
+            }
+          ]
+        },
+        {
+          "id": "GL6",
+          "equation": "X_A = n_A/n_total",
+          "problems": [
+            {
+              "difficulty": "simple",
+              "problem": "A mixture has 2.0 mol N₂ and 3.0 mol O₂. Find X(N₂).",
+              "answer": "X(N₂) = 2.0/5.0 = 0.40"
+            },
+            {
+              "difficulty": "unit_conversion",
+              "problem": "A mixture has 14.0 g N₂ (M=28) and 16.0 g O₂ (M=32). Find X(N₂) and express as a percentage.",
+              "answer": "n(N₂)=0.500, n(O₂)=0.500; X(N₂)=0.500 = 50.0%"
+            },
+            {
+              "difficulty": "multi_step",
+              "problem": "Air is approximately 78% N₂, 21% O₂, and 1% Ar by mole. If the total pressure on a mountain is 0.65 atm, find each partial pressure and the moles of O₂ in a 50.0 L breath at 10°C.",
+              "answer": "P(O₂) = 0.1365 atm; n(O₂) = 0.1365(50.0)/(0.08206×283.15) = 0.294 mol"
+            }
+          ]
+        },
+        {
+          "id": "GL8",
+          "equation": "Graham's law: rate_A/rate_B = √(M_B/M_A)",
+          "problems": [
+            {
+              "difficulty": "simple",
+              "problem": "Compare the effusion rates of H₂ (M=2) and O₂ (M=32).",
+              "answer": "rate(H₂)/rate(O₂) = √(32/2) = 4.0; H₂ effuses 4× faster"
+            },
+            {
+              "difficulty": "unit_conversion",
+              "problem": "An unknown gas effuses at 0.355 times the rate of He (M=4.00 g/mol). Find the molar mass of the unknown in g/mol and kg/mol.",
+              "answer": "M = 4.00/(0.355)² = 31.7 g/mol = 0.0317 kg/mol"
+            },
+            {
+              "difficulty": "multi_step",
+              "problem": "UF₆ is used for uranium enrichment. Compare effusion rates of ²³⁵UF₆ (M=349) vs ²³⁸UF₆ (M=352). If you need a separation factor of 1.10, how many stages n are needed? (Factor per stage = rate ratio.)",
+              "answer": "ratio = √(352/349) = 1.00430; n = ln(1.10)/ln(1.00430) = 22.2 → 23 stages"
+            }
+          ]
+        },
+        {
+          "id": "GL10",
+          "equation": "KE_avg = (3/2)RT",
+          "problems": [
+            {
+              "difficulty": "simple",
+              "problem": "Find the average kinetic energy per mole at 300 K.",
+              "answer": "KE = 1.5 × 8.314 × 300 = 3741 J/mol = 3.74 kJ/mol"
+            },
+            {
+              "difficulty": "unit_conversion",
+              "problem": "Find KE_avg per molecule at 500 K in eV. (1 eV = 1.602 × 10⁻¹⁹ J; k_B = 1.381 × 10⁻²³ J/K)",
+              "answer": "KE = 1.5(1.381×10⁻²³)(500) = 1.036×10⁻²⁰ J = 0.0647 eV"
+            },
+            {
+              "difficulty": "multi_step",
+              "problem": "At what temperature do gas molecules have an average KE equal to the bond energy of H₂ (436 kJ/mol)? Express in K and °C.",
+              "answer": "T = 2(436000)/(3×8.314) = 34950 K = 34677°C"
+            }
+          ]
+        },
+        {
+          "id": "GL11",
+          "equation": "u_rms = √(3RT/M)",
+          "problems": [
+            {
+              "difficulty": "simple",
+              "problem": "Find u_rms of N₂ (M = 0.02802 kg/mol) at 300 K.",
+              "answer": "u_rms = √(3(8.314)(300)/0.02802) = 517 m/s"
+            },
+            {
+              "difficulty": "unit_conversion",
+              "problem": "Find u_rms of He (M = 4.00 g/mol) at 25°C. Express in km/h.",
+              "answer": "u_rms = √(3(8.314)(298.15)/0.00400) = 1363 m/s = 4907 km/h"
+            },
+            {
+              "difficulty": "multi_step",
+              "problem": "At what temperature does O₂ (M = 32.00 g/mol) have the same u_rms as N₂ (M = 28.02 g/mol) at 300 K? First find u_rms of N₂, then solve for T.",
+              "answer": "u_rms(N₂) = 517 m/s; T = u²M/(3R) = (517)²(0.03200)/(3×8.314) = 342.6 K"
+            }
+          ]
+        },
+        {
+          "id": "GL12",
+          "equation": "Z = PV_m/(RT) (compressibility factor)",
+          "problems": [
+            {
+              "difficulty": "simple",
+              "problem": "A gas has V_m = 22.0 L/mol at 1.00 atm and 273.15 K. Find Z. (R = 0.08206)",
+              "answer": "Z = (1.00)(22.0)/((0.08206)(273.15)) = 0.982"
+            },
+            {
+              "difficulty": "unit_conversion",
+              "problem": "At 200 atm and 300 K, a gas has V_m = 0.090 L/mol. Calculate Z and convert V_m to cm³/mol.",
+              "answer": "Z = (200)(0.090)/(0.08206×300) = 0.731; V_m = 90 cm³/mol"
+            },
+            {
+              "difficulty": "multi_step",
+              "problem": "CO₂ at 500 K: Z = 0.90 at 100 atm and Z = 1.10 at 500 atm. Explain what forces dominate in each regime, and calculate V_m for each.",
+              "answer": "At 100 atm: Z<1, attractions dominate, V_m = 0.90(0.08206)(500)/100 = 0.369 L/mol; at 500 atm: Z>1, repulsions dominate, V_m = 1.10(0.08206)(500)/500 = 0.0903 L/mol"
+            }
+          ]
+        },
+        {
+          "id": "GL13",
+          "equation": "van der Waals: (P + n²a/V²)(V − nb) = nRT",
+          "problems": [
+            {
+              "difficulty": "simple",
+              "problem": "1.00 mol of CO₂ (a = 3.59 L²atm/mol², b = 0.0427 L/mol) in 1.00 L at 300 K. Find P using van der Waals.",
+              "answer": "P = RT/(V/n − b) − a/(V/n)² = (0.08206×300)/(1.00−0.0427) − 3.59/1.00² = 25.7 − 3.59 = 22.1 atm"
+            },
+            {
+              "difficulty": "unit_conversion",
+              "problem": "For Cl₂: a = 6.49 L²·atm/mol², b = 0.0562 L/mol. Calculate P for 2.00 mol in a 5.00 L container at 27°C. Compare to ideal gas P and express difference as a percentage.",
+              "answer": "P_vdW = nRT/(V−nb) − n²a/V² = 2(0.08206)(300)/(5−0.1124) − 4(6.49)/25 = 10.07 − 1.038 = 9.03 atm; P_ideal = 9.85 atm; difference = 8.3%"
+            },
+            {
+              "difficulty": "multi_step",
+              "problem": "For N₂: a = 1.39 L²atm/mol², b = 0.0391 L/mol. Compare ideal and van der Waals pressures for 1.00 mol at 200 K in containers of 0.200 L and 10.0 L. Where are corrections more important?",
+              "answer": "At 0.200 L: P_ideal=82.1 atm, P_vdW=82.1(0.200)/(0.200−0.039)−1.39/0.04=102.0−34.8=67.2 atm (big correction); at 10.0 L: P_ideal=1.641 atm, P_vdW≈1.627 atm (small correction). Corrections matter more at small volumes."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "section": "Colligative Properties",
+      "equations": [
+        {
+          "id": "CP1",
+          "equation": "Henry's law: C_i = kP_i",
+          "problems": [
+            {
+              "difficulty": "simple",
+              "problem": "k(O₂) = 1.3 × 10⁻³ mol/(L·atm). P(O₂) = 0.21 atm. Find dissolved [O₂].",
+              "answer": "C = 1.3×10⁻³ × 0.21 = 2.7 × 10⁻⁴ M"
+            },
+            {
+              "difficulty": "unit_conversion",
+              "problem": "CO₂ dissolves at 0.034 mol/L under 1.0 atm. Find k, then the solubility at 5.0 atm (as in a soda bottle). Express in g/L (M_CO₂ = 44.01 g/mol).",
+              "answer": "k = 0.034 mol/(L·atm); C = 0.034×5.0 = 0.17 mol/L = 7.48 g/L"
+            },
+            {
+              "difficulty": "multi_step",
+              "problem": "A scuba diver breathes air (P(N₂)=0.78 atm at surface). At 30 m depth, P_total ≈ 4.0 atm. If k(N₂)=6.1×10⁻⁴ mol/(L·atm), find [N₂] at the surface and at depth. What is the ratio? (This explains decompression sickness.)",
+              "answer": "Surface: C=6.1×10⁻⁴ × 0.78 = 4.76×10⁻⁴ M; at depth: P(N₂)=0.78×4.0=3.12 atm; C=1.90×10⁻³ M; ratio = 4.0× more dissolved"
+            }
+          ]
+        },
+        {
+          "id": "CP2",
+          "equation": "Raoult's law: P_A = X_A × P*_A",
+          "problems": [
+            {
+              "difficulty": "simple",
+              "problem": "Pure water has P* = 23.8 mmHg at 25°C. X_water = 0.95. Find P(H₂O).",
+              "answer": "P = 0.95 × 23.8 = 22.6 mmHg"
+            },
+            {
+              "difficulty": "unit_conversion",
+              "problem": "A solution has X(benzene) = 0.60 and P*(benzene) = 95.1 mmHg. Find P(benzene) in atm.",
+              "answer": "P = 0.60 × 95.1 = 57.1 mmHg = 0.0751 atm"
+            },
+            {
+              "difficulty": "multi_step",
+              "problem": "18.0 g of glucose (M=180 g/mol) is dissolved in 90.0 g of water (M=18.0 g/mol) at 25°C (P*_H₂O = 23.8 mmHg). Find X_water, P_solution, and the vapor pressure lowering ΔP.",
+              "answer": "n_glucose=0.100, n_water=5.00; X_water=5.00/5.10=0.980; P=23.3 mmHg; ΔP=0.5 mmHg"
+            }
+          ]
+        },
+        {
+          "id": "CP5",
+          "equation": "ΔT_b = K_b × m",
+          "problems": [
+            {
+              "difficulty": "simple",
+              "problem": "K_b(water) = 0.512°C/m. m = 1.50 m. Find ΔT_b.",
+              "answer": "ΔT_b = 0.512 × 1.50 = 0.768°C"
+            },
+            {
+              "difficulty": "unit_conversion",
+              "problem": "30.0 g of a nonelectrolyte solute (M = 150 g/mol) in 500 g of water. K_b = 0.512°C/m. Find ΔT_b and the new boiling point in °F.",
+              "answer": "m = (30.0/150)/0.500 = 0.400 m; ΔT_b = 0.205°C; BP = 100.205°C = 212.37°F"
+            },
+            {
+              "difficulty": "multi_step",
+              "problem": "A solution of an unknown nonelectrolyte in water (250 g) boils at 100.52°C. The solution contains 15.0 g of solute. Find the molar mass of the solute. (K_b = 0.512°C/m)",
+              "answer": "ΔT_b = 0.52°C; m = 0.52/0.512 = 1.016 m; mol = 1.016 × 0.250 = 0.254; M = 15.0/0.254 = 59.1 g/mol"
+            }
+          ]
+        },
+        {
+          "id": "CP6",
+          "equation": "ΔT_f = K_f × m",
+          "problems": [
+            {
+              "difficulty": "simple",
+              "problem": "K_f(water) = 1.86°C/m. m = 2.00 m. Find ΔT_f.",
+              "answer": "ΔT_f = 1.86 × 2.00 = 3.72°C"
+            },
+            {
+              "difficulty": "unit_conversion",
+              "problem": "A car uses 4.00 L of ethylene glycol (d = 1.11 g/mL, M = 62.07 g/mol) in 6.00 kg of water. Find ΔT_f in °C and °F. (K_f = 1.86°C/m)",
+              "answer": "mass_EG = 4440 g; mol = 71.5; m = 71.5/6.00 = 11.9; ΔT_f = 22.2°C = 39.9°F depression"
+            },
+            {
+              "difficulty": "multi_step",
+              "problem": "NaCl (i = 1.85 effective) is dissolved in water to make a 0.50 m solution. K_f = 1.86°C/m. Find ΔT_f using i×K_f×m. What is the freezing point? How many grams of NaCl per kg water?",
+              "answer": "ΔT_f = 1.85 × 1.86 × 0.50 = 1.72°C; FP = −1.72°C; mass = 0.50 × 58.44 = 29.2 g/kg water"
+            }
+          ]
+        },
+        {
+          "id": "CP7",
+          "equation": "Osmotic pressure: Π = MRT",
+          "problems": [
+            {
+              "difficulty": "simple",
+              "problem": "M = 0.10 M, T = 298 K. Find Π. (R = 0.08206 L·atm/(mol·K))",
+              "answer": "Π = 0.10 × 0.08206 × 298 = 2.45 atm"
+            },
+            {
+              "difficulty": "unit_conversion",
+              "problem": "Π = 7.5 atm at 25°C. Find M in mmol/L.",
+              "answer": "M = 7.5/(0.08206 × 298) = 0.307 M = 307 mmol/L"
+            },
+            {
+              "difficulty": "multi_step",
+              "problem": "5.0 g of a protein dissolved in 100 mL gives Π = 3.2 mmHg at 25°C. Find the molar mass of the protein.",
+              "answer": "Π = 3.2/760 = 0.004211 atm; M = 0.004211/(0.08206×298) = 1.72×10⁻⁴ mol/L; mol = 1.72×10⁻⁵; Molar mass = 5.0/1.72×10⁻⁵ = 291000 g/mol"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "section": "Phase Changes & Physical Chemistry",
+      "equations": [
+        {
+          "id": "PC2",
+          "equation": "Clausius-Clapeyron: P = Ae^(−ΔH_vap/RT)",
+          "problems": [
+            {
+              "difficulty": "simple",
+              "problem": "At 373 K, P(H₂O) = 1.00 atm and ΔH_vap = 40.7 kJ/mol. Find A.",
+              "answer": "A = 1.00/e^(−40700/(8.314×373)) = 1.00/e⁻¹³·¹² = 1.00 × 4.97×10⁵ = 4.97×10⁵ atm"
+            },
+            {
+              "difficulty": "unit_conversion",
+              "problem": "A liquid has ΔH_vap = 9.7 kcal/mol and A = 2.0 × 10⁶ torr. Find P at 350 K in both torr and atm.",
+              "answer": "ΔH = 40.6 kJ/mol; P = 2.0×10⁶ × e^(−40600/(8.314×350)) = 2.0×10⁶ × 8.7×10⁻⁷ = 1.74 torr = 0.00229 atm"
+            },
+            {
+              "difficulty": "multi_step",
+              "problem": "Water: P₁ = 23.8 mmHg at T₁ = 25°C, ΔH_vap = 40.7 kJ/mol. Use the two-point form to find P₂ at 50°C. Compare to the known value of 92.5 mmHg.",
+              "answer": "ln(P₂/23.8) = (40700/8.314)(1/298.15−1/323.15) = 1.357; P₂ = 23.8 × 3.884 = 92.4 mmHg ≈ 92.5 mmHg ✓"
+            }
+          ]
+        },
+        {
+          "id": "PC4",
+          "equation": "ln(P₁/P₂) = (ΔH_vap/R)(1/T₂ − 1/T₁)",
+          "problems": [
+            {
+              "difficulty": "simple",
+              "problem": "P₁ = 100 mmHg at T₁ = 330 K, P₂ = 400 mmHg at T₂ = 370 K. Find ΔH_vap.",
+              "answer": "ln(100/400) = (ΔH/8.314)(1/370−1/330); ΔH = (−1.386)(8.314)/(−3.27×10⁻⁴) = 35.2 kJ/mol"
+            },
+            {
+              "difficulty": "unit_conversion",
+              "problem": "Ethanol: P = 44 mmHg at 20°C, ΔH_vap = 38.6 kJ/mol. Find P at 50°C in both mmHg and kPa.",
+              "answer": "ln(44/P₂) = (38600/8.314)(1/323.15−1/293.15); P₂ = 222 mmHg = 29.6 kPa"
+            },
+            {
+              "difficulty": "multi_step",
+              "problem": "An unknown liquid has P = 50 torr at 300 K and P = 200 torr at 340 K. Find ΔH_vap, then predict the normal boiling point (P = 760 torr).",
+              "answer": "ΔH_vap = ln(50/200)×8.314/(1/340−1/300) = 31.6 kJ/mol; ln(50/760) = (31600/8.314)(1/T_b−1/300); T_b = 402 K = 129°C"
+            }
+          ]
+        },
+        {
+          "id": "PC5",
+          "equation": "Bragg's law: nλ = 2d sin θ",
+          "problems": [
+            {
+              "difficulty": "simple",
+              "problem": "X-rays with λ = 1.54 Å diffract at θ = 25.0° for n = 1. Find d.",
+              "answer": "d = 1.54/(2 sin 25.0°) = 1.54/0.845 = 1.82 Å"
+            },
+            {
+              "difficulty": "unit_conversion",
+              "problem": "d = 2.87 Å, n = 1, θ = 15.8°. Find λ in nm and pm.",
+              "answer": "λ = 2(2.87)(sin 15.8°) = 1.562 Å = 0.156 nm = 156 pm"
+            },
+            {
+              "difficulty": "multi_step",
+              "problem": "NaCl has d = 2.82 Å. X-rays with λ = 1.54 Å are used. Find the angles for first-order (n=1) and second-order (n=2) diffraction. Is n=3 possible?",
+              "answer": "n=1: sin θ = 1.54/(2×2.82) = 0.2730, θ = 15.8°; n=2: sin θ = 0.546, θ = 33.1°; n=3: sin θ = 0.819, θ = 55.0° (yes, since sin θ < 1)"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "section": "Atomic Structure & Spectroscopy",
+      "equations": [
+        {
+          "id": "AS1",
+          "equation": "c = λν",
+          "problems": [
+            {
+              "difficulty": "simple",
+              "problem": "A photon has λ = 500 nm. Find its frequency. (c = 3.00 × 10⁸ m/s)",
+              "answer": "ν = 3.00×10⁸/(500×10⁻⁹) = 6.00 × 10¹⁴ Hz"
+            },
+            {
+              "difficulty": "unit_conversion",
+              "problem": "A microwave has ν = 2.45 GHz. Find λ in cm.",
+              "answer": "λ = 3.00×10⁸/(2.45×10⁹) = 0.1224 m = 12.24 cm"
+            },
+            {
+              "difficulty": "multi_step",
+              "problem": "The Hα line of hydrogen has λ = 656.3 nm. Find ν, then E per photon, then the energy of one mole of these photons in kJ.",
+              "answer": "ν = 4.57×10¹⁴ Hz; E = hν = 6.626×10⁻³⁴ × 4.57×10¹⁴ = 3.03×10⁻¹⁹ J; per mol = 182.4 kJ/mol"
+            }
+          ]
+        },
+        {
+          "id": "AS2",
+          "equation": "E = hν = hc/λ",
+          "problems": [
+            {
+              "difficulty": "simple",
+              "problem": "Find the energy of a photon with ν = 5.0 × 10¹⁴ Hz. (h = 6.626 × 10⁻³⁴ J·s)",
+              "answer": "E = 6.626×10⁻³⁴ × 5.0×10¹⁴ = 3.31 × 10⁻¹⁹ J"
+            },
+            {
+              "difficulty": "unit_conversion",
+              "problem": "A UV photon has λ = 250 nm. Find its energy in eV. (1 eV = 1.602 × 10⁻¹⁹ J)",
+              "answer": "E = (6.626×10⁻³⁴)(3×10⁸)/(250×10⁻⁹) = 7.95×10⁻¹⁹ J = 4.96 eV"
+            },
+            {
+              "difficulty": "multi_step",
+              "problem": "A laser emits light at 532 nm with power = 5.0 mW. Find the energy per photon, then the number of photons emitted per second.",
+              "answer": "E = hc/λ = 3.74×10⁻¹⁹ J; photons/s = 0.005/3.74×10⁻¹⁹ = 1.34 × 10¹⁶ photons/s"
+            }
+          ]
+        },
+        {
+          "id": "AS3",
+          "equation": "Rydberg: 1/λ = R∞(1/n₁² − 1/n₂²)",
+          "problems": [
+            {
+              "difficulty": "simple",
+              "problem": "Find λ for the n=3→n=2 transition in hydrogen. (R∞ = 1.097 × 10⁷ m⁻¹)",
+              "answer": "1/λ = 1.097×10⁷(1/4−1/9) = 1.524×10⁶; λ = 656.3 nm"
+            },
+            {
+              "difficulty": "unit_conversion",
+              "problem": "Find the wavelength of the Lyman series limit (n₂→∞, n₁=1) in nm and Å.",
+              "answer": "1/λ = R∞(1/1−0) = 1.097×10⁷; λ = 91.16 nm = 911.6 Å"
+            },
+            {
+              "difficulty": "multi_step",
+              "problem": "A hydrogen emission line has λ = 434.0 nm (Balmer series, n₁=2). Determine n₂, then calculate the energy of the photon and the frequency.",
+              "answer": "1/λ = 2.304×10⁶; 2.304×10⁶/1.097×10⁷ = 0.210 = 1/4−1/n₂²; n₂² = 25; n₂ = 5; E = 4.58×10⁻¹⁹ J; ν = 6.91×10¹⁴ Hz"
+            }
+          ]
+        },
+        {
+          "id": "AS4",
+          "equation": "E_n = −kZ²/n² (hydrogen-like energy levels)",
+          "problems": [
+            {
+              "difficulty": "simple",
+              "problem": "Find E₁ for hydrogen (Z=1). (k = 2.18 × 10⁻¹⁸ J)",
+              "answer": "E₁ = −2.18×10⁻¹⁸ J"
+            },
+            {
+              "difficulty": "unit_conversion",
+              "problem": "Find E₂ for He⁺ (Z=2) in eV.",
+              "answer": "E₂ = −2.18×10⁻¹⁸(4)/4 = −2.18×10⁻¹⁸ J = −13.6 eV"
+            },
+            {
+              "difficulty": "multi_step",
+              "problem": "For Li²⁺ (Z=3), calculate the energy of the n=1→n=3 transition. Find the wavelength of the photon absorbed.",
+              "answer": "ΔE = −2.18×10⁻¹⁸(9)(1/9−1/1) = 2.18×10⁻¹⁸(8) = 1.744×10⁻¹⁷ J; λ = hc/ΔE = 11.4 nm (extreme UV)"
+            }
+          ]
+        },
+        {
+          "id": "AS5",
+          "equation": "ΔE = kZ²(1/n₁² − 1/n₂²)",
+          "problems": [
+            {
+              "difficulty": "simple",
+              "problem": "Find ΔE for the n=1→n=2 transition in hydrogen.",
+              "answer": "ΔE = 2.18×10⁻¹⁸(1)(1/1−1/4) = 2.18×10⁻¹⁸(0.75) = 1.635 × 10⁻¹⁸ J"
+            },
+            {
+              "difficulty": "unit_conversion",
+              "problem": "Find ΔE for n=2→n=4 in He⁺ (Z=2) in eV.",
+              "answer": "ΔE = 2.18×10⁻¹⁸(4)(1/4−1/16) = 2.18×10⁻¹⁸(4)(3/16) = 1.635×10⁻¹⁸ J = 10.2 eV"
+            },
+            {
+              "difficulty": "multi_step",
+              "problem": "A He⁺ ion emits a photon at 164.0 nm. Determine which transition occurred (Z=2). Calculate ΔE, then test n₁=1 with various n₂.",
+              "answer": "E = hc/λ = 1.212×10⁻¹⁸ J; 1.212×10⁻¹⁸ = 2.18×10⁻¹⁸(4)(1/n₁²−1/n₂²); for n₁=1: 1/n₂² = 1−0.139 = 0.861, n₂ doesn't work; for n₁=2: (1/4−1/n₂²) = 0.139; n₂² = 9; n=3→2 transition"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "section": "Chemical Bonding",
+      "equations": [
+        {
+          "id": "CB1",
+          "equation": "Bond order = (# bonding e⁻ − # antibonding e⁻) / 2",
+          "problems": [
+            {
+              "difficulty": "simple",
+              "problem": "O₂ has 10 bonding and 6 antibonding electrons. Find the bond order.",
+              "answer": "BO = (10−6)/2 = 2.0"
+            },
+            {
+              "difficulty": "unit_conversion",
+              "problem": "N₂ has 10 bonding and 4 antibonding electrons. Compare its bond order to O₂ (BO=2). Which has the shorter bond? (N₂ bond length = 110 pm, O₂ = 121 pm — verify the correlation.)",
+              "answer": "BO(N₂) = 3.0 > 2.0(O₂); higher BO → shorter bond; 110 < 121 pm ✓"
+            },
+            {
+              "difficulty": "multi_step",
+              "problem": "Determine the MO electron configuration, bond order, and magnetic behavior (para/diamagnetic) for: O₂, O₂⁻, and O₂²⁻.",
+              "answer": "O₂: 10 bonding, 6 antibonding, BO=2, 2 unpaired (paramagnetic); O₂⁻: 10,7, BO=1.5, 1 unpaired (paramagnetic); O₂²⁻: 10,8, BO=1.0, 0 unpaired (diamagnetic)"
+            }
+          ]
+        },
+        {
+          "id": "CB2",
+          "equation": "Formal charge = valence e⁻ − lone pair e⁻ − ½(bonding e⁻)",
+          "problems": [
+            {
+              "difficulty": "simple",
+              "problem": "In CO₂, carbon has 0 lone pairs and 8 bonding electrons. Find its formal charge. (C has 4 valence e⁻)",
+              "answer": "FC = 4 − 0 − 4 = 0"
+            },
+            {
+              "difficulty": "unit_conversion",
+              "problem": "In the nitrate ion NO₃⁻, one resonance structure has N with 0 lone pairs, 8 bonding e⁻. Find FC(N) and verify the sum of formal charges equals −1.",
+              "answer": "FC(N) = 5−0−4 = +1; each single-bonded O: 6−6−1= −1; double-bonded O: 6−4−2=0; sum = +1+2(−1)+0 = −1 ✓"
+            },
+            {
+              "difficulty": "multi_step",
+              "problem": "For CO, draw two Lewis structures: C≡O with a lone pair on each, and C=O with more lone pairs. Calculate formal charges for each structure and determine which is preferred.",
+              "answer": "C≡O: FC(C)=4−2−3=−1, FC(O)=6−2−3=+1 (both nonzero but minimized); C=O: FC(C)=4−4−2=−2, FC(O)=6−2−2=+2 (worse); triple bond is preferred"
+            }
+          ]
+        },
+        {
+          "id": "CB4",
+          "equation": "ΔH = ΣD_broken − ΣD_formed",
+          "problems": [
+            {
+              "difficulty": "simple",
+              "problem": "For H₂ + Cl₂ → 2HCl: D(H-H)=436, D(Cl-Cl)=242, D(H-Cl)=431 kJ/mol. Find ΔH.",
+              "answer": "ΔH = (436+242) − 2(431) = −184 kJ"
+            },
+            {
+              "difficulty": "unit_conversion",
+              "problem": "Same reaction. Express ΔH per gram of HCl formed (M=36.46 g/mol) and in kcal/mol.",
+              "answer": "ΔH = −184 kJ per 2 mol HCl = −92 kJ/mol HCl = −2.52 kJ/g = −22.0 kcal/mol"
+            },
+            {
+              "difficulty": "multi_step",
+              "problem": "For CH₄ + 2O₂ → CO₂ + 2H₂O: D(C-H)=413, D(O=O)=495, D(C=O)=799, D(O-H)=463 kJ/mol. Calculate ΔH from bond energies. Compare to the actual value (−890 kJ). Explain any discrepancy.",
+              "answer": "Broken: 4(413)+2(495) = 2642; Formed: 2(799)+4(463) = 3450; ΔH = 2642−3450 = −808 kJ (vs −890 actual; difference due to average bond energies)"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "section": "Stoichiometry & Solutions",
+      "equations": [
+        {
+          "id": "ST1",
+          "equation": "%X = (mass of X / mass of compound) × 100%",
+          "problems": [
+            {
+              "difficulty": "simple",
+              "problem": "A 50.0 g compound contains 20.0 g carbon. Find %C.",
+              "answer": "%C = (20.0/50.0) × 100 = 40.0%"
+            },
+            {
+              "difficulty": "unit_conversion",
+              "problem": "Find % oxygen in Al₂O₃. (Al=26.98, O=16.00 g/mol)",
+              "answer": "M = 2(26.98)+3(16.00)=101.96; %O = 48.00/101.96 × 100 = 47.1%"
+            },
+            {
+              "difficulty": "multi_step",
+              "problem": "An iron ore contains 72.4% Fe₂O₃ by mass. Find the mass of pure iron obtainable from 500 kg of ore. (Fe=55.85, O=16.00)",
+              "answer": "%Fe in Fe₂O₃ = 111.70/159.70 = 69.94%; mass Fe₂O₃ = 362 kg; mass Fe = 362 × 0.6994 = 253 kg"
+            }
+          ]
+        },
+        {
+          "id": "ST2",
+          "equation": "molar mass / empirical formula mass = n",
+          "problems": [
+            {
+              "difficulty": "simple",
+              "problem": "Empirical formula CH₂O (mass = 30.03). Molar mass = 180.18 g/mol. Find n.",
+              "answer": "n = 180.18/30.03 = 6"
+            },
+            {
+              "difficulty": "unit_conversion",
+              "problem": "Empirical formula CH₂ (mass = 14.03 g/mol). Molar mass = 42.08 g/mol. Find molecular formula and convert mass to kg/kmol.",
+              "answer": "n = 3; molecular formula = C₃H₆; 42.08 g/mol = 42.08 kg/kmol"
+            },
+            {
+              "difficulty": "multi_step",
+              "problem": "A compound is 40.0% C, 6.7% H, 53.3% O by mass. Find the empirical formula, then the molecular formula if M = 180.16 g/mol.",
+              "answer": "In 100 g: 3.33 mol C, 6.64 mol H, 3.33 mol O; ratio 1:2:1 → CH₂O; n = 180.16/30.03 = 6; C₆H₁₂O₆"
+            }
+          ]
+        },
+        {
+          "id": "ST4",
+          "equation": "M = mol solute / L solution",
+          "problems": [
+            {
+              "difficulty": "simple",
+              "problem": "0.50 mol NaCl in 2.0 L. Find M.",
+              "answer": "M = 0.50/2.0 = 0.25 M"
+            },
+            {
+              "difficulty": "unit_conversion",
+              "problem": "Dissolve 5.85 g NaCl (M=58.44) in water to make 250 mL. Find molarity in mol/L and mmol/mL.",
+              "answer": "mol = 0.100; M = 0.100/0.250 = 0.400 M = 0.400 mmol/mL"
+            },
+            {
+              "difficulty": "multi_step",
+              "problem": "How many grams of KMnO₄ (M=158.03 g/mol) are needed to make 2.50 L of 0.0200 M solution? If you only have a 500 mL flask, what mass do you need?",
+              "answer": "For 2.50 L: mol=0.0500, mass=7.90 g; for 500 mL: mol=0.0100, mass=1.58 g"
+            }
+          ]
+        },
+        {
+          "id": "ST5",
+          "equation": "C₁V₁ = C₂V₂",
+          "problems": [
+            {
+              "difficulty": "simple",
+              "problem": "Dilute 50.0 mL of 6.0 M HCl to 1.00 M. What final volume is needed?",
+              "answer": "V₂ = (50.0)(6.0)/(1.00) = 300 mL"
+            },
+            {
+              "difficulty": "unit_conversion",
+              "problem": "You need 2.0 L of 0.10 M H₂SO₄ from a 18.0 M stock. Find the volume of stock in mL.",
+              "answer": "V₁ = (0.10)(2000)/(18.0) = 11.1 mL"
+            },
+            {
+              "difficulty": "multi_step",
+              "problem": "50.0 mL of 0.200 M Na₂CO₃ is diluted to 500 mL. Then 25.0 mL of this dilute solution is further diluted to 250 mL. Find the final concentration and total moles of Na₂CO₃.",
+              "answer": "C₂ = 0.200(50/500) = 0.0200 M; C₃ = 0.0200(25/250) = 0.00200 M; mol = 0.00200 × 0.250 = 5.0 × 10⁻⁴ mol"
+            }
+          ]
+        },
+        {
+          "id": "ST9",
+          "equation": "Percent yield = (actual/theoretical) × 100",
+          "problems": [
+            {
+              "difficulty": "simple",
+              "problem": "Theoretical yield = 25.0 g, actual yield = 18.5 g. Find percent yield.",
+              "answer": "% yield = (18.5/25.0) × 100 = 74.0%"
+            },
+            {
+              "difficulty": "unit_conversion",
+              "problem": "A reaction has 85% yield. If the theoretical yield is 2.50 mol of product (M=100 g/mol), how many grams are actually obtained?",
+              "answer": "Theoretical = 250 g; actual = 0.85 × 250 = 212.5 g"
+            },
+            {
+              "difficulty": "multi_step",
+              "problem": "10.0 g of Mg (M=24.31) reacts with excess HCl: Mg + 2HCl → MgCl₂ + H₂. If 0.350 g of H₂ is collected, find the theoretical yield and percent yield.",
+              "answer": "mol Mg = 0.411; mol H₂ = 0.411; theoretical = 0.411 × 2.016 = 0.829 g; % yield = 0.350/0.829 × 100 = 42.2%"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "section": "Atomic Mass & Basic Measurements",
+      "equations": [
+        {
+          "id": "BM1",
+          "equation": "Average atomic mass = Σ(fractional abundance × isotopic mass)",
+          "problems": [
+            {
+              "difficulty": "simple",
+              "problem": "Chlorine: ³⁵Cl (75.77%, 34.969 amu) and ³⁷Cl (24.23%, 36.966 amu). Find average atomic mass.",
+              "answer": "0.7577(34.969) + 0.2423(36.966) = 26.50 + 8.96 = 35.45 amu"
+            },
+            {
+              "difficulty": "unit_conversion",
+              "problem": "Boron: ¹⁰B (19.9%, 10.013 amu) and ¹¹B (80.1%, 11.009 amu). Find average mass in amu and in kg per atom (1 amu = 1.661 × 10⁻²⁷ kg).",
+              "answer": "Avg = 10.81 amu = 1.796 × 10⁻²⁶ kg"
+            },
+            {
+              "difficulty": "multi_step",
+              "problem": "An element has two isotopes. One isotope has mass 62.930 amu and the other 64.928 amu. The average atomic mass is 63.546 amu. Find the percent abundance of each isotope and identify the element.",
+              "answer": "x(62.930) + (1−x)(64.928) = 63.546; x = 0.6917 → 69.17% ⁶³Cu and 30.83% ⁶⁵Cu; element is copper"
+            }
+          ]
+        },
+        {
+          "id": "BM2",
+          "equation": "Density = mass/volume",
+          "problems": [
+            {
+              "difficulty": "simple",
+              "problem": "A metal block has mass 250 g and volume 28.4 cm³. Find density.",
+              "answer": "d = 250/28.4 = 8.80 g/cm³"
+            },
+            {
+              "difficulty": "unit_conversion",
+              "problem": "Gold has d = 19.3 g/cm³. Express in kg/m³ and lb/ft³. (1 lb = 453.6 g, 1 ft = 30.48 cm)",
+              "answer": "19300 kg/m³; 19.3 × (30.48)³/453.6 = 1205 lb/ft³"
+            },
+            {
+              "difficulty": "multi_step",
+              "problem": "A graduated cylinder contains 25.0 mL of water. After adding 50.0 g of metal pellets, the level rises to 31.3 mL. Find the density and identify the metal (Al=2.70, Fe=7.87, Cu=8.96, Ag=10.5 g/cm³).",
+              "answer": "V = 6.3 mL; d = 50.0/6.3 = 7.94 g/cm³ ≈ iron (Fe)"
+            }
+          ]
+        },
+        {
+          "id": "BM5",
+          "equation": "T_K = °C + 273.15",
+          "problems": [
+            {
+              "difficulty": "simple",
+              "problem": "Convert 25°C to Kelvin.",
+              "answer": "T = 25 + 273.15 = 298.15 K"
+            },
+            {
+              "difficulty": "unit_conversion",
+              "problem": "Convert 98.6°F (body temperature) to Kelvin.",
+              "answer": "°C = (5/9)(98.6 − 32) = 37.0°C; T = 310.15 K"
+            },
+            {
+              "difficulty": "multi_step",
+              "problem": "At what temperature do Celsius and Fahrenheit scales read the same number? Convert this temperature to Kelvin.",
+              "answer": "T = (9/5)T + 32; −4T/5 = 32; T = −40°C = −40°F; in K: −40 + 273.15 = 233.15 K"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
