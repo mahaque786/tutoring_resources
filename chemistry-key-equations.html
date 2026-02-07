@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chemistry Key Equations - Mustafa Abdul Haque</title>
+  <link rel="icon" type="image/svg+xml" href="logos/ICON ONLY Mustafa Abdul Haque (Logo).svg">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-content">
+      <a href="index.html" class="site-logo">
+        <img src="logos/Mustafa Abdul Haque.svg" alt="Mustafa Abdul Haque">
+      </a>
+      <nav class="site-nav">
+        <a href="index.html">Home</a>
+        <a href="chemistry-balancing.html">Chemistry Balancing</a>
+        <a href="chemistry-key-equations.html" class="active">Chemistry Equations</a>
+        <a href="dimensional-analysis.html">Dimensional Analysis</a>
+        <a href="ipa-learning-app.html">IPA Learning</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <div class="page-title">
+      <h1>Chemistry Key Equations Reference</h1>
+      <p class="subtitle">Extracted from course materials for quick study and review.</p>
+    </div>
+
+    <div class="card card-accent mb-3">
+      <h2>Contents</h2>
+      <ul class="toc-list">
+        <li><a href="#electrochemistry">Electrochemistry</a></li>
+        <li><a href="#thermodynamics">Thermodynamics</a></li>
+        <li><a href="#equilibrium">Equilibrium</a></li>
+        <li><a href="#acid-base">Acid-Base Chemistry</a></li>
+        <li><a href="#kinetics">Chemical Kinetics</a></li>
+        <li><a href="#gas-laws">Gas Laws</a></li>
+        <li><a href="#colligative">Colligative Properties</a></li>
+        <li><a href="#phase-changes">Phase Changes &amp; Physical Chemistry</a></li>
+        <li><a href="#atomic-structure">Atomic Structure &amp; Spectroscopy</a></li>
+        <li><a href="#chemical-bonding">Chemical Bonding</a></li>
+        <li><a href="#stoichiometry">Stoichiometry &amp; Solutions</a></li>
+        <li><a href="#atomic-mass">Atomic Mass &amp; Basic Measurements</a></li>
+      </ul>
+    </div>
+
+    <section id="electrochemistry" class="equation-section">
+      <div class="section-header">
+        <h2>Electrochemistry</h2>
+        <p>Cell potential, Nernst equation, and Gibbs energy relationships.</p>
+      </div>
+
+      <h3>Cell Potential</h3>
+      <div class="equation-block">
+        <p>E°<sub>cell</sub> = E°<sub>cathode</sub> − E°<sub>anode</sub></p>
+        <p>E°<sub>cell</sub> = (RT / nF) ln K</p>
+        <p>E°<sub>cell</sub> = (0.0257 V / n) ln K = (0.0592 V / n) log K (at 298.15 K)</p>
+      </div>
+
+      <h3>Nernst Equation</h3>
+      <div class="equation-block">
+        <p>E<sub>cell</sub> = E°<sub>cell</sub> − (RT / nF) ln Q</p>
+        <p>E<sub>cell</sub> = E°<sub>cell</sub> − (0.0592 V / n) log Q (at 298.15 K)</p>
+      </div>
+
+      <h3>Gibbs Energy and Work</h3>
+      <div class="equation-block">
+        <p>ΔG = −nFE<sub>cell</sub></p>
+        <p>ΔG° = −nFE°<sub>cell</sub></p>
+        <p>w<sub>elc</sub> = w<sub>max</sub> = −nFE<sub>cell</sub></p>
+        <p>Q = I × t = n × F</p>
+      </div>
+    </section>
+
+    <section id="thermodynamics" class="equation-section">
+      <div class="section-header">
+        <h2>Thermodynamics</h2>
+        <p>Entropy, Gibbs free energy, and enthalpy formulas.</p>
+      </div>
+
+      <h3>Entropy</h3>
+      <div class="equation-block">
+        <p>ΔS = q<sub>rev</sub> / T</p>
+        <p>S = k ln W</p>
+        <p>ΔS = k ln (W<sub>f</sub> / W<sub>i</sub>)</p>
+        <p>ΔS° = Σ νS°(products) − Σ νS°(reactants)</p>
+        <p>ΔS = q / T</p>
+        <p>ΔS<sub>univ</sub> = ΔS<sub>sys</sub> + ΔS<sub>surr</sub></p>
+        <p>ΔS<sub>univ</sub> = ΔS<sub>sys</sub> + ΔS<sub>surr</sub> = ΔS<sub>sys</sub> + q<sub>surr</sub> / T</p>
+      </div>
+
+      <h3>Gibbs Free Energy</h3>
+      <div class="equation-block">
+        <p>ΔG = ΔH − TΔS</p>
+      </div>
+
+      <h3>Enthalpy</h3>
+      <div class="equation-block">
+        <p>q = c × m × ΔT = c × m × (T<sub>final</sub> − T<sub>initial</sub>)</p>
+        <p>ΔU = q + w</p>
+        <p>ΔH°<sub>reaction</sub> = Σ n × ΔH°<sub>f</sub>(products) − Σ n × ΔH°<sub>f</sub>(reactants)</p>
+      </div>
+    </section>
+
+    <section id="equilibrium" class="equation-section">
+      <div class="section-header">
+        <h2>Equilibrium</h2>
+        <p>Equilibrium constants and solubility product expressions.</p>
+      </div>
+
+      <h3>Equilibrium Constants</h3>
+      <div class="equation-block">
+        <p>For mA + nB ⇌ xC + yD:</p>
+        <p>Q<sub>c</sub> = ([C]<sup>x</sup>[D]<sup>y</sup>) / ([A]<sup>m</sup>[B]<sup>n</sup>)</p>
+        <p>Q<sub>P</sub> = (P<sub>C</sub><sup>x</sup>P<sub>D</sub><sup>y</sup>) / (P<sub>A</sub><sup>m</sup>P<sub>B</sub><sup>n</sup>)</p>
+        <p>P = MRT</p>
+        <p>K<sub>c</sub> = Q<sub>c</sub> at equilibrium</p>
+        <p>K<sub>p</sub> = Q<sub>p</sub> at equilibrium</p>
+        <p>K<sub>P</sub> = K<sub>c</sub>(RT)<sup>Δn</sup></p>
+      </div>
+
+      <h3>Solubility Product</h3>
+      <div class="equation-block">
+        <p>M<sub>p</sub>X<sub>q</sub>(s) ⇌ pM<sup>m+</sup>(aq) + qX<sup>n−</sup>(aq)</p>
+        <p>K<sub>sp</sub> = [M<sup>m+</sup>]<sup>p</sup>[X<sup>n−</sup>]<sup>q</sup></p>
+      </div>
+    </section>
+
+    <section id="acid-base" class="equation-section">
+      <div class="section-header">
+        <h2>Acid-Base Chemistry</h2>
+        <p>Water equilibrium, acid/base constants, and buffer equations.</p>
+      </div>
+
+      <h3>Water Equilibrium</h3>
+      <div class="equation-block">
+        <p>K<sub>w</sub> = [H<sub>3</sub>O<sup>+</sup>][OH<sup>−</sup>] = 1.0 × 10<sup>−14</sup> (at 25°C)</p>
+        <p>pH = −log[H<sub>3</sub>O<sup>+</sup>]</p>
+        <p>pOH = −log[OH<sup>−</sup>]</p>
+        <p>[H<sub>3</sub>O<sup>+</sup>] = 10<sup>−pH</sup></p>
+        <p>[OH<sup>−</sup>] = 10<sup>−pOH</sup></p>
+        <p>pH + pOH = pK<sub>w</sub> = 14.00 (at 25°C)</p>
+      </div>
+
+      <h3>Acid and Base Equilibria</h3>
+      <div class="equation-block">
+        <p>K<sub>a</sub> = [H<sub>3</sub>O<sup>+</sup>][A<sup>−</sup>] / [HA]</p>
+        <p>K<sub>b</sub> = [HB<sup>+</sup>][OH<sup>−</sup>] / [B]</p>
+        <p>K<sub>a</sub> × K<sub>b</sub> = 1.0 × 10<sup>−14</sup> = K<sub>w</sub></p>
+        <p>pK<sub>a</sub> = −log K<sub>a</sub></p>
+        <p>pK<sub>b</sub> = −log K<sub>b</sub></p>
+      </div>
+
+      <h3>Henderson-Hasselbalch Equation</h3>
+      <div class="equation-block">
+        <p>pH = pK<sub>a</sub> + log ([A<sup>−</sup>] / [HA])</p>
+      </div>
+
+      <h3>Percent Ionization</h3>
+      <div class="equation-block">
+        <p>Percent ionization = ([H<sub>3</sub>O<sup>+</sup>]<sub>eq</sub> / [HA]<sub>0</sub>) × 100</p>
+      </div>
+    </section>
+
+    <section id="kinetics" class="equation-section">
+      <div class="section-header">
+        <h2>Chemical Kinetics</h2>
+        <p>Reaction rates, integrated rate laws, and Arrhenius relationships.</p>
+      </div>
+
+      <h3>Reaction Rates</h3>
+      <div class="equation-block">
+        <p>For aA → bB: −(1 / a) Δ[A] / Δt = (1 / b) Δ[B] / Δt</p>
+      </div>
+
+      <h3>Zero-Order Reactions</h3>
+      <div class="equation-block">
+        <p>[A]<sub>t</sub> = −kt + [A]<sub>0</sub> (integrated rate law)</p>
+        <p>t<sub>1/2</sub> = [A]<sub>0</sub> / 2k (half-life)</p>
+      </div>
+
+      <h3>First-Order Reactions</h3>
+      <div class="equation-block">
+        <p>ln[A]<sub>t</sub> = −kt + ln[A]<sub>0</sub> (integrated rate law)</p>
+        <p>t<sub>1/2</sub> = 0.693 / k (half-life)</p>
+      </div>
+
+      <h3>Second-Order Reactions</h3>
+      <div class="equation-block">
+        <p>1 / [A]<sub>t</sub> = kt + 1 / [A]<sub>0</sub> (integrated rate law)</p>
+        <p>t<sub>1/2</sub> = 1 / ([A]<sub>0</sub>k) (half-life)</p>
+      </div>
+
+      <h3>Arrhenius Equation</h3>
+      <div class="equation-block">
+        <p>k = Ae<sup>−E<sub>a</sub> / RT</sup></p>
+        <p>ln k = (−E<sub>a</sub> / R)(1 / T) + ln A</p>
+        <p>ln (k<sub>1</sub> / k<sub>2</sub>) = (E<sub>a</sub> / R)(1 / T<sub>2</sub> − 1 / T<sub>1</sub>)</p>
+      </div>
+    </section>
+
+    <section id="gas-laws" class="equation-section">
+      <div class="section-header">
+        <h2>Gas Laws</h2>
+        <p>Ideal gas relationships, pressure, and kinetic molecular theory.</p>
+      </div>
+
+      <h3>Ideal Gas Law</h3>
+      <div class="equation-block">
+        <p>PV = nRT</p>
+      </div>
+
+      <h3>Pressure Relationships</h3>
+      <div class="equation-block">
+        <p>P = F / A</p>
+        <p>P = hρg</p>
+        <p>P<sub>Total</sub> = P<sub>A</sub> + P<sub>B</sub> + P<sub>C</sub> + … = ΣP<sub>i</sub></p>
+        <p>P<sub>A</sub> = X<sub>A</sub>P<sub>Total</sub></p>
+      </div>
+
+      <h3>Mole Fraction</h3>
+      <div class="equation-block">
+        <p>X<sub>A</sub> = n<sub>A</sub> / n<sub>Total</sub></p>
+      </div>
+
+      <h3>Diffusion and Effusion</h3>
+      <div class="equation-block">
+        <p>Rate of diffusion = amount of gas passing through an area / unit of time</p>
+        <p>Rate of effusion of gas A / rate of effusion of gas B = √(m<sub>B</sub> / m<sub>A</sub>) = √(M<sub>B</sub> / M<sub>A</sub>)</p>
+      </div>
+
+      <h3>Kinetic Molecular Theory</h3>
+      <div class="equation-block">
+        <p>u<sub>rms</sub> = √u² = √((u<sub>1</sub><sup>2</sup> + u<sub>2</sub><sup>2</sup> + u<sub>3</sub><sup>2</sup> + u<sub>4</sub><sup>2</sup> + …) / n)</p>
+        <p>KE<sub>avg</sub> = (3 / 2)RT</p>
+        <p>u<sub>rms</sub> = √(3RT / M)</p>
+      </div>
+
+      <h3>Real Gases</h3>
+      <div class="equation-block">
+        <p>Z = (molar volume at same T and P) / (ideal molar volume at same T and P) = (P × V<sub>m</sub> / RT)<sub>measured</sub></p>
+        <p>(P + (n<sup>2</sup>a / V<sup>2</sup>)) × (V − nb) = nRT (van der Waals equation)</p>
+      </div>
+    </section>
+
+    <section id="colligative" class="equation-section">
+      <div class="section-header">
+        <h2>Colligative Properties</h2>
+        <p>Vapor pressure, boiling/freezing changes, and osmotic pressure.</p>
+      </div>
+
+      <h3>Vapor Pressure</h3>
+      <div class="equation-block">
+        <p>C<sub>i</sub> = kP<sub>i</sub> (Henry's Law)</p>
+        <p>P<sub>A</sub> = X<sub>A</sub>P<sub>A</sub><sup>*</sup> (Raoult's Law)</p>
+        <p>P<sub>solution</sub> = ΣP<sub>i</sub> = ΣX<sub>i</sub>P<sub>i</sub><sup>*</sup></p>
+        <p>P<sub>solution</sub> = X<sub>solvent</sub>P<sup>*</sup><sub>solvent</sub></p>
+      </div>
+
+      <h3>Boiling Point Elevation and Freezing Point Depression</h3>
+      <div class="equation-block">
+        <p>ΔT<sub>b</sub> = K<sub>b</sub>m</p>
+        <p>ΔT<sub>f</sub> = K<sub>f</sub>m</p>
+      </div>
+
+      <h3>Osmotic Pressure</h3>
+      <div class="equation-block">
+        <p>Π = MRT</p>
+      </div>
+    </section>
+
+    <section id="phase-changes" class="equation-section">
+      <div class="section-header">
+        <h2>Phase Changes &amp; Physical Chemistry</h2>
+        <p>Capillary action, Clausius-Clapeyron, and Bragg's law.</p>
+      </div>
+
+      <h3>Capillary Action</h3>
+      <div class="equation-block">
+        <p>h = (2T cos θ) / (rρg)</p>
+      </div>
+
+      <h3>Clausius-Clapeyron Equation</h3>
+      <div class="equation-block">
+        <p>P = Ae<sup>−ΔH<sub>vap</sub> / RT</sup></p>
+        <p>ln P = (−ΔH<sub>vap</sub> / RT) + ln A</p>
+        <p>ln(P<sub>1</sub> / P<sub>2</sub>) = (ΔH<sub>vap</sub> / R)(1 / T<sub>2</sub> − 1 / T<sub>1</sub>)</p>
+      </div>
+
+      <h3>Bragg's Law</h3>
+      <div class="equation-block">
+        <p>nλ = 2d sin θ</p>
+      </div>
+    </section>
+
+    <section id="atomic-structure" class="equation-section">
+      <div class="section-header">
+        <h2>Atomic Structure &amp; Spectroscopy</h2>
+        <p>Wave-particle duality and hydrogen atom relationships.</p>
+      </div>
+
+      <h3>Wave-Particle Duality</h3>
+      <div class="equation-block">
+        <p>c = λν</p>
+        <p>E = hν = hc / λ, where h = 6.626 × 10<sup>−34</sup> J·s</p>
+      </div>
+
+      <h3>Hydrogen Atom</h3>
+      <div class="equation-block">
+        <p>1 / λ = R<sub>∞</sub>(1 / n<sub>1</sub><sup>2</sup> − 1 / n<sub>2</sub><sup>2</sup>)</p>
+        <p>E<sub>n</sub> = −kZ<sup>2</sup> / n<sup>2</sup>, n = 1, 2, 3, …</p>
+        <p>ΔE = kZ<sup>2</sup>(1 / n<sub>1</sub><sup>2</sup> − 1 / n<sub>2</sub><sup>2</sup>)</p>
+        <p>r = (n<sup>2</sup> / Z)a<sub>0</sub></p>
+      </div>
+    </section>
+
+    <section id="chemical-bonding" class="equation-section">
+      <div class="section-header">
+        <h2>Chemical Bonding</h2>
+        <p>Bond order, formal charge, bond energy, and lattice energy.</p>
+      </div>
+
+      <h3>Bond Order</h3>
+      <div class="equation-block">
+        <p>Bond order = (number of bonding electrons − number of antibonding electrons) / 2</p>
+      </div>
+
+      <h3>Formal Charge</h3>
+      <div class="equation-block">
+        <p>Formal charge = valence electrons (free atom) − lone pair electrons − (1 / 2) bonding electrons</p>
+      </div>
+
+      <h3>Bond Energy</h3>
+      <div class="equation-block">
+        <p>XY(g) → X(g) + Y(g), D<sub>X−Y</sub> = ΔH°</p>
+        <p>ΔH = Σ D<sub>bonds broken</sub> − Σ D<sub>bonds formed</sub></p>
+      </div>
+
+      <h3>Lattice Energy</h3>
+      <div class="equation-block">
+        <p>For a solid MX: MX(s) → M<sup>n+</sup>(g) + X<sup>n−</sup>(g), ΔH<sub>lattice</sub></p>
+        <p>For an ionic crystal: ΔH<sub>lattice</sub> = C(Z<sup>+</sup>)(Z<sup>−</sup>) / R<sub>0</sub></p>
+      </div>
+    </section>
+
+    <section id="stoichiometry" class="equation-section">
+      <div class="section-header">
+        <h2>Stoichiometry &amp; Solutions</h2>
+        <p>Percent composition, formulas, molarity, and concentration units.</p>
+      </div>
+
+      <h3>Percent Composition</h3>
+      <div class="equation-block">
+        <p>%X = (mass X / mass compound) × 100%</p>
+      </div>
+
+      <h3>Empirical and Molecular Formulas</h3>
+      <div class="equation-block">
+        <p>(molecular or molar mass / empirical formula mass) (amu or g/mol) = n formula units/molecule</p>
+        <p>(A<sub>x</sub>B<sub>y</sub>)<sub>n</sub> = A<sub>nx</sub>B<sub>ny</sub></p>
+      </div>
+
+      <h3>Molarity and Dilution</h3>
+      <div class="equation-block">
+        <p>M = mol solute / L solution</p>
+        <p>C<sub>1</sub>V<sub>1</sub> = C<sub>2</sub>V<sub>2</sub></p>
+      </div>
+
+      <h3>Concentration Units</h3>
+      <div class="equation-block">
+        <p>Percent by mass = (mass of solute / mass of solution) × 100</p>
+        <p>ppm = (mass solute / mass solution) × 10<sup>6</sup> ppm</p>
+        <p>ppb = (mass solute / mass solution) × 10<sup>9</sup> ppb</p>
+      </div>
+
+      <h3>Percent Yield</h3>
+      <div class="equation-block">
+        <p>Percent yield = (actual yield / theoretical yield) × 100</p>
+      </div>
+    </section>
+
+    <section id="atomic-mass" class="equation-section">
+      <div class="section-header">
+        <h2>Atomic Mass &amp; Basic Measurements</h2>
+        <p>Average atomic mass, density, and temperature conversions.</p>
+      </div>
+
+      <h3>Average Atomic Mass</h3>
+      <div class="equation-block">
+        <p>Average mass = Σ (fractional abundance × isotopic mass)</p>
+      </div>
+
+      <h3>Density</h3>
+      <div class="equation-block">
+        <p>Density = mass / volume</p>
+      </div>
+
+      <h3>Temperature Conversions</h3>
+      <div class="equation-block">
+        <p>T<sub>°C</sub> = (5 / 9)(T<sub>°F</sub> − 32)</p>
+        <p>T<sub>°F</sub> = (9 / 5)T<sub>°C</sub> + 32</p>
+        <p>T<sub>K</sub> = °C + 273.15</p>
+        <p>T<sub>°C</sub> = K − 273.15</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Mustafa Abdul Haque - Tutoring Resources</p>
+  </footer>
+</body>
+</html>
