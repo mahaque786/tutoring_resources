@@ -759,3 +759,18 @@ input.incorrect {
     color: black;
   }
 }
+
+/* PDF Container Styles */
+.pdf-container {
+  margin: 2rem 0;
+  border: 1px solid var(--color-light-gray);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+}
+
+.pdf-container embed,
+.pdf-container object {
+  display: block;
+  border: none;
+}
