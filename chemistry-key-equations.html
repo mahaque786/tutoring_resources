@@ -6,6 +6,10 @@
   <title>Chemistry Key Equations - Mustafa Abdul Haque</title>
   <link rel="icon" type="image/svg+xml" href="logos/ICON ONLY Mustafa Abdul Haque (Logo).svg">
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj3dQfXH6ckGreeB0S4e2misNW/7ohBjJ4jmFKVKBFmVDHPRbFNkJPEWRa" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.js" integrity="sha384-Rma6DA2IPUwhNxmrB/7S3Tno0YY3Ov9cA0Y8e7wmBMnbhXKVs/HHXtrgBaJ0M+y" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/contrib/auto-render.min.js" integrity="sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G2LBE2MbeDse+pMh8BKbmDPl" crossorigin="anonymous"
+    onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '\\(', right: '\\)', display: false}]});"></script>
 </head>
 <body>
   <header class="site-header">
@@ -55,23 +59,23 @@
 
       <h3>Cell Potential</h3>
       <div class="equation-block">
-        <p>E°<sub>cell</sub> = E°<sub>cathode</sub> − E°<sub>anode</sub></p>
-        <p>E°<sub>cell</sub> = (RT / nF) ln K</p>
-        <p>E°<sub>cell</sub> = (0.0257 V / n) ln K = (0.0592 V / n) log K (at 298.15 K)</p>
+        <p>$$ E^\circ_{\text{cell}} = E^\circ_{\text{cathode}} - E^\circ_{\text{anode}} $$</p>
+        <p>$$ E^\circ_{\text{cell}} = \frac{RT}{nF} \ln K $$</p>
+        <p>$$ E^\circ_{\text{cell}} = \frac{0.0257 \text{ V}}{n} \ln K = \frac{0.0592 \text{ V}}{n} \log K \quad (\text{at } 298.15 \text{ K}) $$</p>
       </div>
 
       <h3>Nernst Equation</h3>
       <div class="equation-block">
-        <p>E<sub>cell</sub> = E°<sub>cell</sub> − (RT / nF) ln Q</p>
-        <p>E<sub>cell</sub> = E°<sub>cell</sub> − (0.0592 V / n) log Q (at 298.15 K)</p>
+        <p>$$ E_{\text{cell}} = E^\circ_{\text{cell}} - \frac{RT}{nF} \ln Q $$</p>
+        <p>$$ E_{\text{cell}} = E^\circ_{\text{cell}} - \frac{0.0592 \text{ V}}{n} \log Q \quad (\text{at } 298.15 \text{ K}) $$</p>
       </div>
 
       <h3>Gibbs Energy and Work</h3>
       <div class="equation-block">
-        <p>ΔG = −nFE<sub>cell</sub></p>
-        <p>ΔG° = −nFE°<sub>cell</sub></p>
-        <p>w<sub>elc</sub> = w<sub>max</sub> = −nFE<sub>cell</sub></p>
-        <p>Q = I × t = n × F</p>
+        <p>$$ \Delta G = -nFE_{\text{cell}} $$</p>
+        <p>$$ \Delta G^\circ = -nFE^\circ_{\text{cell}} $$</p>
+        <p>$$ w_{\text{elc}} = w_{\text{max}} = -nFE_{\text{cell}} $$</p>
+        <p>$$ Q = I \times t = n \times F $$</p>
       </div>
     </section>
 
@@ -83,25 +87,25 @@
 
       <h3>Entropy</h3>
       <div class="equation-block">
-        <p>ΔS = q<sub>rev</sub> / T</p>
-        <p>S = k ln W</p>
-        <p>ΔS = k ln (W<sub>f</sub> / W<sub>i</sub>)</p>
-        <p>ΔS° = Σ νS°(products) − Σ νS°(reactants)</p>
-        <p>ΔS = q / T</p>
-        <p>ΔS<sub>univ</sub> = ΔS<sub>sys</sub> + ΔS<sub>surr</sub></p>
-        <p>ΔS<sub>univ</sub> = ΔS<sub>sys</sub> + ΔS<sub>surr</sub> = ΔS<sub>sys</sub> + q<sub>surr</sub> / T</p>
+        <p>$$ \Delta S = \frac{q_{\text{rev}}}{T} $$</p>
+        <p>$$ S = k \ln W $$</p>
+        <p>$$ \Delta S = k \ln \frac{W_f}{W_i} $$</p>
+        <p>$$ \Delta S^\circ = \sum \nu S^\circ(\text{products}) - \sum \nu S^\circ(\text{reactants}) $$</p>
+        <p>$$ \Delta S = \frac{q}{T} $$</p>
+        <p>$$ \Delta S_{\text{univ}} = \Delta S_{\text{sys}} + \Delta S_{\text{surr}} $$</p>
+        <p>$$ \Delta S_{\text{univ}} = \Delta S_{\text{sys}} + \Delta S_{\text{surr}} = \Delta S_{\text{sys}} + \frac{q_{\text{surr}}}{T} $$</p>
       </div>
 
       <h3>Gibbs Free Energy</h3>
       <div class="equation-block">
-        <p>ΔG = ΔH − TΔS</p>
+        <p>$$ \Delta G = \Delta H - T\Delta S $$</p>
       </div>
 
       <h3>Enthalpy</h3>
       <div class="equation-block">
-        <p>q = c × m × ΔT = c × m × (T<sub>final</sub> − T<sub>initial</sub>)</p>
-        <p>ΔU = q + w</p>
-        <p>ΔH°<sub>reaction</sub> = Σ n × ΔH°<sub>f</sub>(products) − Σ n × ΔH°<sub>f</sub>(reactants)</p>
+        <p>$$ q = c \times m \times \Delta T = c \times m \times (T_{\text{final}} - T_{\text{initial}}) $$</p>
+        <p>$$ \Delta U = q + w $$</p>
+        <p>$$ \Delta H^\circ_{\text{reaction}} = \sum n \times \Delta H^\circ_f(\text{products}) - \sum n \times \Delta H^\circ_f(\text{reactants}) $$</p>
       </div>
     </section>
 
@@ -113,19 +117,19 @@
 
       <h3>Equilibrium Constants</h3>
       <div class="equation-block">
-        <p>For mA + nB ⇌ xC + yD:</p>
-        <p>Q<sub>c</sub> = ([C]<sup>x</sup>[D]<sup>y</sup>) / ([A]<sup>m</sup>[B]<sup>n</sup>)</p>
-        <p>Q<sub>P</sub> = (P<sub>C</sub><sup>x</sup>P<sub>D</sub><sup>y</sup>) / (P<sub>A</sub><sup>m</sup>P<sub>B</sub><sup>n</sup>)</p>
-        <p>P = MRT</p>
-        <p>K<sub>c</sub> = Q<sub>c</sub> at equilibrium</p>
-        <p>K<sub>p</sub> = Q<sub>p</sub> at equilibrium</p>
-        <p>K<sub>P</sub> = K<sub>c</sub>(RT)<sup>Δn</sup></p>
+        <p>$$ \text{For } mA + nB \rightleftharpoons xC + yD\text{:} $$</p>
+        <p>$$ Q_c = \frac{[C]^x[D]^y}{[A]^m[B]^n} $$</p>
+        <p>$$ Q_P = \frac{P_C^{\,x}\,P_D^{\,y}}{P_A^{\,m}\,P_B^{\,n}} $$</p>
+        <p>$$ P = MRT $$</p>
+        <p>$$ K_c = Q_c \text{ at equilibrium} $$</p>
+        <p>$$ K_p = Q_p \text{ at equilibrium} $$</p>
+        <p>$$ K_P = K_c(RT)^{\Delta n} $$</p>
       </div>
 
       <h3>Solubility Product</h3>
       <div class="equation-block">
-        <p>M<sub>p</sub>X<sub>q</sub>(s) ⇌ pM<sup>m+</sup>(aq) + qX<sup>n−</sup>(aq)</p>
-        <p>K<sub>sp</sub> = [M<sup>m+</sup>]<sup>p</sup>[X<sup>n−</sup>]<sup>q</sup></p>
+        <p>$$ M_pX_q(s) \rightleftharpoons pM^{m+}(aq) + qX^{n-}(aq) $$</p>
+        <p>$$ K_{sp} = [M^{m+}]^p[X^{n-}]^q $$</p>
       </div>
     </section>
 
@@ -137,31 +141,31 @@
 
       <h3>Water Equilibrium</h3>
       <div class="equation-block">
-        <p>K<sub>w</sub> = [H<sub>3</sub>O<sup>+</sup>][OH<sup>−</sup>] = 1.0 × 10<sup>−14</sup> (at 25°C)</p>
-        <p>pH = −log[H<sub>3</sub>O<sup>+</sup>]</p>
-        <p>pOH = −log[OH<sup>−</sup>]</p>
-        <p>[H<sub>3</sub>O<sup>+</sup>] = 10<sup>−pH</sup></p>
-        <p>[OH<sup>−</sup>] = 10<sup>−pOH</sup></p>
-        <p>pH + pOH = pK<sub>w</sub> = 14.00 (at 25°C)</p>
+        <p>$$ K_w = [\text{H}_3\text{O}^+][\text{OH}^-] = 1.0 \times 10^{-14} \quad (\text{at } 25°\text{C}) $$</p>
+        <p>$$ \text{pH} = -\log[\text{H}_3\text{O}^+] $$</p>
+        <p>$$ \text{pOH} = -\log[\text{OH}^-] $$</p>
+        <p>$$ [\text{H}_3\text{O}^+] = 10^{-\text{pH}} $$</p>
+        <p>$$ [\text{OH}^-] = 10^{-\text{pOH}} $$</p>
+        <p>$$ \text{pH} + \text{pOH} = pK_w = 14.00 \quad (\text{at } 25°\text{C}) $$</p>
       </div>
 
       <h3>Acid and Base Equilibria</h3>
       <div class="equation-block">
-        <p>K<sub>a</sub> = [H<sub>3</sub>O<sup>+</sup>][A<sup>−</sup>] / [HA]</p>
-        <p>K<sub>b</sub> = [HB<sup>+</sup>][OH<sup>−</sup>] / [B]</p>
-        <p>K<sub>a</sub> × K<sub>b</sub> = 1.0 × 10<sup>−14</sup> = K<sub>w</sub></p>
-        <p>pK<sub>a</sub> = −log K<sub>a</sub></p>
-        <p>pK<sub>b</sub> = −log K<sub>b</sub></p>
+        <p>$$ K_a = \frac{[\text{H}_3\text{O}^+][\text{A}^-]}{[\text{HA}]} $$</p>
+        <p>$$ K_b = \frac{[\text{HB}^+][\text{OH}^-]}{[\text{B}]} $$</p>
+        <p>$$ K_a \times K_b = 1.0 \times 10^{-14} = K_w $$</p>
+        <p>$$ pK_a = -\log K_a $$</p>
+        <p>$$ pK_b = -\log K_b $$</p>
       </div>
 
       <h3>Henderson-Hasselbalch Equation</h3>
       <div class="equation-block">
-        <p>pH = pK<sub>a</sub> + log ([A<sup>−</sup>] / [HA])</p>
+        <p>$$ \text{pH} = pK_a + \log \frac{[\text{A}^-]}{[\text{HA}]} $$</p>
       </div>
 
       <h3>Percent Ionization</h3>
       <div class="equation-block">
-        <p>Percent ionization = ([H<sub>3</sub>O<sup>+</sup>]<sub>eq</sub> / [HA]<sub>0</sub>) × 100</p>
+        <p>$$ \text{Percent ionization} = \frac{[\text{H}_3\text{O}^+]_{\text{eq}}}{[\text{HA}]_0} \times 100 $$</p>
       </div>
     </section>
 
@@ -173,32 +177,32 @@
 
       <h3>Reaction Rates</h3>
       <div class="equation-block">
-        <p>For aA → bB: −(1 / a) Δ[A] / Δt = (1 / b) Δ[B] / Δt</p>
+        <p>$$ \text{For } aA \to bB: \quad -\frac{1}{a}\frac{\Delta[A]}{\Delta t} = \frac{1}{b}\frac{\Delta[B]}{\Delta t} $$</p>
       </div>
 
       <h3>Zero-Order Reactions</h3>
       <div class="equation-block">
-        <p>[A]<sub>t</sub> = −kt + [A]<sub>0</sub> (integrated rate law)</p>
-        <p>t<sub>1/2</sub> = [A]<sub>0</sub> / 2k (half-life)</p>
+        <p>$$ [A]_t = -kt + [A]_0 \quad \text{(integrated rate law)} $$</p>
+        <p>$$ t_{1/2} = \frac{[A]_0}{2k} \quad \text{(half-life)} $$</p>
       </div>
 
       <h3>First-Order Reactions</h3>
       <div class="equation-block">
-        <p>ln[A]<sub>t</sub> = −kt + ln[A]<sub>0</sub> (integrated rate law)</p>
-        <p>t<sub>1/2</sub> = 0.693 / k (half-life)</p>
+        <p>$$ \ln[A]_t = -kt + \ln[A]_0 \quad \text{(integrated rate law)} $$</p>
+        <p>$$ t_{1/2} = \frac{0.693}{k} \quad \text{(half-life)} $$</p>
       </div>
 
       <h3>Second-Order Reactions</h3>
       <div class="equation-block">
-        <p>1 / [A]<sub>t</sub> = kt + 1 / [A]<sub>0</sub> (integrated rate law)</p>
-        <p>t<sub>1/2</sub> = 1 / ([A]<sub>0</sub>k) (half-life)</p>
+        <p>$$ \frac{1}{[A]_t} = kt + \frac{1}{[A]_0} \quad \text{(integrated rate law)} $$</p>
+        <p>$$ t_{1/2} = \frac{1}{[A]_0 k} \quad \text{(half-life)} $$</p>
       </div>
 
       <h3>Arrhenius Equation</h3>
       <div class="equation-block">
-        <p>k = Ae<sup>−E<sub>a</sub> / RT</sup></p>
-        <p>ln k = (−E<sub>a</sub> / R)(1 / T) + ln A</p>
-        <p>ln (k<sub>1</sub> / k<sub>2</sub>) = (E<sub>a</sub> / R)(1 / T<sub>2</sub> − 1 / T<sub>1</sub>)</p>
+        <p>$$ k = Ae^{-E_a / RT} $$</p>
+        <p>$$ \ln k = \frac{-E_a}{R}\left(\frac{1}{T}\right) + \ln A $$</p>
+        <p>$$ \ln \frac{k_1}{k_2} = \frac{E_a}{R}\left(\frac{1}{T_2} - \frac{1}{T_1}\right) $$</p>
       </div>
     </section>
 
@@ -210,39 +214,39 @@
 
       <h3>Ideal Gas Law</h3>
       <div class="equation-block">
-        <p>PV = nRT</p>
+        <p>$$ PV = nRT $$</p>
       </div>
 
       <h3>Pressure Relationships</h3>
       <div class="equation-block">
-        <p>P = F / A</p>
-        <p>P = hρg</p>
-        <p>P<sub>Total</sub> = P<sub>A</sub> + P<sub>B</sub> + P<sub>C</sub> + … = ΣP<sub>i</sub></p>
-        <p>P<sub>A</sub> = X<sub>A</sub>P<sub>Total</sub></p>
+        <p>$$ P = \frac{F}{A} $$</p>
+        <p>$$ P = h\rho g $$</p>
+        <p>$$ P_{\text{Total}} = P_A + P_B + P_C + \cdots = \sum P_i $$</p>
+        <p>$$ P_A = X_A P_{\text{Total}} $$</p>
       </div>
 
       <h3>Mole Fraction</h3>
       <div class="equation-block">
-        <p>X<sub>A</sub> = n<sub>A</sub> / n<sub>Total</sub></p>
+        <p>$$ X_A = \frac{n_A}{n_{\text{Total}}} $$</p>
       </div>
 
       <h3>Diffusion and Effusion</h3>
       <div class="equation-block">
-        <p>Rate of diffusion = amount of gas passing through an area / unit of time</p>
-        <p>Rate of effusion of gas A / rate of effusion of gas B = √(m<sub>B</sub> / m<sub>A</sub>) = √(M<sub>B</sub> / M<sub>A</sub>)</p>
+        <p>$$ \text{Rate of diffusion} = \frac{\text{amount of gas passing through an area}}{\text{unit of time}} $$</p>
+        <p>$$ \frac{\text{Rate of effusion of gas A}}{\text{Rate of effusion of gas B}} = \sqrt{\frac{m_B}{m_A}} = \sqrt{\frac{M_B}{M_A}} $$</p>
       </div>
 
       <h3>Kinetic Molecular Theory</h3>
       <div class="equation-block">
-        <p>u<sub>rms</sub> = √u² = √((u<sub>1</sub><sup>2</sup> + u<sub>2</sub><sup>2</sup> + u<sub>3</sub><sup>2</sup> + u<sub>4</sub><sup>2</sup> + …) / n)</p>
-        <p>KE<sub>avg</sub> = (3 / 2)RT</p>
-        <p>u<sub>rms</sub> = √(3RT / M)</p>
+        <p>$$ u_{\text{rms}} = \sqrt{\overline{u^2}} = \sqrt{\frac{u_1^2 + u_2^2 + u_3^2 + u_4^2 + \cdots}{n}} $$</p>
+        <p>$$ KE_{\text{avg}} = \frac{3}{2}RT $$</p>
+        <p>$$ u_{\text{rms}} = \sqrt{\frac{3RT}{M}} $$</p>
       </div>
 
       <h3>Real Gases</h3>
       <div class="equation-block">
-        <p>Z = (molar volume at same T and P) / (ideal molar volume at same T and P) = (P × V<sub>m</sub> / RT)<sub>measured</sub></p>
-        <p>(P + (n<sup>2</sup>a / V<sup>2</sup>)) × (V − nb) = nRT (van der Waals equation)</p>
+        <p>$$ Z = \frac{\text{molar volume at same } T \text{ and } P}{\text{ideal molar volume at same } T \text{ and } P} = \left(\frac{P \cdot V_m}{RT}\right)_{\text{measured}} $$</p>
+        <p>$$ \left(P + \frac{n^2 a}{V^2}\right)(V - nb) = nRT \quad \text{(van der Waals equation)} $$</p>
       </div>
     </section>
 
@@ -254,21 +258,21 @@
 
       <h3>Vapor Pressure</h3>
       <div class="equation-block">
-        <p>C<sub>i</sub> = kP<sub>i</sub> (Henry's Law)</p>
-        <p>P<sub>A</sub> = X<sub>A</sub>P<sub>A</sub><sup>*</sup> (Raoult's Law)</p>
-        <p>P<sub>solution</sub> = ΣP<sub>i</sub> = ΣX<sub>i</sub>P<sub>i</sub><sup>*</sup></p>
-        <p>P<sub>solution</sub> = X<sub>solvent</sub>P<sup>*</sup><sub>solvent</sub></p>
+        <p>$$ C_i = kP_i \quad \text{(Henry's Law)} $$</p>
+        <p>$$ P_A = X_A P_A^* \quad \text{(Raoult's Law)} $$</p>
+        <p>$$ P_{\text{solution}} = \sum P_i = \sum X_i P_i^* $$</p>
+        <p>$$ P_{\text{solution}} = X_{\text{solvent}} P^*_{\text{solvent}} $$</p>
       </div>
 
       <h3>Boiling Point Elevation and Freezing Point Depression</h3>
       <div class="equation-block">
-        <p>ΔT<sub>b</sub> = K<sub>b</sub>m</p>
-        <p>ΔT<sub>f</sub> = K<sub>f</sub>m</p>
+        <p>$$ \Delta T_b = K_b m $$</p>
+        <p>$$ \Delta T_f = K_f m $$</p>
       </div>
 
       <h3>Osmotic Pressure</h3>
       <div class="equation-block">
-        <p>Π = MRT</p>
+        <p>$$ \Pi = MRT $$</p>
       </div>
     </section>
 
@@ -280,19 +284,19 @@
 
       <h3>Capillary Action</h3>
       <div class="equation-block">
-        <p>h = (2T cos θ) / (rρg)</p>
+        <p>$$ h = \frac{2T\cos\theta}{r\rho g} $$</p>
       </div>
 
       <h3>Clausius-Clapeyron Equation</h3>
       <div class="equation-block">
-        <p>P = Ae<sup>−ΔH<sub>vap</sub> / RT</sup></p>
-        <p>ln P = (−ΔH<sub>vap</sub> / RT) + ln A</p>
-        <p>ln(P<sub>1</sub> / P<sub>2</sub>) = (ΔH<sub>vap</sub> / R)(1 / T<sub>2</sub> − 1 / T<sub>1</sub>)</p>
+        <p>$$ P = Ae^{-\Delta H_{\text{vap}} / RT} $$</p>
+        <p>$$ \ln P = \frac{-\Delta H_{\text{vap}}}{RT} + \ln A $$</p>
+        <p>$$ \ln\frac{P_1}{P_2} = \frac{\Delta H_{\text{vap}}}{R}\left(\frac{1}{T_2} - \frac{1}{T_1}\right) $$</p>
       </div>
 
       <h3>Bragg's Law</h3>
       <div class="equation-block">
-        <p>nλ = 2d sin θ</p>
+        <p>$$ n\lambda = 2d\sin\theta $$</p>
       </div>
     </section>
 
@@ -304,16 +308,16 @@
 
       <h3>Wave-Particle Duality</h3>
       <div class="equation-block">
-        <p>c = λν</p>
-        <p>E = hν = hc / λ, where h = 6.626 × 10<sup>−34</sup> J·s</p>
+        <p>$$ c = \lambda\nu $$</p>
+        <p>$$ E = h\nu = \frac{hc}{\lambda}, \quad \text{where } h = 6.626 \times 10^{-34} \text{ J·s} $$</p>
       </div>
 
       <h3>Hydrogen Atom</h3>
       <div class="equation-block">
-        <p>1 / λ = R<sub>∞</sub>(1 / n<sub>1</sub><sup>2</sup> − 1 / n<sub>2</sub><sup>2</sup>)</p>
-        <p>E<sub>n</sub> = −kZ<sup>2</sup> / n<sup>2</sup>, n = 1, 2, 3, …</p>
-        <p>ΔE = kZ<sup>2</sup>(1 / n<sub>1</sub><sup>2</sup> − 1 / n<sub>2</sub><sup>2</sup>)</p>
-        <p>r = (n<sup>2</sup> / Z)a<sub>0</sub></p>
+        <p>$$ \frac{1}{\lambda} = R_\infty\left(\frac{1}{n_1^2} - \frac{1}{n_2^2}\right) $$</p>
+        <p>$$ E_n = \frac{-kZ^2}{n^2}, \quad n = 1, 2, 3, \ldots $$</p>
+        <p>$$ \Delta E = kZ^2\left(\frac{1}{n_1^2} - \frac{1}{n_2^2}\right) $$</p>
+        <p>$$ r = \frac{n^2}{Z}a_0 $$</p>
       </div>
     </section>
 
@@ -325,24 +329,24 @@
 
       <h3>Bond Order</h3>
       <div class="equation-block">
-        <p>Bond order = (number of bonding electrons − number of antibonding electrons) / 2</p>
+        <p>$$ \text{Bond order} = \frac{\text{number of bonding electrons} - \text{number of antibonding electrons}}{2} $$</p>
       </div>
 
       <h3>Formal Charge</h3>
       <div class="equation-block">
-        <p>Formal charge = valence electrons (free atom) − lone pair electrons − (1 / 2) bonding electrons</p>
+        <p>$$ \text{Formal charge} = \text{valence electrons (free atom)} - \text{lone pair electrons} - \frac{1}{2}\text{bonding electrons} $$</p>
       </div>
 
       <h3>Bond Energy</h3>
       <div class="equation-block">
-        <p>XY(g) → X(g) + Y(g), D<sub>X−Y</sub> = ΔH°</p>
-        <p>ΔH = Σ D<sub>bonds broken</sub> − Σ D<sub>bonds formed</sub></p>
+        <p>$$ XY(g) \to X(g) + Y(g), \quad D_{X-Y} = \Delta H^\circ $$</p>
+        <p>$$ \Delta H = \sum D_{\text{bonds broken}} - \sum D_{\text{bonds formed}} $$</p>
       </div>
 
       <h3>Lattice Energy</h3>
       <div class="equation-block">
-        <p>For a solid MX: MX(s) → M<sup>n+</sup>(g) + X<sup>n−</sup>(g), ΔH<sub>lattice</sub></p>
-        <p>For an ionic crystal: ΔH<sub>lattice</sub> = C(Z<sup>+</sup>)(Z<sup>−</sup>) / R<sub>0</sub></p>
+        <p>$$ \text{For a solid MX: } MX(s) \to M^{n+}(g) + X^{n-}(g), \quad \Delta H_{\text{lattice}} $$</p>
+        <p>$$ \text{For an ionic crystal: } \Delta H_{\text{lattice}} = \frac{C(Z^+)(Z^-)}{R_0} $$</p>
       </div>
     </section>
 
@@ -354,31 +358,31 @@
 
       <h3>Percent Composition</h3>
       <div class="equation-block">
-        <p>%X = (mass X / mass compound) × 100%</p>
+        <p>$$ \%X = \frac{\text{mass } X}{\text{mass compound}} \times 100\% $$</p>
       </div>
 
       <h3>Empirical and Molecular Formulas</h3>
       <div class="equation-block">
-        <p>(molecular or molar mass / empirical formula mass) (amu or g/mol) = n formula units/molecule</p>
-        <p>(A<sub>x</sub>B<sub>y</sub>)<sub>n</sub> = A<sub>nx</sub>B<sub>ny</sub></p>
+        <p>$$ \frac{\text{molecular or molar mass}}{\text{empirical formula mass}} \text{ (amu or g/mol)} = n \text{ formula units/molecule} $$</p>
+        <p>$$ (A_xB_y)_n = A_{nx}B_{ny} $$</p>
       </div>
 
       <h3>Molarity and Dilution</h3>
       <div class="equation-block">
-        <p>M = mol solute / L solution</p>
-        <p>C<sub>1</sub>V<sub>1</sub> = C<sub>2</sub>V<sub>2</sub></p>
+        <p>$$ M = \frac{\text{mol solute}}{\text{L solution}} $$</p>
+        <p>$$ C_1V_1 = C_2V_2 $$</p>
       </div>
 
       <h3>Concentration Units</h3>
       <div class="equation-block">
-        <p>Percent by mass = (mass of solute / mass of solution) × 100</p>
-        <p>ppm = (mass solute / mass solution) × 10<sup>6</sup> ppm</p>
-        <p>ppb = (mass solute / mass solution) × 10<sup>9</sup> ppb</p>
+        <p>$$ \text{Percent by mass} = \frac{\text{mass of solute}}{\text{mass of solution}} \times 100 $$</p>
+        <p>$$ \text{ppm} = \frac{\text{mass solute}}{\text{mass solution}} \times 10^6 \text{ ppm} $$</p>
+        <p>$$ \text{ppb} = \frac{\text{mass solute}}{\text{mass solution}} \times 10^9 \text{ ppb} $$</p>
       </div>
 
       <h3>Percent Yield</h3>
       <div class="equation-block">
-        <p>Percent yield = (actual yield / theoretical yield) × 100</p>
+        <p>$$ \text{Percent yield} = \frac{\text{actual yield}}{\text{theoretical yield}} \times 100 $$</p>
       </div>
     </section>
 
@@ -390,20 +394,20 @@
 
       <h3>Average Atomic Mass</h3>
       <div class="equation-block">
-        <p>Average mass = Σ (fractional abundance × isotopic mass)</p>
+        <p>$$ \text{Average mass} = \sum(\text{fractional abundance} \times \text{isotopic mass}) $$</p>
       </div>
 
       <h3>Density</h3>
       <div class="equation-block">
-        <p>Density = mass / volume</p>
+        <p>$$ \text{Density} = \frac{\text{mass}}{\text{volume}} $$</p>
       </div>
 
       <h3>Temperature Conversions</h3>
       <div class="equation-block">
-        <p>T<sub>°C</sub> = (5 / 9)(T<sub>°F</sub> − 32)</p>
-        <p>T<sub>°F</sub> = (9 / 5)T<sub>°C</sub> + 32</p>
-        <p>T<sub>K</sub> = °C + 273.15</p>
-        <p>T<sub>°C</sub> = K − 273.15</p>
+        <p>$$ T_{°\text{C}} = \frac{5}{9}(T_{°\text{F}} - 32) $$</p>
+        <p>$$ T_{°\text{F}} = \frac{9}{5}T_{°\text{C}} + 32 $$</p>
+        <p>$$ T_{\text{K}} = °\text{C} + 273.15 $$</p>
+        <p>$$ T_{°\text{C}} = \text{K} - 273.15 $$</p>
       </div>
     </section>
   </main>
