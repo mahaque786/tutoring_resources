@@ -211,6 +211,14 @@
       multi_step: 'Multi-Step'
     };
 
+    function formatChemText(text) {
+      const escaped = text
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;');
+      return escaped.replace(/_([A-Za-z0-9₀-₉]+)/g, '<sub>$1</sub>');
+    }
+
     function createProblemCard(problem) {
       const details = document.createElement('details');
       details.className = 'problem-card';
@@ -223,7 +231,7 @@
 
       const prompt = document.createElement('span');
       prompt.className = 'problem-title';
-      prompt.textContent = problem.problem;
+      prompt.innerHTML = formatChemText(problem.problem);
 
       summary.appendChild(pill);
       summary.appendChild(prompt);
@@ -236,7 +244,7 @@
       answerLabel.textContent = 'Answer: ';
 
       const answerText = document.createElement('span');
-      answerText.textContent = problem.answer;
+      answerText.innerHTML = formatChemText(problem.answer);
 
       answer.appendChild(answerLabel);
       answer.appendChild(answerText);
@@ -257,10 +265,10 @@
         try {
           katex.render(equation.latex, eqTitle, { throwOnError: false, displayMode: false });
         } catch (_) {
-          eqTitle.textContent = equation.equation;
+          eqTitle.innerHTML = formatChemText(equation.equation);
         }
       } else {
-        eqTitle.textContent = equation.equation;
+        eqTitle.innerHTML = formatChemText(equation.equation);
       }
 
       const idPill = document.createElement('span');
