@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chemistry Formula Practice - Mustafa Abdul Haque</title>
+  <link rel="icon" type="image/svg+xml" href="logos/ICON ONLY Mustafa Abdul Haque (Logo).svg">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .info-card {
+      margin-bottom: 1.25rem;
+    }
+
+    .section-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .section-card h3 {
+      margin-bottom: 0.75rem;
+    }
+
+    .equation-card {
+      border: 1px solid var(--color-light-gray);
+      border-radius: var(--radius-sm);
+      padding: 1rem;
+      margin-bottom: 0.75rem;
+      background: rgba(76, 107, 60, 0.03);
+    }
+
+    .equation-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .problem-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .problem-card {
+      border: 1px solid var(--color-light-gray);
+      border-radius: var(--radius-sm);
+      padding: 0.75rem 0.75rem 0.5rem;
+      background: var(--color-white);
+      transition: border-color var(--transition), box-shadow var(--transition);
+    }
+
+    .problem-card[open] {
+      border-color: var(--color-medium-green);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .problem-card summary {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+      cursor: pointer;
+      font-weight: 600;
+      list-style: none;
+    }
+
+    .problem-card summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .problem-card summary::marker {
+      display: none;
+    }
+
+    .problem-title {
+      flex: 1;
+    }
+
+    .answer {
+      margin-top: 0.5rem;
+      padding: 0.5rem 0.65rem;
+      border-left: 3px solid var(--color-gold);
+      background: rgba(163, 143, 90, 0.08);
+      border-radius: var(--radius-sm);
+      font-weight: 600;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.2rem 0.55rem;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      color: var(--color-white);
+      background: var(--color-medium-green);
+      text-transform: capitalize;
+      white-space: nowrap;
+    }
+
+    .pill-id {
+      background: var(--color-dark-green);
+    }
+
+    .pill-unit_conversion {
+      background: #2e7aa5;
+    }
+
+    .pill-multi_step {
+      background: #a05a1c;
+    }
+
+    .pdf-card {
+      margin-bottom: 1.5rem;
+    }
+
+    .pdf-details summary {
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .pdf-embed-wrapper {
+      margin-top: 0.75rem;
+    }
+
+    .pdf-frame {
+      width: 100%;
+      height: 600px;
+      border: 1px solid var(--color-light-gray);
+      border-radius: var(--radius-md);
+    }
+
+    .pdf-fallback {
+      margin-top: 0.5rem;
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 640px) {
+      .equation-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-content">
+      <a href="index.html" class="site-logo">
+        <img src="logos/Mustafa Abdul Haque.svg" alt="Mustafa Abdul Haque">
+      </a>
+      <nav class="site-nav">
+        <a href="index.html">Home</a>
+        <a href="chemistry-balancing.html">Chemistry Balancing</a>
+        <a href="chemistry-key-equations.html">Chemistry Equations</a>
+        <a href="dimensional-analysis.html">Dimensional Analysis</a>
+        <a href="formula_choices.html">Equation Chooser Trainer</a>
+        <a href="chemistry-formula-practice.html" class="active">Formula Practice</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <div class="page-title">
+      <h1 id="page-title">Chemistry Formula Practice</h1>
+      <p class="subtitle" id="page-subtitle">Work through problems grouped by formula and reveal answers when ready.</p>
+    </div>
+
+    <section class="card card-accent info-card">
+      <h2>How to use this set</h2>
+      <p>Each formula includes three practice questions: simple, unit conversion, and multi-step. Expand a problem to check your answer, or jump to the full explanation PDF below.</p>
+    </section>
+
+    <section class="card pdf-card">
+      <details class="pdf-details">
+        <summary>Show answer explanations (embedded PDF)</summary>
+        <div class="pdf-embed-wrapper">
+          <iframe class="pdf-frame" src="chem_formula_practice/chemistry_solutions.pdf" title="Chemistry answer explanations PDF" loading="lazy"></iframe>
+          <p class="pdf-fallback">Need a larger view? <a href="chem_formula_practice/chemistry_solutions.pdf" target="_blank" rel="noopener">Open the PDF in a new tab</a>.</p>
+        </div>
+      </details>
+    </section>
+
+    <section id="practice-sections" class="section-list">
+      <div class="card">Loading practice problems...</div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Mustafa Abdul Haque - Tutoring Resources</p>
+  </footer>
+
+  <script>
+    const practiceContainer = document.getElementById('practice-sections');
+    const titleEl = document.getElementById('page-title');
+    const subtitleEl = document.getElementById('page-subtitle');
+
+    const difficultyLabels = {
+      simple: 'Simple',
+      unit_conversion: 'Unit Conversion',
+      multi_step: 'Multi-Step'
+    };
+
+    function createProblemCard(problem) {
+      const details = document.createElement('details');
+      details.className = 'problem-card';
+
+      const summary = document.createElement('summary');
+
+      const pill = document.createElement('span');
+      pill.className = `pill pill-${problem.difficulty}`;
+      pill.textContent = difficultyLabels[problem.difficulty] || 'Problem';
+
+      const prompt = document.createElement('span');
+      prompt.className = 'problem-title';
+      prompt.textContent = problem.problem;
+
+      summary.appendChild(pill);
+      summary.appendChild(prompt);
+      details.appendChild(summary);
+
+      const answer = document.createElement('div');
+      answer.className = 'answer';
+
+      const answerLabel = document.createElement('strong');
+      answerLabel.textContent = 'Answer: ';
+
+      const answerText = document.createElement('span');
+      answerText.textContent = problem.answer;
+
+      answer.appendChild(answerLabel);
+      answer.appendChild(answerText);
+      details.appendChild(answer);
+
+      return details;
+    }
+
+    function createEquationCard(equation) {
+      const wrapper = document.createElement('div');
+      wrapper.className = 'equation-card';
+
+      const header = document.createElement('div');
+      header.className = 'equation-header';
+
+      const eqTitle = document.createElement('h4');
+      eqTitle.textContent = equation.equation;
+
+      const idPill = document.createElement('span');
+      idPill.className = 'pill pill-id';
+      idPill.textContent = equation.id;
+
+      header.appendChild(eqTitle);
+      header.appendChild(idPill);
+      wrapper.appendChild(header);
+
+      const problems = document.createElement('div');
+      problems.className = 'problem-list';
+      equation.problems.forEach((problem) => problems.appendChild(createProblemCard(problem)));
+      wrapper.appendChild(problems);
+
+      return wrapper;
+    }
+
+    function createSectionCard(section) {
+      const sectionCard = document.createElement('section');
+      sectionCard.className = 'card section-card';
+
+      const heading = document.createElement('h3');
+      heading.textContent = section.section;
+      sectionCard.appendChild(heading);
+
+      const equationsWrapper = document.createElement('div');
+      section.equations.forEach((equation) => {
+        equationsWrapper.appendChild(createEquationCard(equation));
+      });
+      sectionCard.appendChild(equationsWrapper);
+
+      return sectionCard;
+    }
+
+    async function loadPractice() {
+      try {
+        const response = await fetch('chem_formula_practice/chemistry_problems.json');
+        if (!response.ok) throw new Error('Failed to load practice set.');
+
+        const data = await response.json();
+        titleEl.textContent = data.title || titleEl.textContent;
+        if (data.description) {
+          subtitleEl.textContent = data.description;
+        }
+
+        practiceContainer.innerHTML = '';
+        data.sections.forEach((section) => {
+          practiceContainer.appendChild(createSectionCard(section));
+        });
+      } catch (error) {
+        practiceContainer.innerHTML = '<div class="card">Unable to load practice problems right now. Please try again later.</div>';
+        console.error(error);
+      }
+    }
+
+    loadPractice();
+  </script>
+</body>
+</html>
