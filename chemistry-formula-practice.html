@@ -6,6 +6,8 @@
   <title>Chemistry Formula Practice - Mustafa Abdul Haque</title>
   <link rel="icon" type="image/svg+xml" href="logos/ICON ONLY Mustafa Abdul Haque (Logo).svg">
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" integrity="sha384-zh0CIslj+VczCZtlzBcjt5ppRcsAmDnRem7ESsYwWwg3m/OaJ2l4x7YBZl9Kxxib" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.js" integrity="sha384-Rma6DA2IPUwhNxmrB/7S3Tno0YY7sFu9WSYMCuulLhIqYSGZ2gKCJWIqhBWqMQfh" crossorigin="anonymous"></script>
   <style>
     .info-card {
       margin-bottom: 1.25rem;
@@ -170,7 +172,13 @@
 
     <section class="card card-accent info-card">
       <h2>How to use this set</h2>
-      <p>Each formula includes three practice questions: simple, unit conversion, and multi-step. Expand a problem to check your answer, or jump to the full explanation PDF below.</p>
+      <p>Treat every problem as if it were an <strong>AP Exam FRQ</strong>. Each formula includes three practice questions (simple, unit conversion, and multi-step). When you are ready, expand a problem to check your answer, or jump to the full explanation PDF below.</p>
+      <ul>
+        <li><strong>Show all work</strong> — write out every step, include all units (even when substituting values into formulas), and present your final answer in context with correct units and significant figures.</li>
+        <li><strong>Use pen and paper</strong> — work on a separate sheet of paper (preferably one page per question) using black or blue ink.</li>
+        <li><strong>Avoid iPads</strong> — writing on a tablet is not as effective and is not how AP Exams are conducted.</li>
+        <li><strong>Do NOT use a keyboard and mouse</strong> — handwriting your solutions builds the skills you will need on exam day.</li>
+      </ul>
     </section>
 
     <section class="card pdf-card">
@@ -245,7 +253,15 @@
       header.className = 'equation-header';
 
       const eqTitle = document.createElement('h4');
-      eqTitle.textContent = equation.equation;
+      if (equation.latex) {
+        try {
+          katex.render(equation.latex, eqTitle, { throwOnError: false, displayMode: false });
+        } catch (_) {
+          eqTitle.textContent = equation.equation;
+        }
+      } else {
+        eqTitle.textContent = equation.equation;
+      }
 
       const idPill = document.createElement('span');
       idPill.className = 'pill pill-id';
